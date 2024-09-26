@@ -1,0 +1,39 @@
+.formMain{
+    height: 100vh;
+    background-color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formLogin{ 
+    width: 80%;
+}
+
+
+
+.groupButton{
+    text-align: center;
+    display: flex;
+    height: 10rem;
+    justify-content: center;
+    flex-direction: column;
+    background-color: aqua;
+    border-radius: 10px;
+}
+
+.buttonLayout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonLayout button {
+    z-index: 1;
+    height: 3rem;
+    border-radius: 10rem;
+    width: 250px;
+    
+}
+
+
