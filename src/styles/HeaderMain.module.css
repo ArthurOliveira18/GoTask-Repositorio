@@ -1,0 +1,18 @@
+
+
+body,html{
+    margin: 0;
+    padding: 0;
+
+    
+}
+
+.headerMain{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    background-color: #DDE4FF;
+    display: flex;
+    justify-content: center;
+}
+

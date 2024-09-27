@@ -1,17 +1,25 @@
-form{
+.formMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh; /* Altura total da viewport */
+  }
+  
+  form {
     width: 100vw;
-    height: 100vh;
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #DDE4FF;
     gap: 2rem;
-}
+    flex-grow: 1; /* Permite que o form ocupe o máximo possível */
+  }
+  
 
 
 .divEmail{
-    width: 600px;
+    width: 35vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,10 +27,11 @@ form{
     justify-content: center;
     background-color: #4B1DF2;
     border-radius: 2rem;
+    box-shadow: 0 0 10px #000;
 }
 
 .divPassword{
-    width: 600px;
+    width: 35vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,15 +41,18 @@ form{
     border-radius: 2rem;
     gap: 1rem;
     position: relative;
+    box-shadow: 0 0 10px #000;
 }
 
 
 
 input{
     height: 40%;
-    width: 70%;
+    width: 90%;
     border-radius: 10rem;
     border: none;
+    font-size: 25px;
+    text-align: center;
 }
 
 label{
@@ -51,14 +63,40 @@ label{
 button{
     border: none;
     z-index:1;
-    width: 150px;
-    height: 40px;
+    font-size: 25px;
+    width: 220px;
+    height: 45px;
     background-color: #6249BF;
     color: #fff;
     border-radius: 10rem;
     position: absolute; /* Posicionamento absoluto */
-    top: 7rem; /* Ajuste para mover o botão acima da div */
+    top: 10rem; /* Ajuste para mover o botão acima da div */
 }
 
+
+@media (max-width: 1200px) {
+    
+    .divEmail{
+        width: 80VW;
+        
+    }
+
+    input{
+        font-size: 18px;
+        height: 30%;
+        width: 80%;
+    }
+
+    .divPassword{
+        width: 80VW;
+        
+    }
+
+    button{
+        width: 40vw;
+    }
+    
+
+}
 
 

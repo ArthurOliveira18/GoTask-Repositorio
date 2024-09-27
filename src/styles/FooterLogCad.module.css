@@ -1,0 +1,28 @@
+.footerLog {
+    width: 100vw;
+    background-color: #6249BF;
+    height: auto; /* Ajusta-se conforme o conteúdo ou o espaço restante */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+  }
+  
+body{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+
+@media (max-height: 600px) {
+    
+    .footerLog{
+        height: 50px;
+        font-size: 10px;
+    }
+    
+
+}
