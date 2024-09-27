@@ -5,11 +5,19 @@ import HeaderMain from './HeaderMain';
 
 const FormLogin = () => {
   return (
+<<<<<<< HEAD
     <div className={Style.formMain}>
 
       <HeaderMain/>
       <form>
         <label htmlFor="email">Email</label>
+=======
+    <div className = {Style.formMain}>
+      <form >
+        
+
+      <label htmlFor="email">Email</label>
+>>>>>>> d69e1b07ed23528822f88c1b7fd094c959d4e62c
         <div className={Style.divEmail}>
           <input type="email" name="email" id="email" required />
         </div>
