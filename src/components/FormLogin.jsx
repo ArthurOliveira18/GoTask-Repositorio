@@ -3,6 +3,8 @@ import Style from '../styles/FormLogin.module.css';
 import FoorterLogCad from './FoorterLogCad';
 import HeaderMain from './HeaderMain';
 
+
+
 const FormLogin = () => {
   return (
     <div className={Style.formMain}>
@@ -12,13 +14,13 @@ const FormLogin = () => {
         <label htmlFor="email">Email</label>
 
         <div className={Style.divEmail}>
-          <input type="email" name="email" id="email" required />
+          <input type="email" name="email" id="email" required className={Style.inputFormLogin}/>
         </div>
 
         <label htmlFor="password">Senha</label>
         <div className={Style.divPassword}>
-          <input type="password" name="password" id="password" />
-          <button type="submit" id="oii">Entrar</button>
+          <input type="password" name="password" id="password" className={Style.inputFormLogin} />
+          <button type="submit" className={Style.buttonForm}>Entrar</button>
         </div>
       </form>
       <FoorterLogCad />

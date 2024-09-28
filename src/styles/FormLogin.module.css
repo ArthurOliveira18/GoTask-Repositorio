@@ -47,7 +47,7 @@
 
 
 
-input{
+.inputFormLogin{
     height: 40%;
     width: 90%;
     border-radius: 10rem;
@@ -61,7 +61,7 @@ label{
 
 }
 
-button{
+.buttonForm{
     border: none;
     z-index:1;
     font-size: 25px;
@@ -86,7 +86,7 @@ button{
         
     }
 
-    input{
+    .inputFormLogin{
         font-size: 18px;
         height: 30%;
         width: 80%;
@@ -97,7 +97,7 @@ button{
         
     }
 
-    button{
+    .buttonForm{
         width: 40vw;
     }
     
@@ -106,13 +106,13 @@ button{
 
 
 @media (max-height: 769px) {
-    button{
+    .buttonForm{
         height: 1.75rem;
         top:8.5rem;
         font-size: 16px;
     } 
 
-    input{
+    .inputFormLogin{
         font-size: 12px;
     }
 

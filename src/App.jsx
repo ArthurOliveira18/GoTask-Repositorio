@@ -1,19 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import FormLogin from './components/FormLogin'
-
-
+import { useState } from 'react';
+import './App.css';
+import FormLogin from './components/FormLogin';
+import ForgotPassword from './components/ForgotPassword';
+import Register from './components/Register';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <div>
-         <FormLogin/>
-    </div>
-  )
+    <Router>  {/* Aqui inicia o Router */}
+      <div>
+        <Routes>
+          <Route path="/" element={<FormLogin />} /> {/* Página de Login */}
+          <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Página de Esqueceu Senha */}
+          <Route path="/register" element={<Register />} /> {/* Página de Cadastro */}
+        </Routes>
+      </div>
+    </Router>  
+  );
 }
 
-export default App
+export default App;

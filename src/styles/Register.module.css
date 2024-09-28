@@ -1,0 +1,82 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #DDE4FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    height: 9vh;
+}
+
+.formRegister {
+    width: 90vw;
+    height: 80vh;
+    background-color: #4B1DF2;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-size: 30px;
+    text-align: left;
+    gap: 2rem;
+    box-shadow: 0 0 10px #000;
+}
+
+.imgGoTask {
+    width: 190px;
+}
+
+.inputRegister {
+    height: 7%;
+    width: 90%;
+    border-radius: 2rem;
+    border: none;
+}
+
+.buttonRegister {
+    border-radius: 2rem;
+    border: none;
+    height: 3rem;
+    width: 40%;
+    background-color: #6249BF;
+    font-size: 25px;
+    color: #fff;
+}
+
+@media (max-height: 850px) {
+    .formRegister {
+        height: 87vh;
+    }
+
+    .inputRegister {
+        height: 40px; /* Definindo a altura em pixels */
+    }
+
+    .imgGoTask {
+        width: 2px;
+        margin: 2rem;
+    }
+
+    .buttonRegister {
+        height: 40px; /* Mantenha a altura consistente */
+        width: auto; /* Ajuste a largura para se adaptar */
+    }
+}
+
+@media (max-width: 600px) {
+    .buttonRegister {
+        position: absolute;
+        bottom: 5rem;
+        height: 3rem; /* Considere ajustar se necessário */
+        width: 10rem; /* Ajuste se necessário */
+    }
+}

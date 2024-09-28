@@ -1,14 +1,18 @@
 .footerLog {
     width: 100vw;
     background-color: #6249BF;
-    height: auto; /* Ajusta-se conforme o conteúdo ou o espaço restante */
-    color: #fff;
+    
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     
-  }
+}
+
+.footerLog a{
+    text-decoration: none;
+    color: #fff;
+}
   
 body{
     overflow: hidden;
