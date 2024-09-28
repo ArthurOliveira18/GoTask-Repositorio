@@ -14,7 +14,7 @@ const FormLogin = () => {
     e.preventDefault(); // Evitar recarregar a página
 
     // Credenciais pré-definidas
-    const correctEmail = 'admin@e.com123';
+    const correctEmail = 'admin@gmail.com';
     const correctPassword = 'admin123';
 
     // Verifica se as credenciais estão corretas
