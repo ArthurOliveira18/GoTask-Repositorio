@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100vh; /* Altura total da viewport */
+    overflow: hidden;
   }
   
   form {
@@ -65,7 +66,7 @@ button{
     z-index:1;
     font-size: 25px;
     width: 220px;
-    height: 45px;
+    height: 60px;
     background-color: #6249BF;
     color: #fff;
     border-radius: 10rem;
@@ -76,6 +77,10 @@ button{
 
 @media (max-width: 1200px) {
     
+
+    .formMain{
+        width: 100vw;
+    }
     .divEmail{
         width: 80VW;
         
@@ -98,5 +103,21 @@ button{
     
 
 }
+
+
+@media (max-height: 769px) {
+    button{
+        height: 1.75rem;
+        top:8.5rem;
+        font-size: 16px;
+    } 
+
+    input{
+        font-size: 12px;
+    }
+
+    
+}
+
 
 

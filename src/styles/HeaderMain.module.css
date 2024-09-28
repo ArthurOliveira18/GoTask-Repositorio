@@ -14,5 +14,19 @@ body,html{
     background-color: #DDE4FF;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.imgPurple{
+    width: 100%;
+    height: 4rem;
+}
+
+.imgGoTask{
+    width: 7rem;
+    position: absolute;
+    top: 1rem;
 }
 
