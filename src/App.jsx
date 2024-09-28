@@ -12,7 +12,7 @@ function App() {
     <Router>  {/* Aqui inicia o Router */}
       <div>
         <Routes>
-          <Route path="/" element={<FormLogin />} /> {/* Página de Login */}
+          <Route path="/formLogin" element={<FormLogin />} /> {/* Página de Login */}
           <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Página de Esqueceu Senha */}
           <Route path="/register" element={<Register />} /> {/* Página de Cadastro */}
         </Routes>

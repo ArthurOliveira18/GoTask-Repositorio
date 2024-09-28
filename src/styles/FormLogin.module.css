@@ -1,3 +1,5 @@
+
+/* Esse formMain é a classe com a primeira div, contendo todo conteudo nela. Ou seja, os inputs e tudo */
 .formMain {
     display: flex;
     flex-direction: column;
@@ -6,6 +8,7 @@
     overflow: hidden;
   }
   
+  /* O elemento form contendo os inputs */
   form {
     width: 100vw;
     justify-content: center;
@@ -14,7 +17,7 @@
     align-items: center;
     background-color: #DDE4FF;
     gap: 2rem;
-    flex-grow: 1; /* Permite que o form ocupe o máximo possível */
+   
   }
   
 
@@ -46,7 +49,7 @@
 }
 
 
-
+/* esse classe é a classe de todos os inputs, feita para ficar apenas nesse escopo desta pagina, pois se não ocorre uma evasão do css desta pagina para outras. */
 .inputFormLogin{
     height: 40%;
     width: 90%;
@@ -56,7 +59,9 @@
     text-align: center;
 }
 
-label{
+
+/* Mesma coisa aqui */
+.labelFormLogin{
     font-size: 30px;
 
 }
@@ -75,6 +80,9 @@ label{
 }
 
 
+
+
+/* A partir daqui a estilização foi feita para deixar responsiva para mobile */
 @media (max-width: 1200px) {
     
 
@@ -106,10 +114,23 @@ label{
 
 
 @media (max-height: 769px) {
-    .buttonForm{
+    .buttonFormb{
         height: 1.75rem;
         top:8.5rem;
         font-size: 16px;
+    } 
+
+    .inputFormLogin{
+        font-size: 12px;
+    }
+
+    
+}
+
+@media (max-width: 705px) {
+    .buttonFormb{
+       height: 1rem;
+       width: 1rem;
     } 
 
     .inputFormLogin{

@@ -7,6 +7,8 @@ body {
     justify-content: center;
 }
 
+/* Estilização da setinha */
+
 .header {
     display: flex;
     justify-content: space-around;
@@ -15,9 +17,11 @@ body {
     height: 9vh;
 }
 
+/* estilização da div que contem os inputs e labels */
+
 .formRegister {
     width: 90vw;
-    height: 80vh;
+    height: 70vh;
     background-color: #4B1DF2;
     border-radius: 2rem;
     display: flex;
@@ -35,6 +39,7 @@ body {
     width: 190px;
 }
 
+/* Estilização de todos os inputs */
 .inputRegister {
     height: 7%;
     width: 90%;
@@ -42,41 +47,45 @@ body {
     border: none;
 }
 
+
+/* Estilização do button */
 .buttonRegister {
     border-radius: 2rem;
     border: none;
     height: 3rem;
-    width: 40%;
+    width: 40vw;
     background-color: #6249BF;
     font-size: 25px;
     color: #fff;
 }
 
+/* A partir daqui são feitas a estilização para deixar responsiva para todos os dispositios. */
+
 @media (max-height: 850px) {
     .formRegister {
-        height: 87vh;
+        height: 75vh;
     }
 
     .inputRegister {
-        height: 40px; /* Definindo a altura em pixels */
+        height: 40px; 
     }
 
     .imgGoTask {
-        width: 2px;
+        width: 0px;
         margin: 2rem;
     }
 
     .buttonRegister {
-        height: 40px; /* Mantenha a altura consistente */
-        width: auto; /* Ajuste a largura para se adaptar */
+        height: 40px; 
+        width: 50vw; 
     }
 }
 
 @media (max-width: 600px) {
     .buttonRegister {
-        position: absolute;
+        
         bottom: 5rem;
-        height: 3rem; /* Considere ajustar se necessário */
-        width: 10rem; /* Ajuste se necessário */
+        height: 3rem;
+        width: 11rem; 
     }
 }
