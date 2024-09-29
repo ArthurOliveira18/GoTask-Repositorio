@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
-    <div>
+    <div className={Style.divPrincipalRegister}>
       
       <div className={Style.header}>
         {/* criei essas outras divs vazias apenas para  */}
@@ -21,7 +21,7 @@ const Register = () => {
         <div></div>
       </div>
 
-      <form >
+      <form className={Style.mainFormRegister}>
 
         {/* Div contendo todos os elementos tirando o button. */}
         <div className={Style.formRegister}>
@@ -39,7 +39,7 @@ const Register = () => {
           
         </div>
 
-        <button type='submit' className={Style.buttonRegister}>Cadastrar-se</button>
+          <button type='submit' className={Style.buttonRegister}>Cadastrar-se</button>
         </form>
     </div>
   )

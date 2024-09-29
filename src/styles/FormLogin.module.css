@@ -4,8 +4,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh; /* Altura total da viewport */
+    min-height: 100vh; /* Altura total da viewport */
     overflow: hidden;
+    background-color: #DDE4FF ;
   }
   
   /* O elemento form contendo os inputs */
