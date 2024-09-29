@@ -1,8 +1,9 @@
-body {
+.divPrincipalRegister {
     height: 100vh;
     width: 100vw;
     background-color: #DDE4FF;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -15,6 +16,16 @@ body {
     align-items: center;
     width: 50%;
     height: 9vh;
+}
+
+.mainFormRegister{
+    
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    gap: 2rem;
 }
 
 /* estilização da div que contem os inputs e labels */
