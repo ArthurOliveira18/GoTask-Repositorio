@@ -9,7 +9,7 @@
   }
   
   /* O elemento form contendo os inputs */
-  form {
+  .formLogin {
     width: 100vw;
     justify-content: center;
     display: flex;
