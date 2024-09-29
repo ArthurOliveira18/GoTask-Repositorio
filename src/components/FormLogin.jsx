@@ -41,7 +41,7 @@ const FormLogin = () => {
             required
             className={Style.inputFormLogin}
             value={email} // Vincula ao estado email
-            onChange={(e) => setEmail(e.target.value)} // Atualiza o estado quando o usuário digita
+            onChange={(e) => setEmail(e.target.value)} // Atualiza o estado quando o usuário digita (ou seja, isso serve para mostrar em tempo real no input oq o usuario digitou)
           />
         </div>
 
@@ -53,7 +53,7 @@ const FormLogin = () => {
             id="password"
             className={Style.inputFormLogin}
             value={password} // Vincula ao estado password
-            onChange={(e) => setPassword(e.target.value)} // Atualiza o estado quando o usuário digita
+            onChange={(e) => setPassword(e.target.value)} // Atualiza o estado quando o usuário digita (ou seja, isso serve para mostrar em tempo real no input oq o usuario digitou)
           />
           <button type="submit" className={Style.buttonForm}>Entrar</button>
         </div>
