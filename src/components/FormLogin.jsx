@@ -30,7 +30,7 @@ const FormLogin = () => {
     <div className={Style.formMain}>
       <HeaderMain />
 
-      <form onSubmit={handleSubmit}> {/* Adiciona o onSubmit no form */}
+      <form onSubmit={handleSubmit} className={Style.formLogin}> {/* Adiciona o onSubmit no form */}
         <label htmlFor="email" className={Style.labelFormLogin}>Email</label>
 
         <div className={Style.divEmail}>
