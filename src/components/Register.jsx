@@ -10,7 +10,7 @@ const Register = () => {
       <div className={Style.header}>
         {/* criei essas outras divs vazias apenas para  */}
 
-        <Link to={'/FormLogin'}>      
+        <Link to={'/'}>      
           <span class="material-symbols-outlined">
             arrow_back
           </span>
