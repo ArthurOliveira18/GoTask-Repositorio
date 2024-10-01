@@ -1,0 +1,9 @@
+.mainHome{
+    width: 100vw;
+    height: 80vh;
+    background-color: #DDE4FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
