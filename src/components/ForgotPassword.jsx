@@ -2,7 +2,7 @@ import HeaderMain from './HeaderMain'
 import FoorterLogCad from './FoorterLogCad'
 import { Link } from "react-router-dom";
 import Style from '../styles/ForgotPassword.module.css'
-import logoGT from '../assets/logoGT.png'
+
 const ForgotPassword = () => {
   return (
     <div>
