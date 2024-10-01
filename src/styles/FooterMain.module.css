@@ -1,11 +1,17 @@
 .divFooterMain{
     width: 100vw;
-    height: 30vh;
-    background-color: #DDE4FF;
+    height: 13vh;
+    background-color: #6249BF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
 }
 
-.imgMainFooter{
-    width: 100%;
-    height:14vh;
-}
+
+/* Estilizando os icons */
+.divFooterMain span {
+    font-size: 5vh ; 
+    color: #fff;
+  }
 
