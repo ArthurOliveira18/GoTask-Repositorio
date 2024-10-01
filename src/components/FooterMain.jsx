@@ -6,8 +6,6 @@ const FooterMain = () => {
   return (
     <div>
         <div className={Style.divFooterMain}>
-            <img src={imgFooterMain} alt="" className={Style.imgMainFooter} />
-
             <span class="material-symbols-outlined">
                 calendar_today
             </span>
