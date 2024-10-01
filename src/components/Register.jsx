@@ -7,7 +7,7 @@ const Register = () => {
   return (
     <div className={Style.divPrincipalRegister}>
       
-      <div className={Style.header}>
+      <div className={Style.arrowMain1}>
         {/* criei essas outras divs vazias apenas para  */}
 
         <Link to={'/'}>      
@@ -24,22 +24,22 @@ const Register = () => {
       <form className={Style.mainFormRegister}>
 
         {/* Div contendo todos os elementos tirando o button. */}
-        <div className={Style.formRegister}>
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" required className={Style.inputRegister}/>
+          <div className={Style.formRegister}>
+            <label htmlFor="email">Email</label>
+            <input type="email" name="email" id="email" required className={Style.inputRegister}/>
 
-          <label htmlFor="password">Senha</label>
-          <input type="password" name="password" id="password" required className={Style.inputRegister}/>
+            <label htmlFor="password">Senha</label>
+            <input type="password" name="password" id="password" required className={Style.inputRegister}/>
 
-          <label htmlFor="username">Nome e usuário</label>
-          <input type="text" name="username" id="username"  required className={Style.inputRegister}/>
+            <label htmlFor="username">Nome e usuário</label>
+            <input type="text" name="username" id="username"  required className={Style.inputRegister}/>
 
-          <img src={GoTask} alt=""  className={Style.imgGoTask}/>
+            <img src={GoTask} alt=""  className={Style.imgGoTask}/>
 
           
-        </div>
+          </div>
 
-          <button type='submit' className={Style.buttonRegister}>Cadastrar-se</button>
+            <button type='submit' className={Style.buttonRegister}>Cadastrar-se</button>
         </form>
     </div>
   )
