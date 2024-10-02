@@ -31,7 +31,7 @@
   }
 
   /* Estilização da parte roxa */
-  .homePurple{
+  .homePurple {
     background-color: #6249BF;
     width: 90%;
     height: 90%;
@@ -40,6 +40,7 @@
     align-items: center;
     flex-direction: column;
     border-radius: 1rem;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.479); /* Sombra apenas na parte superior */
   }
 
   /* Estilização da parte branca e das informações dos filhos */
@@ -59,13 +60,13 @@
 .nameChildren {
     width: 100%;
     display: flex;
-    justify-content: space-between; /* Mantém o espaço entre o nome e o parágrafo */
-    align-items: flex-end; /* Posiciona os elementos no final verticalmente */
-    padding: 0 1rem; /* Adiciona um pouco de espaço interno se necessário */
+    justify-content: space-between; 
+    align-items: center;
+    
   }
   
-  /* Estilo adicional para o parágrafo para garantir que ele fique no final da div */
-  .nameChildren p {
-    align-self: flex-end; /* Garante que o parágrafo fique alinhado ao final */
+  .nameChildren hr{
+    
   }
+ 
   

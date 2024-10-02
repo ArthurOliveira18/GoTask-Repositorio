@@ -22,8 +22,10 @@ const Home = () => {
                 <h2>Cristhiano</h2>
                 
                 <p>total de pontos: 50</p>
-                <hr />
               </div>
+              
+              <hr />
+             
             </div>
           </div>
         </div>
