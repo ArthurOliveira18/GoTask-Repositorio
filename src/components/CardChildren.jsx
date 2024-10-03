@@ -5,6 +5,7 @@ const CardChildren = () => {
   return (
     <div className={style.homeMain}>
       <h1>Conteúdo principal</h1>
+      <h1>Conteudo secundário</h1>
     </div>
   );
 };
