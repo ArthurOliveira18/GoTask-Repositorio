@@ -41,7 +41,9 @@ const FormLogin = () => {
             className={Style.inputFormLogin}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            
           />
+          
         </div>
 
         <label htmlFor="password" className={Style.labelFormLogin}>Senha</label>
