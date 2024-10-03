@@ -96,7 +96,7 @@
     }
 
     .inputFormLogin{
-        font-size: 18px;
+        font-size: 20px;
         height: 30%;
         width: 80%;
     }
@@ -135,10 +135,8 @@
     } 
 
     .inputFormLogin{
-        font-size: 12px;
+        font-size: 25px;
     }
-
-    
 }
 
 
