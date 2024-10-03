@@ -1,56 +1,13 @@
-    /* Flex-grow 1 garante que o conteúdo "mainHome" expanda e empurre o footer */
-    /* Estilização da cor de fundo */
-  .homeMain {
+/* Estilização da parte principal */
+.homeMain {
     width: 100vw;
-    height: 70vh;
+    height: auto; /* Ajusta a altura automaticamente */
     background-color: #DDE4FF;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     flex-grow: 1; /* Faz o main expandir */
-  }
-
-
-  
-  /* Estilização da parte roxa */
-  .homePurple {
-    background-color: #6249BF;
-    width: 90%;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 1rem;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.479); /* Sombra apenas na parte superior */
-  }
-
-  /* Estilização da parte branca e das informações dos filhos */
-  .homeChildren{
-    background-color: #fff;
-    height: 90%;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-  }
-
- 
-  /* Estilização da parte que contém o nome dos filhos e a quantidade de pontos */
-.nameChildren {
-    width: 90%;
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    margin-left:2rem;
-    margin-right: 2rem;
-  }
-
-  .hrNormal {
-    width: 100vw
   }
   
   

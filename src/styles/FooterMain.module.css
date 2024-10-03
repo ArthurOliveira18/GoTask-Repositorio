@@ -1,17 +1,16 @@
-.divFooterMain{
+/* Estilização do footer */
+.divFooterMain {
     width: 100vw;
     height: 10vh;
     background-color: #6249BF;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
-}
-
-
-/* Estilizando os icons */
-.divFooterMain span {
-    font-size: 5vh ; 
+  }
+  
+  /* Estilizando os ícones no footer */
+  .divFooterMain span {
+    font-size: 5vh;
     color: #fff;
   }
-
+  

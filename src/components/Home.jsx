@@ -7,10 +7,10 @@ import CardChildren from "./CardChildren";
 const Home = () => {
   return (
     <div className={Style.pageContainer}>
-      
-      
       <HeaderMain />
-      <CardChildren/>
+      <div className={Style.pageMain}>
+        <CardChildren />
+      </div>
       <FooterMain />
     </div>
   );
