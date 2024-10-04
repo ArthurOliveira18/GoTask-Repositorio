@@ -9,8 +9,17 @@
   }
   
   /* Estilizando os ícones no footer */
-  .divFooterMain span {
+  .divFooterMain {
     font-size: 5vh;
     color: #fff;
   }
+
+  .activeIcon {
+    color: purple;
+  }
+  
+  .inactiveIcon {
+    color: lightGray;
+  }
+  
   
