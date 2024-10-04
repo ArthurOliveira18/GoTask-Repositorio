@@ -9,18 +9,17 @@ const FooterMain = () => {
   const location = useLocation();
   
   const getIconColor = (path) => {
-    return location.pathname === path ? 'purple' : 'lightGray';
+    return location.pathname === path ? '#735BF2' : 'lightGray';
   };
-
 
     return (
 
   <nav className={Style.divFooterMain}>
-  <Link to="/Home"><Home className="material-symbols-outlined" style={{ color: getIconColor('/Home') }} /></Link>
-  <Link to="/Teste"><ShoppingCart className="material-symbols-outlined" style={{ color: getIconColor('/Teste') }} /></Link>
-  <Settings className="material-symbols-outlined" style={{ color: getIconColor('/settings') }} />
-  <CalendarToday className="material-symbols-outlined" style={{ color: getIconColor('/calendar') }} />
-  <FamilyRestroom className="material-symbols-outlined" style={{ color: getIconColor('/family') }} />
+  <Link to="/Home"><Home className="material-symbols-outlined" style={{ color: getIconColor('/Home'), fontSize: "5vh" }} /></Link>
+  <Link to="/Teste"><ShoppingCart className="material-symbols-outlined" style={{ color: getIconColor('/Teste'), fontSize: "5vh"  }} /></Link>
+  <Settings className="material-symbols-outlined" style={{ color: getIconColor('/settings'), fontSize: "5vh"  }} />
+  <CalendarToday className="material-symbols-outlined" style={{ color: getIconColor('/calendar'), fontSize: "5vh"  }} />
+  <FamilyRestroom className="material-symbols-outlined" style={{ color: getIconColor('/family'), fontSize: "5vh"  }} />
 </nav>
 );
 }

@@ -2,7 +2,7 @@
 .divFooterMain {
     width: 100vw;
     height: 10vh;
-    background-color: #6249BF;
+    background-color: #fff;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -15,11 +15,11 @@
   }
 
   .activeIcon {
-    color: purple;
+    color: #74797E;
   }
   
   .inactiveIcon {
-    color: lightGray;
+    color: #735BF2;
   }
   
   
