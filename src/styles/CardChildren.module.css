@@ -1,4 +1,4 @@
-/* Estilização da parte principal */
+/* Estilização da parte principal  no caso a parte que tem somente a cor de fundo meio roxo bem claro*/
 .homeMain {
     width: 100vw;
     height: auto; /* Ajusta a altura automaticamente */
@@ -8,13 +8,30 @@
     align-items: center;
     flex-direction: column;
     flex-grow: 1; /* Faz o main expandir */
-  }
+}
   
 .homePurple{
     width: 90%;
-    height: 100%;
+    height: 70vh;
     background-color: #6249BF;
     display: flex;
     justify-content: center;
-  }
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.homeChildren{
+  background-color: #FFFFFF;
+  width: 90%;
+  height: 90%;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
   
+.nameChildren{
+  
+}
