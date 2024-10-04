@@ -19,19 +19,23 @@
     flex-direction: column;
     align-items: center;
     border-radius: 1rem;
+    gap: .75rem;
+    
 }
 
-.homeChildren{
-  background-color: #FFFFFF;
-  width: 90%;
-  height: 90%;
-  border-radius: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+
   
 .nameChildren{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  
+  
+}
+
+.taskChildren{
+  width: 90%;
+  justify-content: baseline;
+  display: flex;
   
 }
