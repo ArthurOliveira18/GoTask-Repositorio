@@ -45,7 +45,19 @@ const CardChildren = () => {
       <div className={style.homePurple}>
         {children.map((filho, index) => (
           // Div criada de maneira dinamica e estilizando todas as informações dos filhos
-          <div key={filho.id} style={{backgroundColor:'#FFFFFF' , width:'90%', height:'30%', display:'flex', justifyContent:"center" , flexDirection:'column', gap:'1rem', alignItems:"center", textAlign:"center"}}>
+          <div key={filho.id} style={{
+          backgroundColor:'#FFFFFF' , 
+          width:'90%', 
+          height:'30%',
+          display:'flex', 
+          justifyContent:"center" , 
+          flexDirection:'column', 
+          gap:'1rem', 
+          alignItems:"center", 
+          textAlign:"end",
+          borderRadius:'1rem'
+          }}>
+
             <div className={style.nameChildren}>
               <h1>{filho.name}</h1>
               <p>Total de pontos: {filho.totalPoints}</p>
