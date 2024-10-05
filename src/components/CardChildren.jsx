@@ -44,7 +44,7 @@ const CardChildren = () => {
       {/* div criada para estilizar a parte roxa que dentro dela tem a div branca  */}
       <div className={style.homePurple}>
         {children.map((filho, index) => (
-          // Div criada de maneira dinamica e estilizando todas as informações dos filhos
+          // Div criada de maneira dinamica e estilizando todas as informações dos filhos, fazendo assim criar uma div para cada filho.
           <div key={filho.id} style={{
           backgroundColor:'#FFFFFF' , 
           width:'90%', 
@@ -63,14 +63,15 @@ const CardChildren = () => {
               <p>Total de pontos: {filho.totalPoints}</p>
             </div>
             <div className={style.taskChildren}>
-              <form>
-                  <input
-                    type="checkbox"
-                    id="subscribeNews"
-                    name="subscribe"
-                    value="newsletter" />
-                  <label for="subscribeNews"> Subscreva a newsletter? </label>
-              </form>
+              {filho.task.map((tarefas, index)=(
+                <form key={index}>
+                  <input 
+                  type="checkbox" 
+                  checked
+                  />
+                </form>
+              ))}
+                
             </div>
                
           </div>
