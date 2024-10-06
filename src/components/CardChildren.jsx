@@ -67,8 +67,12 @@ const CardChildren = () => {
                 <form key={index}>
                   <input 
                   type="checkbox" 
-                  checked
+                  checked = {tarefas.complete}
+                  onChange={() =>{
+
+                  }}
                   />
+                  <label htmlFor="">{tarefas.taskName}</label>
                 </form>
               ))}
                 
