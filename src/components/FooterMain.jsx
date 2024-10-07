@@ -15,10 +15,10 @@ const FooterMain = () => {
     return (
 
   <nav className={Style.divFooterMain}>
-  <Link to="/Home"><Home className="material-symbols-outlined" style={{ color: getIconColor('/Home'), fontSize: "5vh" }} /></Link>
-  <Link to="/Teste"><ShoppingCart className="material-symbols-outlined" style={{ color: getIconColor('/Teste'), fontSize: "5vh"  }} /></Link>
   <Settings className="material-symbols-outlined" style={{ color: getIconColor('/settings'), fontSize: "5vh"  }} />
   <CalendarToday className="material-symbols-outlined" style={{ color: getIconColor('/calendar'), fontSize: "5vh"  }} />
+  <Link to="/Home"><Home className="material-symbols-outlined" style={{ color: getIconColor('/Home'), fontSize: "5vh" }} /></Link>
+  <Link to="/Teste"><ShoppingCart className="material-symbols-outlined" style={{ color: getIconColor('/Teste'), fontSize: "5vh"  }} /></Link>
   <FamilyRestroom className="material-symbols-outlined" style={{ color: getIconColor('/family'), fontSize: "5vh"  }} />
 </nav>
 );
@@ -26,29 +26,3 @@ const FooterMain = () => {
 
 export default FooterMain;
 
-
-
-
-
- //     <nav className={Style.divFooterMain}>
-  //       <calendar_today className="material-symbols-outlined" >
-  //         calendar_today
-  //       </calendar_today>
-
-  //       <shopping_cart className="material-symbols-outlined" >
-  //         shopping_cart
-  //       </shopping_cart>
-
-  //       <home className="material-symbols-outlined">
-  //         home
-  //       </home>
-
-  //       <settings className="material-symbols-outlined">
-  //         settings
-  //       </settings>
-
-  //       <family_restroom className="material-symbols-outlined">
-  //         family_restroom
-  //       </family_restroom>
-  //     </nav>
-  // );
