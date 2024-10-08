@@ -24,10 +24,10 @@ const CardChildren = () => {
     },
     {
       id: 3,
-      name: "Enzo",
+      name: "Claudio",
       task: [
         { taskName: "Arrumar a casa", points: 80, complete: false },
-        { taskName: "Ir passear com o cachorro", points: 30, complete: false }
+        { taskName: "Ir passear com o cachorro", points: 20, complete: false }
       ],
       totalPoints: 0
     }
@@ -41,7 +41,9 @@ const CardChildren = () => {
           const updatedTasks = child.task.map((task, index) => {
             if (index === taskIndex) {
               const isNowComplete = !task.complete; // Inverte o estado de complete
-              const updatedTotalPoints = isNowComplete ? child.totalPoints + task.points : child.totalPoints - task.points; 
+              const updatedTotalPoints = isNowComplete
+                ? child.totalPoints + task.points // Se a tarefa for marcada como completa, adiciona os pontos
+                : child.totalPoints - task.points; // Se for desmarcada, subtrai os pontos
 
               return {
                 ...task,
@@ -64,6 +66,10 @@ const CardChildren = () => {
     });
   };
 
+  const calculateProgress = (task) => {
+    
+  }
+
   return (
     // Div para estilizar o layout
     <div className={style.homeMain}>
@@ -72,7 +78,7 @@ const CardChildren = () => {
           <div key={filho.id} style={{
             backgroundColor: '#FFFFFF',
             width: '90%',
-            height: '30%',
+            height: '30%', 
             display: 'flex',
             justifyContent: "center",
             flexDirection: 'column',
