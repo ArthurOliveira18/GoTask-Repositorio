@@ -2,15 +2,24 @@
 .divFooterMain {
     width: 100vw;
     height: 10vh;
-    background-color: #6249BF;
+    background-color: #fff;
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
   
   /* Estilizando os ícones no footer */
-  .divFooterMain span {
+  .divFooterMain {
     font-size: 5vh;
     color: #fff;
   }
+
+  .activeIcon {
+    color: #74797E;
+  }
+  
+  .inactiveIcon {
+    color: #735BF2;
+  }
+  
   
