@@ -13,7 +13,7 @@ const CardChildren = () => {
         {taskName: "Arrumar a cama" , points: 10, complete:false},
         {taskName: "Tirar o lixo de casa" , points: 30, complete:false}
       ],
-      totalPoints: 100
+      totalPoints: 0
     },
 
     {
@@ -23,7 +23,7 @@ const CardChildren = () => {
         {taskName: "Fazer dever de matematica" , points: 40, complete:false},
         {taskName: "Dormir mais cedo" , points: 10, complete:false}
       ],
-      totalPoints: 50
+      totalPoints: 0
     },
 
     {
@@ -33,9 +33,11 @@ const CardChildren = () => {
         {taskName: "Arrumar a casa" , points: 80, complete:false},
         {taskName: "Ir passear com o cachorro" , points: 30, complete:false}
       ],
-      totalPoints: 70
+      totalPoints: 0
     }
   ])
+
+  const handle
 
 
   return (
