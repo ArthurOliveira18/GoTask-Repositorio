@@ -114,7 +114,7 @@ const CardChildren = () => {
                   className={style.progressBar}
                   style={{ width: `${calculateProgress(filho.task)}%` }} // Define a largura com base na porcentagem
                 ></div>
-                <p>{calculateProgress(filho.task).toFixed(0)}% concluído</p>
+                <p>{calculateProgress(filho.task).toFixed(0)}% concluído!</p>
               </div>
 
             
