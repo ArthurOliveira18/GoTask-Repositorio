@@ -42,3 +42,21 @@
   gap: .50rem;
   
 }
+
+.progressBarContainer {
+  width: 100%; /* Largura total do contêiner */
+  background-color: #f3f3f3; /* Cor de fundo da barra (parte não preenchida) */
+  border-radius: 20px; /* Bordas arredondadas */
+  height: 25px; /* Altura da barra */
+  margin-top: 10px; /* Margem superior */
+  overflow: hidden; /* Evita que o conteúdo exceda as bordas arredondadas */
+  box-shadow: 0 0 4px #6349bf5d;
+}
+
+.progressBar {
+  height: 100%; /* Altura completa da barra */
+  background-color: #4caf50; /* Cor da barra de progresso (verde) */
+  border-radius: 20px; /* Mantém as bordas arredondadas */
+  transition: width 0.4s ease; /* Animação suave de crescimento/redução */
+  
+}

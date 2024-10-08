@@ -15,7 +15,7 @@ const CardChildren = () => {
     },
     {
       id: 2,
-      name: "Julia",
+      name: "Amanda",
       task: [
         { taskName: "Fazer dever de matematica", points: 40, complete: false },
         { taskName: "Dormir mais cedo", points: 10, complete: false }
@@ -26,8 +26,9 @@ const CardChildren = () => {
       id: 3,
       name: "Claudio",
       task: [
-        { taskName: "Arrumar a casa", points: 80, complete: false },
-        { taskName: "Ir passear com o cachorro", points: 20, complete: false }
+        { taskName: "Arrumar a casa", points: 60, complete: false },
+        { taskName: "Ir passear com o cachorro", points: 10, complete: false },
+        { taskName: "Fazer o dever de história", points: 30, complete: false },
       ],
       totalPoints: 0
     }
@@ -66,9 +67,13 @@ const CardChildren = () => {
     });
   };
 
-  const calculateProgress = (task) => {
-    
-  }
+
+// Função para a barra de status aumentar ou diminuir com base nas checkbox marcadas
+  const calculateProgress = (tasks) => {
+    const totalTask = tasks.length
+    const completedTasks = tasks.filter(task => task.complete).length
+    return (completedTasks / totalTask) * 100
+  } 
 
   return (
     // Div para estilizar o layout
@@ -103,6 +108,16 @@ const CardChildren = () => {
                   <label htmlFor=""> {tarefas.taskName} + {tarefas.points}</label>
                 </form>
               ))}
+
+              <div className={style.progressBarContainer}>
+                <div
+                  className={style.progressBar}
+                  style={{ width: `${calculateProgress(filho.task)}%` }} // Define a largura com base na porcentagem
+                ></div>
+                <p>{calculateProgress(filho.task).toFixed(0)}% concluído</p>
+              </div>
+
+            
             </div>
 
           </div>
