@@ -56,6 +56,9 @@
     width: 90%;
     border-radius: 2rem;
     border: none;
+    
+    font-size: 30px;
+    text-align: center;
 }
 
 
@@ -79,6 +82,7 @@
 
     .inputRegister {
         height: 40px; 
+        font-size: 20px;
     }
 
     .imgGoTask {
