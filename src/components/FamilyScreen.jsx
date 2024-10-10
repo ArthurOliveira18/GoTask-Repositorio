@@ -9,6 +9,7 @@ const FamilyScreen = () => {
     <div className={style.pageContainerTest/*pageContainerFamilyScreen*/}>
         <HeaderMain/>
       <div className={style.pageMainTest/*pageMainFamilyScreen*/}>
+      <p>a</p>
         
       </div>
       <FooterMain/>
