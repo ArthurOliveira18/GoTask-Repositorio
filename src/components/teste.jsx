@@ -1,18 +1,21 @@
+
+
 import React from 'react'
 import HeaderMain from './HeaderMain'
 import FooterMain from './FooterMain'
+import ItensStore from './ItensStore'
 
-
-const teste = () => {
+const /* nome da pagina */teste = () => {
   return (
-    <div>
+    <div className={style.pageContainer/* nome da pagina*/}>
         <HeaderMain/>
-
-    <div>ssss</div>
-    
-        <FooterMain/>
+      <div className={style.pageMain/*nome da pagina*/}>
+        
+      </div>
+      <FooterMain/>
     </div>
   )
 }
 
-export default teste
+export default teste//nome da pagina
+
