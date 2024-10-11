@@ -45,30 +45,54 @@ const ItensStore = () => {
   ])
 
   return (
-    <div className={style.itensBlue}>
-      {recompensas.map((recomp) =>(
-        <div key={recomp.id} style={{color:"#000" , 
-        width:"40%",
-        height:'20%',
-        backgroundColor: "#fff",
-        display:'flex',
-        justifyContent:'center',
-        textAlign:'center',
-        flexDirection:'column',
-        alignItems:'center',
-        border: '5px solid #000',
-        borderBottom:'10px solid #000',
-        borderRadius:'1rem'
+    <div className={style.divMainItensStore}>
+      <div className={style.itensBlue}>
+        {recompensas.map((recomp) =>(
+          <div key={recomp.id} style={{color:"#000" , 
+          width:"40%",
+          height:'20%',
+          backgroundColor: "#fff",
+          display:'flex',
+          justifyContent:'center',
+          textAlign:'center',
+          flexDirection:'column',
+          alignItems:'center',
+          border: '5px solid #000',
+          borderBottom:'10px solid #000',
+          borderRadius:'1rem'
 
-        
-        }}>
-          <p>{recomp.name}</p>
-          <br />
-          <p>Pontos:</p>
-          <h2>{recomp.points} P</h2>
+          
+          }}>
+            <p>{recomp.name}</p>
+            <br />
+            <p>Pontos:</p>
+            <h2>{recomp.points} P</h2>
+          </div>
+          
+        ))}
+      </div>
+      
+        <div className={style.divButtonPoints}>
+
+          <div>
+            <button>
+              <span class="material-symbols-outlined" style={{fontSize:'30px' , color:'#593ACA'}}>
+                edit
+              </span>
+            </button>
+          </div>
+
+          <div>
+            <button> 
+              <span class="material-symbols-outlined" style={{fontSize:'40px' , color:'#593ACA'}}>
+                add
+              </span>
+            </button>
+          </div>
+
         </div>
-        
-      ))}
+      
+
     </div>
   )
 }
