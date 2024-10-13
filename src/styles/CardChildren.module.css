@@ -1,62 +1,55 @@
-/* Estilização da parte principal  no caso a parte que tem somente a cor de fundo meio roxo bem claro*/
 .homeMain {
-    width: 100vw;
-    height: auto; /* Ajusta a altura automaticamente */
-    background-color: #DDE4FF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-grow: 1; /* Faz o main expandir */
-}
-  
-.homePurple{
-    width: 90%;
-    height: 70vh;
-    background-color: #6249BF;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 1rem;
-    gap: .75rem;
-    
+  width: 100vw;
+  height: auto;
+  background-color: #DDE4FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
+.homePurple {
+  width: 90%;
+  height: 70vh; /* Mantém a altura da homePurple */
+  background-color: #6249BF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  gap: .75rem;
+  overflow-y: auto; /* Permite rolagem se necessário */
+}
 
-  
-.nameChildren{
+.nameChildren {
   width: 90%;
   display: flex;
   justify-content: space-between;
   text-align: center;
-  
 }
 
-.taskChildren{
+.taskChildren {
   width: 90%;
   justify-content: baseline;
   display: flex;
   flex-direction: column;
   align-items: baseline;
   gap: .50rem;
-  
 }
 
 .progressBarContainer {
-  width: 100%; /* Largura total do contêiner */
-  background-color: #f3f3f3; /* Cor de fundo da barra (parte não preenchida) */
-  border-radius: 20px; /* Bordas arredondadas */
-  height: 25px; /* Altura da barra */
-  margin-top: 10px; /* Margem superior */
-  overflow: hidden; /* Evita que o conteúdo exceda as bordas arredondadas */
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 20px;
+  height: 25px;
+  margin-top: 10px;
+  overflow: hidden;
   box-shadow: 0 0 4px #6349bf5d;
 }
 
 .progressBar {
-  height: 100%; /* Altura completa da barra */
-  background-color: #4caf50; /* Cor da barra de progresso (verde) */
-  border-radius: 20px; /* Mantém as bordas arredondadas */
-  transition: width 0.4s ease; /* Animação suave de crescimento/redução */
-  
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 20px;
+  transition: width 0.4s ease;
 }
