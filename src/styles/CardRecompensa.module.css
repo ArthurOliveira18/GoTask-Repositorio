@@ -1,0 +1,61 @@
+.formRecompensa{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+}
+
+
+.divCardRecompensa{
+    background: linear-gradient(to bottom, #593ACA, #8A72E0);
+    width: 90vw;
+    height: 50vh;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.divInputsRecompensas{
+    width: 100% ;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;    
+    color: #fff;
+}
+
+
+.divInputsRecompensas input{
+    border: none;
+    width: 90%;
+    border-radius: 3rem;
+    height: 30%;
+    text-align: center;
+    font-size: 25px;
+}
+
+.divButtonRecompensa{
+    width: 100vw;
+    height: 10vh;
+   
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divButtonRecompensa button{
+    border: none;
+    width: 50%;
+    height: 50%;
+    background-color: #6249BF;
+    border-radius: 10rem;
+    color: #fff;
+    font-size: 25px;
+}

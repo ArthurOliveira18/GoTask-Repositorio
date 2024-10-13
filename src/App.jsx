@@ -4,8 +4,9 @@ import FormLogin from './components/FormLogin';
 import ForgotPassword from './components/ForgotPassword';
 import Register from './components/Register';
 import Home from './components/Home'
-import Teste from './components/teste'
+
 import Store from './components/Store'
+import CadBeneficio from './components/CadBeneficio'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<Register />} /> {/* Página de Cadastro */}
           <Route path='/Home' element ={<Home/>} />
           <Route path='/Store' element ={<Store/>}/>
+          <Route path='/cad-beneficio' element ={<CadBeneficio/>}/>
         </Routes>
       </div>
     </Router>  

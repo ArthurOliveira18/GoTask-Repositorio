@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import style from '../styles/ItensStore.module.css'
+import { useNavigate } from 'react-router-dom';
+
+
 
 const ItensStore = () => {
+  const navigate = useNavigate(); 
 
   const [recompensas, setRecompensas] = useState([
     {
@@ -76,18 +80,20 @@ const ItensStore = () => {
 
           <div>
             <button>
-              <span class="material-symbols-outlined" style={{fontSize:'30px' , color:'#593ACA'}}>
+              <span className="material-symbols-outlined" style={{fontSize:'30px' , color:'#593ACA'}}>
                 edit
               </span>
             </button>
           </div>
 
           <div>
-            <button> 
-              <span class="material-symbols-outlined" style={{fontSize:'40px' , color:'#593ACA'}}>
-                add
-              </span>
-            </button>
+          <form onSubmit={(e) => { e.preventDefault(); navigate('/cad-beneficio'); }}>
+              <button> 
+                <span className="material-symbols-outlined" style={{fontSize:'40px' , color:'#593ACA'}}>
+                  add
+                </span>
+              </button>
+            </form>
           </div>
 
         </div>
