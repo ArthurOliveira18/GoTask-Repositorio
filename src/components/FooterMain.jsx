@@ -15,14 +15,27 @@ const FooterMain = () => {
     return (
 
   <nav className={Style.divFooterMain}>
-  <Settings className="material-symbols-outlined" style={{ color: getIconColor('/settings'), fontSize: "5vh"  }} />
-  <CalendarToday className="material-symbols-outlined" style={{ color: getIconColor('/calendar'), fontSize: "5vh"  }} />
-  <Link to="/Home"><Home className="material-symbols-outlined" style={{ color: getIconColor('/Home'), fontSize: "5vh" }} /></Link>
-  <Link to="/Store"><ShoppingCart className="material-symbols-outlined" style={{ color: getIconColor('/Store'), fontSize: "5vh"  }} /></Link>
-  <FamilyRestroom className="material-symbols-outlined" style={{ color: getIconColor('/family'), fontSize: "5vh"  }} />
+
+  <Link to="/Config">  <Settings className="material-symbols-outlined" style={{ color: getIconColor('/Config'), fontSize: "5vh"  }} />  </Link>
+
+  <Link to="/TaskScreen">  <CalendarToday className="material-symbols-outlined" style={{ color: getIconColor('/TaskScreen'), fontSize: "5vh"  }} />  </Link>
+
+
+  <Link to="/Home">  <Home className="material-symbols-outlined" style={{ color: getIconColor('/Home'), fontSize: "5vh" }} />  </Link>
+
+
+  <Link to="/Store">  <ShoppingCart className="material-symbols-outlined" style={{ color: getIconColor('/Store'), fontSize: "5vh"  }} />  </Link>
+
+
+  <Link to="/FamilyScreen">  <FamilyRestroom className="material-symbols-outlined" style={{ color: getIconColor('/FamilyScreen'), fontSize: "5vh"  }} />  </Link>
+
+
 </nav>
 );
 }
 
 export default FooterMain;
+
+
+
 
