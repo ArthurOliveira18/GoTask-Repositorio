@@ -29,7 +29,7 @@ function App() {
           <Route path='/Home' element ={<Home/>} />
           // loja
           <Route path='/Store' element ={<Store/>}/> 
-          // rota para 
+          // rota para os beneficios 
           <Route path='/cad-beneficio' element ={<CadBeneficio/>}/>
           // config
           <Route path='/Config' element ={<Config/>}/> 
