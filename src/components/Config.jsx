@@ -1,15 +1,16 @@
 import React from 'react'
-import style from '../styles/Test.module.css'
+import style from "../styles/Config.module.css";
+
 import HeaderMain from './HeaderMain'
 import FooterMain from './FooterMain'
 import ItensStore from './ItensStore'
 
 const Config = () => {
   return (
-    <div className={style.pageContainerTest/*pageContainerConfig*/}>
+    <div className={style.pageContainer/*pageContainerConfig*/}>
         <HeaderMain/>
-      <div className={style.pageMainTest/*pageMainConfig*/}>
-       
+      <div className={style.pageMain/*pageMainConfig*/}>
+       <p>Teste</p>
       </div>
       <FooterMain/>
     </div>

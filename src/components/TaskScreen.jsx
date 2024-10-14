@@ -1,15 +1,15 @@
 import React from 'react'
-import style from '../styles/Test.module.css'
 import HeaderMain from './HeaderMain'
 import FooterMain from './FooterMain'
-import ItensStore from './ItensStore'
+import style from '../styles/Config.module.css';
+
 
 const TaskScreen = () => {
   return (
-    <div className={style.pageContainerTest/*pageContainerTaskScreen*/}>
+    <div className={style.pageContainer/*pageContainerTaskScreen*/}>
         <HeaderMain/>
-      <div className={style.pageMainTest/*pageMainTaskScreen*/}>
-        
+      <div className={style.pageMain/*pageMainTaskScreen*/}>
+        <h1>a</h1>
       </div>
       <FooterMain/>
     </div>

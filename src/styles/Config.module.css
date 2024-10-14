@@ -1,12 +1,16 @@
-.pageContainerTest{
+.pageContainer{
     display: flex;
       flex-direction: column;
       min-height: 100vh; /* Garante que o contêiner ocupe toda a altura da viewport */
 }
     
-.pageMainTest{
+.pageMain{
     flex-grow: 1; /* Faz o conteúdo principal expandir */
       display: flex;
       flex-direction: column; /* Alinha o conteúdo verticalmente */
       background-color: #DDE4FF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
 }
