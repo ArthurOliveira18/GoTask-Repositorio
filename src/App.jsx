@@ -10,6 +10,7 @@ import Config from './components/Config.jsx'
 import TaskScreen from './components/TaskScreen.jsx';
 import FamilyScreen from './components/FamilyScreen.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import EditRecompensa from './components/EditRecompensa.jsx';
 
 
 
@@ -31,6 +32,8 @@ function App() {
           <Route path='/Store' element ={<Store/>}/> 
           // rota para os beneficios 
           <Route path='/cad-beneficio' element ={<CadBeneficio/>}/>
+          //Rota para as edits das recompensas
+          <Route path='/edit-recompensa' element ={<EditRecompensa/>}/>
           // config
           <Route path='/Config' element ={<Config/>}/> 
           // tabela de task

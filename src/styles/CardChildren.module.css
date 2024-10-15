@@ -19,6 +19,7 @@
   border-radius: 1rem;
   gap: .75rem;
   overflow-y: auto; /* Permite rolagem se necessário */
+  scrollbar-width: none;
 }
 
 .nameChildren {

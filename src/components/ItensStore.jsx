@@ -79,20 +79,22 @@ const ItensStore = () => {
         <div className={style.divButtonPoints}>
 
           <div>
-            <button>
-              <span className="material-symbols-outlined" style={{fontSize:'30px' , color:'#593ACA'}}>
-                edit
-              </span>
-            </button>
+            <form onSubmit={(e) => { e.preventDefault(); navigate('/edit-recompensa'); }}>
+              <button>
+                <span className="material-symbols-outlined" style={{fontSize:'30px' , color:'#593ACA'}}>
+                  edit
+                </span>
+              </button>
+            </form>
           </div>
 
           <div>
-          <form onSubmit={(e) => { e.preventDefault(); navigate('/cad-beneficio'); }}>
-              <button> 
-                <span className="material-symbols-outlined" style={{fontSize:'40px' , color:'#593ACA'}}>
-                  add
-                </span>
-              </button>
+            <form onSubmit={(e) => { e.preventDefault(); navigate('/cad-beneficio'); }}>
+                <button> 
+                  <span className="material-symbols-outlined" style={{fontSize:'40px' , color:'#593ACA'}}>
+                    add
+                  </span>
+                </button>
             </form>
           </div>
 

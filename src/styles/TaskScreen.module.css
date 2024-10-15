@@ -1,0 +1,62 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o contêiner ocupe toda a altura da viewport */
+    overflow-y: auto;
+}
+
+.pageMain {
+    flex-grow: 1; /* Faz o conteúdo principal expandir */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #DDE4FF;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.divTasksDad {
+    width: 90vw;
+    height: 70vh;
+    display: flex;
+    justify-content: flex-start; /* Cresce o conteúdo de cima para baixo */
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto; 
+    scrollbar-width: none;
+    margin-top: 1rem;
+}
+
+.divInfoTask {
+    width: 90%;
+    min-height: 20%;/* Altura mínima para o conteúdo */
+    background-color: #f5f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    text-align: center;
+    
+    border: solid 5px #4B1DF2;
+}
+
+.divButtonTasks button{
+    border: none;
+    border: solid 2px #4B1DF2;
+    width: 150%;
+    border-radius: 1rem;
+    
+}
+
+
+.divButtonTasks{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
