@@ -1,6 +1,8 @@
 import HeaderMain from './HeaderMain'
 import FooterMain from './FooterMain'
 import style from '../styles/Padrao.module.css'
+import { useNavigate } from 'react-router-dom';
+import{useState} from 'react'
 
 
 const /* nome da pagina */Padrao = () => {

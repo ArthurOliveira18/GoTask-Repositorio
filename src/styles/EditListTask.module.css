@@ -39,11 +39,10 @@
     flex-direction: column;
     border-radius: 8px;
     text-align: center;
-    border: solid 6px #512DD4;
-    border-left:10px solid #512DD4;
-    border-right: 10px solid #512DD4;
+    border: solid 6px #4B1DF2;
+    border-left:10px solid #4B1DF2;
+    border-right: 10px solid #4B1DF2;
     box-shadow: 0 5px 0px #0000003d;
-    margin-bottom: 1rem;
 }
 
 .divButtonTasks button{

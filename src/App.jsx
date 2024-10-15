@@ -9,9 +9,11 @@ import CadBeneficio from './components/CadBeneficio'
 import Config from './components/Config.jsx'
 import TaskScreen from './components/TaskScreen.jsx';
 import FamilyScreen from './components/FamilyScreen.jsx';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import EditRecompensa from './components/EditRecompensa.jsx';
+import EditListTask from './components/EditListTask.jsx';
+import CreateTask from './components/CreateTask.jsx';
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 function App() {
@@ -40,6 +42,10 @@ function App() {
           <Route path='/TaskScreen' element ={<TaskScreen/>}/>
           // familia
           <Route path='/FamilyScreen' element ={<FamilyScreen/>}/>
+          // Rota para pagina de editar lista de task
+          <Route path='/edit-list-task' element ={<EditListTask/>}/>
+          //Rota para pagina de criar task
+          <Route path='/create-task' element ={<CreateTask/>}/>
 
 
         </Routes>

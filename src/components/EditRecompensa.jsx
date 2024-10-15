@@ -1,4 +1,4 @@
-import React from 'react'
+
 import style from '../styles/EditRecompensa.module.css'
 import HeaderMain from './HeaderMain'
 import FooterMain from './FooterMain'
@@ -33,7 +33,7 @@ const EditRecompensa = () => {
                 </div>
 
                 <div className={style.divInputsRecompensas}>
-                    <h2>Pontos dados pela Task</h2>
+                    <h2>Pontos para redivincar</h2>
                     <input type="number"  />
                 </div>
 

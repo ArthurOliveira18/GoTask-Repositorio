@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import{useState} from 'react'
+import style from '../styles/EditListTask.module.css'
+import { useNavigate } from 'react-router-dom';
 import HeaderMain from './HeaderMain'
 import FooterMain from './FooterMain'
-import style from '../styles/TaskScreen.module.css';
-import { useNavigate } from 'react-router-dom';
 
-const TaskScreen = () => {
-  
+
+const EditListTask = () => {
+
+
   const navigate = useNavigate(); 
 
   const [tasks, setTasks] = useState([
@@ -22,7 +24,6 @@ const TaskScreen = () => {
     
     
   ]);
-  
   return (
     <div className={style.pageContainer}>
         <HeaderMain />
@@ -37,24 +38,16 @@ const TaskScreen = () => {
           <div className={style.divButtonTasks}>
 
               <div>
-                <form onSubmit={(e) => { e.preventDefault(); navigate('/edit-list-task'); }}>
+                <form onSubmit={(e) => { e.preventDefault(); navigate('/TaskScreen'); }}>
                   <button>
                     <span className="material-symbols-outlined" style={{fontSize:'40px' , color:'#593ACA'}}>
-                      edit
+                    Check  
                     </span>
                   </button>
                 </form>
               </div>
 
-              <div>
-                <form onSubmit={(e) => { e.preventDefault(); navigate('/create-task'); }}>
-                    <button> 
-                      <span className="material-symbols-outlined" style={{fontSize:'41px' , color:'#593ACA'}}>
-                        add
-                      </span>
-                    </button>
-                </form>
-              </div>
+              
 
           </div>
 
@@ -65,7 +58,7 @@ const TaskScreen = () => {
       </div>
       <FooterMain />
     </div>
-  );
+  )
 }
 
-export default TaskScreen;
+export default EditListTask
