@@ -1,0 +1,63 @@
+.pageContainer{
+    display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Garante que o contêiner ocupe toda a altura da viewport */
+}
+    
+.pageMain{
+    flex-grow: 1; /* Faz o conteúdo principal expandir */
+      display: flex;
+      flex-direction: column; /* Alinha o conteúdo verticalmente */
+      background-color: #DDE4FF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+}
+
+.formContainer {
+  background-color: #4B1DF2 ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; 
+  width: 40vw;
+  height: 50vh;
+  border-radius: 1rem;
+  
+}
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.inputGrup label {
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  
+}
+.inputGrup input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  justify-content: center;
+}
+.buttonRegister{
+  background-color: #4b32d3;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  width: 70px;
+  height: 40px;
+  border: none;
+}
+.buttonRegister:hover {
+  background-color: #3925a9;
+}
+
+

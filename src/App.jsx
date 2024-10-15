@@ -12,6 +12,7 @@ import FamilyScreen from './components/FamilyScreen.jsx';
 import EditRecompensa from './components/EditRecompensa.jsx';
 import EditListTask from './components/EditListTask.jsx';
 import CreateTask from './components/CreateTask.jsx';
+import RegisterChildren from './components/RegisterChildren.jsx';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -46,6 +47,7 @@ function App() {
           <Route path='/edit-list-task' element ={<EditListTask/>}/>
           //Rota para pagina de criar task
           <Route path='/create-task' element ={<CreateTask/>}/>
+          <Route path='/register-children' element ={<RegisterChildren/>}/>
 
 
         </Routes>
