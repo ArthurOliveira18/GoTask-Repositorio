@@ -1,0 +1,74 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .pageMain {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Alinhar ao topo */
+    background-color: #DDE4FF;
+    width: 100vw;
+  }
+  
+  .userCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4B1DF2; 
+    border-radius: 10px; 
+    padding:  1vh 1vw; /* Espaçamento interno */
+    margin: 1vh 0;
+    width: 90%; 
+    max-width: 400px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+    gap: 1rem;
+  }
+  
+  .profileIcon {
+    background-color: black; 
+    border-radius: 20%;
+    padding: 7px; 
+    color: white;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+  }
+  
+  .material-symbols-outlined {
+    font-size: 20px; /* Tamanho do ícone */
+    color: #3f3f8b; 
+  }
+  
+  .userName {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000; 
+    margin: 0 10px; /* Espaçamento horizontal */
+    flex-grow: 1; /* Ocupar espaço restante */
+  }
+  
+  .printIcon {
+    background-color:#fff;
+    padding:  2vh; 
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    border-radius: .75rem;
+    height:5vh;
+    flex-grow: 1;
+    
+  }
+  .addButton{
+    color: #593ACA;
+    width: 70px;
+    height: 40px;
+    border: none;
+    border: solid 2px #593ACA;
+    border-radius: .75rem;
+  }
+  
