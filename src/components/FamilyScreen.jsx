@@ -1,13 +1,27 @@
 import HeaderMain from './HeaderMain'
 import FooterMain from './FooterMain'
 import  style  from "../styles/FamilyScreen.module.css";
+import { useState } from 'react';
 
-
-const users = ['Cristiano', 'Julia', 'Enzo']
 
 
 
 const FamilyScreen = () => {
+  const [users, setUsers] = useState([
+    {
+      id:1,
+      name:"Cristiano"
+    },
+    {
+      id:2,
+      name:"Juliana"
+    },
+    {
+      id:3,
+      name:"Enzo"
+    }
+  ])
+  
   return (
     <div className={style.pageContainer/*pageContainerFamilyScreen*/}>
         <HeaderMain/>
@@ -15,18 +29,17 @@ const FamilyScreen = () => {
       {users.map((user, index) => (
         <div key={index} className={style.userCard}>
          <div className={style.profileIcon}>
-              <span className="material-symbols-outlined">person</span>
+              <span className="material-symbols-outlined" style={{fontSize:"40px"}}>person</span>
             </div>
-           
             <div className={style.printIcon}>
-            <span className={style.userName}>{user}</span>
-              <span className="material-symbols-outlined">print</span>
+            <h1>{user.name}</h1>
+              <span className="material-symbols-outlined" style={{fontSize:"40px"}}>print</span>
             </div>
           </div>
       ))}
 
         <button className={style.addButton}>
-        <span className="material-symbols-outlined">add</span>
+        <span className="material-symbols-outlined" style={{fontSize:"35px"}}>add</span>
         </button>
 
       </div>
