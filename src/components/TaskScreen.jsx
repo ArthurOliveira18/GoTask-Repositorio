@@ -1,4 +1,3 @@
-import React from 'react'
 import HeaderMain from './HeaderMain'
 import FooterMain from './FooterMain'
 import style from '../styles/Config.module.css';
