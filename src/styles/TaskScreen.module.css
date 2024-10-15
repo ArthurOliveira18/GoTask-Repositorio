@@ -18,7 +18,7 @@
 
 .divTasksDad {
     width: 90vw;
-    height: 70vh;
+    height: 80vh;
     display: flex;
     justify-content: flex-start; /* Cresce o conteúdo de cima para baixo */
     align-items: center;
@@ -26,12 +26,12 @@
     gap: 1rem;
     overflow-y: auto; 
     scrollbar-width: none;
-    margin-top: 1rem;
+    margin-top: 3rem;
 }
 
 .divInfoTask {
-    width: 90%;
-    min-height: 13%;/* Altura mínima para o conteúdo */
+    width: 80vw;
+    min-height: 11vh;/* Altura mínima para o conteúdo */
     background-color: #ffffff;
     display: flex;
     justify-content: center;
@@ -49,10 +49,12 @@
 .divButtonTasks button{
     border: none;
     border: solid 2px #4B1DF2;
-    width: 150%;
+    width: 20%;
     border-radius: 1rem;
     
 }
+
+
 
 
 .divButtonTasks{
@@ -62,4 +64,5 @@
     align-items: center;
     gap: 2rem;
 }
+
 

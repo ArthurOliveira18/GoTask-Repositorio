@@ -20,6 +20,7 @@
   gap: .75rem;
   overflow-y: auto; /* Permite rolagem se necessário */
   scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 .nameChildren {
