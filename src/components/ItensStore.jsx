@@ -86,7 +86,7 @@ const ItensStore = () => {
       {selectedTask && (
         <div className={style.modalOverlay} onClick={closeModal}>
           <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
-            <h1>Recompensa Detalhes</h1>
+            
             <h2>{selectedTask.name}</h2>
             <p>ID: {selectedTask.id}</p>
             <p>Pontos: {selectedTask.points}</p>

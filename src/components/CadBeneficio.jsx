@@ -15,7 +15,7 @@ const CadBeneficio = () => {
         <div className={style.arrowMain1}>
         {/* criei essas outras divs vazias apenas para  */}
 
-          <Link to={'/store'}>      
+          <Link to={'/Store'}>      
             <span className="material-symbols-outlined">
               arrow_back
             </span>
