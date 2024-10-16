@@ -1,8 +1,8 @@
-
-import style from '../styles/EditRecompensa.module.css'
-import HeaderMain from './HeaderMain'
-import FooterMain from './FooterMain'
+import style from './EditRecompensa.module.css'
+import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
+import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
 import {Link} from 'react-router-dom'
+/*Não sei onde colocar essa BOMBA */
 const EditRecompensa = () => {
   return (
     <div className={style.pageContainerEditRecomp/* nome da pagina*/}>

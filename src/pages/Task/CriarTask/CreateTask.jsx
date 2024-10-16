@@ -1,9 +1,9 @@
 
 import{useState} from 'react'
-import style from '../styles/CreateTask.module.css'
+import style from './CreateTask.module.css'
 import {  Link } from 'react-router-dom';
-import HeaderMain from './HeaderMain'
-import FooterMain from './FooterMain'
+import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
+import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
 
 
 const CreateTask = () => {

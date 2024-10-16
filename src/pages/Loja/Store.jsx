@@ -1,8 +1,7 @@
-import React from 'react'
-import style from '../styles/Store.module.css'
-import HeaderMain from './HeaderMain'
-import FooterMain from './FooterMain'
-import ItensStore from './ItensStore'
+import style from './Store.module.css'
+import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain'
+import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain'
+import ItensStore from './ItensLoja/ItensStore'
 
 const Store = () => {
   return (

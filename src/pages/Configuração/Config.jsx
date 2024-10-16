@@ -1,8 +1,7 @@
-import React from 'react'
-import style from "../styles/Config.module.css";
-import HeaderMain from './HeaderMain'
-import FooterMain from './FooterMain'
-import ItensStore from './ItensStore'
+import style from "./Config.module.css";
+import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain'
+import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain'
+/*uai???? Loja AQUI????? ta bão */
 
 const Config = () => {
   return (

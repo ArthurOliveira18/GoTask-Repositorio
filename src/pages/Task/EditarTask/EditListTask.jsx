@@ -1,8 +1,8 @@
 import{useState} from 'react'
-import style from '../styles/EditListTask.module.css'
+import style from './EditListTask.module.css'
 import { useNavigate } from 'react-router-dom';
-import HeaderMain from './HeaderMain'
-import FooterMain from './FooterMain'
+import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
+import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
 
 
 const EditListTask = () => {

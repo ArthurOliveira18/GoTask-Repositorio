@@ -1,5 +1,4 @@
-import React from 'react';
-import Style from '../styles/FooterMain.module.css';
+import Style from '../Footer/FooterMain.module.css';
 import { useLocation } from 'react-router-dom';
 import { CalendarToday, ShoppingCart, Home, Settings, FamilyRestroom } from '@mui/icons-material';
 import { Link } from 'react-router-dom';

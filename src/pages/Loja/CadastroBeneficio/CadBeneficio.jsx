@@ -1,8 +1,7 @@
-import React from 'react';
-import style from '../styles/CadBeneficio.module.css';
-import HeaderMain from './HeaderMain';
-import FooterMain from './FooterMain';
-import CardRecompensa from './CardRecompensa';
+import style from './CadBeneficio.module.css';
+import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
+import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
+import CardRecompensa from './CardRecompensa/CardRecompensa';
 import {Link} from 'react-router-dom'
 
 

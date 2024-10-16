@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importe o hook de navegação
-import Style from '../styles/FormLogin.module.css';
-import FoorterLogCad from './FoorterLogCad';
-import HeaderMain from './HeaderMain';
+import Style from './FormLogin.module.css';
+import FoorterLogCad from '../../components/Logins/FoorterLogCad'
+import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
 
 const FormLogin = () => {
   const [email, setEmail] = useState('');

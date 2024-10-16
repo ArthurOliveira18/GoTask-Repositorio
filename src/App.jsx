@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import './App.css';
-import FormLogin from './components/FormLogin';
-import ForgotPassword from './components/ForgotPassword';
-import Register from './components/Register';
-import Home from './components/Home'
-import Store from './components/Store'
-import CadBeneficio from './components/CadBeneficio'
-import Config from './components/Config.jsx'
-import TaskScreen from './components/TaskScreen.jsx';
-import FamilyScreen from './components/FamilyScreen.jsx';
-import EditRecompensa from './components/EditRecompensa.jsx';
-import EditListTask from './components/EditListTask.jsx';
-import CreateTask from './components/CreateTask.jsx';
-import RegisterChildren from './components/RegisterChildren.jsx';
+import FormLogin from './pages/Login/FormLogin.jsx';
+import ForgotPassword from './pages/ResgatarSenha/ForgotPassword.jsx';
+import Register from './pages/Registro/Register.jsx';
+import Home from './pages/Home/Home.jsx'
+import Store from './pages/Loja/Store.jsx'
+import CadBeneficio from './pages/Loja/CadastroBeneficio/CadBeneficio.jsx'
+import Config from './pages/Configuração/Config.jsx'
+import TaskScreen from './pages/Task/TaskScreen.jsx';
+import FamilyScreen from './pages/Familia/FamilyScreen.jsx';
+import EditRecompensa from './pages/Loja/EditarRecompensa/EditRecompensa.jsx';
+import EditListTask from './pages/Task/EditarTask/EditListTask.jsx';
+import CreateTask from './pages/Task/CriarTask/CreateTask.jsx';
+import RegisterChildren from './pages/Familia/RegistrarFilho/RegisterChildren.jsx';
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -24,31 +24,44 @@ function App() {
   return (
     <Router>  {/* Aqui inicia o Router */}
       <div>
-        <Routes>
-          <Route path="/" element={<FormLogin />} /> {/* Página de Login */}
-          // tela de resgatar a senha
-          <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Página de Esqueceu Senha */}
-          // tela de registro
-          <Route path="/register" element={<Register />} /> {/* Página de Cadastro */}
-          // casa
+        <Routes> 
+          {/* Página de Login */}
+          <Route path="/" element={<FormLogin />} />
+
+          {/* tela de resgatar a senha*/}
+          <Route path="/forgot-password" element={<ForgotPassword />} /> 
+
+          {/* tela de registro*/}
+          <Route path="/register" element={<Register />} /> 
+
+          {/* casa*/}
           <Route path='/Home' element ={<Home/>} />
-          // loja
+
+          {/* loja*/}
           <Route path='/Store' element ={<Store/>}/> 
-          // rota para os beneficios 
+
+          {/* rota para os beneficios*/} 
           <Route path='/cad-beneficio' element ={<CadBeneficio/>}/>
-          //Rota para as edits das recompensas
+
+          {/*Rota para as edits das recompensas*/}
           <Route path='/edit-recompensa' element ={<EditRecompensa/>}/>
-          // config
+
+          {/* config*/}
           <Route path='/Config' element ={<Config/>}/> 
-          // tabela de task
+
+          {/* tabela de task*/}
           <Route path='/TaskScreen' element ={<TaskScreen/>}/>
-          // familia
+
+          {/* familia*/}
           <Route path='/FamilyScreen' element ={<FamilyScreen/>}/>
-          // Rota para pagina de editar lista de task
+
+          {/* Rota para pagina de editar lista de task*/}
           <Route path='/edit-list-task' element ={<EditListTask/>}/>
-          //Rota para pagina de criar task
+
+          {/*Rota para pagina de criar task*/}
           <Route path='/create-task' element ={<CreateTask/>}/>
 
+          {/*Rota registrar criança */}
           <Route path='/register-children' element ={<RegisterChildren/>}/>
 
 

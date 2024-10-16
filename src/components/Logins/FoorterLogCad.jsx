@@ -1,5 +1,4 @@
-import React from 'react';
-import Style from '../styles/FooterLogCad.module.css';
+import Style from '../Logins/FooterLogCad.module.css'
 import { Link } from "react-router-dom";
 
 const FooterLogCad = () => {

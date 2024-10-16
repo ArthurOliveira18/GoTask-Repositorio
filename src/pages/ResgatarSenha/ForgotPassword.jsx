@@ -1,7 +1,7 @@
-import HeaderMain from './HeaderMain'
-import FoorterLogCad from './FoorterLogCad'
+import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain'
+import FoorterLogCad from '../../components/Logins/FoorterLogCad'
 import { Link } from "react-router-dom";
-import Style from '../styles/ForgotPassword.module.css'
+import Style from './ForgotPassword.module.css'
 
 const ForgotPassword = () => {
   return (

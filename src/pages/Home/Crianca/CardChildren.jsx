@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import style from '../styles/CardChildren.module.css';
+import  { useState } from "react";
+import style from './CardChildren.module.css';
 
 const CardChildren = () => {
   const [children, setChildren] = useState([

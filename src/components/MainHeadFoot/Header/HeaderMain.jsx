@@ -1,6 +1,6 @@
-import Style from '../styles/HeaderMain.module.css'
-import HeaderP from '../assets/TATURANA.png'
-import GoTask from '../assets/logoGT.png'
+import Style from '../Header/HeaderMain.module.css'
+import HeaderP from '../../../assets/TATURANA.png'
+import GoTask from '../../../assets/logoGT.png'
 
 const HeaderMain = () => {
   return (

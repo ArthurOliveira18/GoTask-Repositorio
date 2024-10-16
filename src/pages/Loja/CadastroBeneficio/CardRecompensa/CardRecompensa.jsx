@@ -1,5 +1,4 @@
-import React from 'react'
-import style from '../styles/CardRecompensa.module.css';
+import style from './CardRecompensa.module.css';
 
 const CardRecompensa = () => {
   return (

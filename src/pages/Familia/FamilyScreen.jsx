@@ -1,6 +1,6 @@
-import HeaderMain from './HeaderMain'
-import FooterMain from './FooterMain'
-import  style  from "../styles/FamilyScreen.module.css";
+import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain'
+import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain'
+import  style  from "./FamilyScreen.module.css";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

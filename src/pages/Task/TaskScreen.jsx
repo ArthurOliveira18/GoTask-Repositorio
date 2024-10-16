@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import HeaderMain from './HeaderMain';
-import FooterMain from './FooterMain';
-import style from '../styles/TaskScreen.module.css';
+import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain'
+import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain'
+import style from './TaskScreen.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const TaskScreen = () => {

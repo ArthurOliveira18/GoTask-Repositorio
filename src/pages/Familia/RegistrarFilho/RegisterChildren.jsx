@@ -1,6 +1,6 @@
-import HeaderMain from './HeaderMain'
-import FooterMain from './FooterMain'
-import style from '../styles/RegisterChildren.module.css'
+import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
+import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
+import style from '../RegistrarFilho/RegisterChildren.module.css'
 
 const RegisterChildren = () => {
   return (

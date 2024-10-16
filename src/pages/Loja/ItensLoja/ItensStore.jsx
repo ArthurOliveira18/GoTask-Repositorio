@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import style from '../styles/ItensStore.module.css';
+import  { useState } from 'react';
+import style from './ItensStore.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const ItensStore = () => {

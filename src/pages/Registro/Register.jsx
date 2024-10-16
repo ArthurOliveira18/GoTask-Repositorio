@@ -1,6 +1,5 @@
-import React from 'react'
-import Style from '../styles/Register.module.css'
-import GoTask from '../assets/logoGt.png'
+import Style from './Register.module.css'
+import GoTask from '../../assets/logoGT.png'
 import { Link } from "react-router-dom";
 
 const Register = () => {
