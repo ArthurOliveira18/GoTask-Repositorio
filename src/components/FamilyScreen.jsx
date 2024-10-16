@@ -2,6 +2,7 @@ import HeaderMain from './HeaderMain'
 import FooterMain from './FooterMain'
 import  style  from "../styles/FamilyScreen.module.css";
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -22,6 +23,8 @@ const FamilyScreen = () => {
     }
   ])
   
+const navigate = useNavigate();
+
   return (
     <div className={style.pageContainer/*pageContainerFamilyScreen*/}>
         <HeaderMain/>
@@ -38,9 +41,14 @@ const FamilyScreen = () => {
           </div>
       ))}
 
-        <button className={style.addButton}>
-        <span className="material-symbols-outlined" style={{fontSize:"35px"}}>add</span>
-        </button>
+        <div>
+          <button 
+            className={style.addButton} 
+            onClick={() => navigate('/register-children')}
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: "35px" }}>add</span>
+          </button>
+        </div>
 
       </div>
       <FooterMain/>
