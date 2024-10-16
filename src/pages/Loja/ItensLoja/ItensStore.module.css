@@ -67,6 +67,8 @@
     position: relative;
     text-align: center;
   }
+
+
   
   .closeButton {
     background-color: #ffffff;
@@ -134,8 +136,9 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     position: relative;
     text-align: center;
+    
   }
-  /* Estilização da div Roxa, que contem o icon de profile e o nome*/
+  /* Estilização das divs Roxas, que contem o icon de profile e o nome*/
   .divPurpleModal{
     display: flex;
     justify-content: center;
@@ -145,6 +148,7 @@
     width: 100%;
     height: 80px;
     background-color: #8465F4;
+    margin-top: 2rem;
     
   }
 

@@ -87,18 +87,20 @@ const ItensStore = () => {
         <div className={style.modalOverlay} onClick={closeModal}>
           <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
             
-           <div className={style.divPurpleModal}>
-              <div className={style.profileIcon}>
-                <span className="material-symbols-outlined" style={{fontSize:"40px"}}>person</span>
-              </div>
 
-              {users.map((user) => (
-                <div className={style}>
-                  <li key={user.id}>{user.name}</li>
+          {users.map((usus) =>(
+            <div className={style.divPurpleModal}>
+                <div className={style.profileIcon}>
+                  <span className="material-symbols-outlined" style={{fontSize:"40px"}}>person</span>
                 </div>
-              ))}
+              <div className={style.divChildrenModal}>
+                <h1>{usus.name}</h1>
+              </div>
+            </div>
 
-           </div>
+          ))}
+           
+
             <div className={style.divIcon}>
               <button className={style.closeButton}>Resgatar</button>
               <span className="material-symbols-outlined">edit</span>
