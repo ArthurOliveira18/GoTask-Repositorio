@@ -33,7 +33,7 @@ const navigate = useNavigate();
         <div key={index} className={style.userCard}>
          <div className={style.profileIcon}>
               <span className="material-symbols-outlined" style={{fontSize:"40px"}}>person</span>
-            </div>
+          </div>
             <div className={style.printIcon}>
             <h1>{user.name}</h1>
               <span className="material-symbols-outlined" style={{fontSize:"40px"}}>print</span>
