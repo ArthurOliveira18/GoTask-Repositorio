@@ -9,24 +9,24 @@ const url = "http://localhost:5000/pais"
 const Register = () => {
   const navigate = useNavigate()
 
-  const [nome, setNome] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
-    if (!nome == "") {
+    if (!name == "") {
       if (!email == "") {
         if (!password == "") {
           console.log('Usuario cadastrado')
-          const user = { nome, email, password };
+          const user = { name, email, password };
           const res = await fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user),
           });
           alert("Usuário cadastrado com sucesso");
-          setNome("");
+          setName("");
           setEmail("");
           setPassword("");
           
@@ -96,9 +96,9 @@ const Register = () => {
             type="text"
             name="username" 
             id="username"
-            value={nome}
+            value={name}
             onChange={(e) => {
-              setNome(e.target.value);
+              setName(e.target.value);
             }} 
            
             className={Style.inputRegister}
