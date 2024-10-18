@@ -41,7 +41,8 @@ const FormLogin = () => {
      const userToFind = usuarios.find(
       (userFind) => userFind.email == user.email
     );
-
+    
+    // Confirmando se todas credenciais são corretas
     if (email != "") {
       if (password != "") {
         if (userToFind != undefined && userToFind.password == password) {
