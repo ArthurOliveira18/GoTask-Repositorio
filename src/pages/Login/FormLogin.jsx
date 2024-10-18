@@ -1,28 +1,71 @@
-import  { useState } from 'react';
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'; // Importe o hook de navegação
 import Style from './FormLogin.module.css';
 import FoorterLogCad from '../../components/Logins/FoorterLogCad'
 import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
+const url = "http://localhost:5000/pais"
 
 const FormLogin = () => {
+
+  // Variaveis pro usuario
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  
-  const navigate = useNavigate(); // Inicializa o hook de navegação
 
-  const handleSubmit = (e) => {
+  // Definindo uma variavel pro useNavigate
+  const navigate = useNavigate(); 
+
+  //Lista de usuarios
+  const [usuarios, setUsuarios] = useState([]);
+
+   //Resgate de dados da API
+   useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch(url);
+        const users = await res.json();
+        setUsuarios(users);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchData();
+    console.log(usuarios);
+  }, []);
+
+  const handleSubmit = async(e) => {
     e.preventDefault(); // Evitar recarregar a página
 
-    const correctEmail = 'admin@gmail.com';
-    const correctPassword = 'admin123';
+    const user = { email, password };
 
-    if (email === correctEmail && password === correctPassword) {
-      alert('Login bem-sucedido!');
-      navigate('/Home'); // Redireciona para a rota '/Home'
+     //Verifica na lista de usuarios se tem o usuario digitado
+     const userToFind = usuarios.find(
+      (userFind) => userFind.email == user.email
+    );
+
+    if (email != "") {
+      if (password != "") {
+        if (userToFind != undefined && userToFind.password == password) {
+          console.log(userToFind);
+          console.log("entrou");
+          
+
+          alert("Login efetuado com Sucesso");
+          navigate('/home')
+          
+          
+        } else {
+          
+          alert("Usuário ou senha inválides");
+        }
+      } else {
+        
+        alert("O campo senha não pode ser vazio");
+      }
     } else {
-      setErrorMessage('Credenciais incorretas. Tente novamente.');
+      
+      alert("O campo email não pode ser vazio");
     }
+
   };
 
   return (
@@ -60,7 +103,7 @@ const FormLogin = () => {
         </div>
       </form>
 
-      {errorMessage && <p className={Style.error}>{errorMessage}</p>}
+    
 
       <FoorterLogCad />
     </div>

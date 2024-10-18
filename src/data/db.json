@@ -1,11 +1,57 @@
 {
-    "pais":[
+  "pais": [
     {
-        "id" : 1,
-        "name" : "Adolfo",
-        "children" : [
-            {"name" :"Cristiano" , "totalPoints": 0 ,  "" }
-        ]
+      "id": 1,
+      "name": "Rodolfo",
+      "children": [
+        {
+          "id": 101,
+          "name": "Cristiano",
+          "totalPoints": 0,
+          "tasks": [
+            {
+              "taskId": 1,
+              "taskName": "Arrumar o quarto",
+              "pontosForTasks": 10
+            },
+            {
+              "taskId": 2,
+              "taskName": "Lavar a louça",
+              "pontosForTasks": 5
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "name": "Mariana",
+          "totalPoints": 0,
+          "tasks": [
+            {
+              "taskId": 1,
+              "taskName": "Estudar",
+              "pontosForTasks": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2d20",
+      "nome": "Arthur Grande Pai",
+      "email": "arthur@gmail.com",
+      "senha": "oi123"
+    },
+    {
+      "id": "8efe",
+      "nome": "testando",
+      "email": "teste@gmail.com",
+      "password": "teste12"
+    },
+    {
+      "id": "0320",
+      "nome": "oi",
+      "email": "oi@gmail.com",
+      "password": "oi134"
     }
-]
+  ]
 }
