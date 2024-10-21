@@ -46,6 +46,24 @@
       "name": "davi123",
       "email": "Davi@gmail.com",
       "password": "davizinho11"
+    },
+    {
+      "id": "2e8d",
+      "name": "arthur",
+      "email": "arthur@gmail.com",
+      "password": "oi123"
+    },
+    {
+      "id": "394b",
+      "name": "tei1",
+      "email": "tei@gmail.com",
+      "password": "tei1"
+    },
+    {
+      "id": "7c4f",
+      "name": "ww",
+      "email": "oliveraarthur4@gmail.com",
+      "password": "www1"
     }
   ]
 }
