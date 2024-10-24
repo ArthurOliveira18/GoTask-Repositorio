@@ -1,36 +1,49 @@
 .pageContainer{
     display: flex;
-      flex-direction: column;
-      min-height: 100vh; /* Garante que o contêiner ocupe toda a altura da viewport */
+    flex-direction: column;
+    min-height: 100vh; 
 }
     
 .pageMain{
-    flex-grow: 1; /* Faz o conteúdo principal expandir */
-      display: flex;
-      flex-direction: column; /* Alinha o conteúdo verticalmente */
-      background-color: #DDE4FF;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column; 
+    background-color: #DDE4FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+    
+}
+
+.arrowMain1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 6vh;
+  background-color: #DDE4FF;
 }
 
 .formContainer {
-  background-color: #4B1DF2 ;
+  background: linear-gradient(to bottom, #3c18bc, #5239ae);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column; 
-  width: 40vw;
-  height: 50vh;
+  width: 90vw;
+  gap: 2rem;
+  height: 40vh;
   border-radius: 1rem;
   
 }
-.inputGroup {
+/* .inputGroup {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
+  justify-content: center;
+  background-color: #fff;
+  width: 90%;
+} */
 .inputGrup label {
   color: #fff;
   font-size: 16px;
@@ -45,19 +58,40 @@
   border: none;
   outline: none;
   font-size: 16px;
+  width: 200px;
   justify-content: center;
 }
 .buttonRegister{
-  background-color: #4b32d3;
+  background-color: #6249BF;
   color: white;
   border: none;
-  border-radius: 0.75rem;
-  width: 70px;
-  height: 40px;
+  border-radius: 2rem;
+  width: 150px;
+  height: 45px;
   border: none;
+  font-size: 20px;
 }
 .buttonRegister:hover {
   background-color: #3925a9;
 }
 
+.divButtonTaks{
+  border-radius: 1rem;
+  width: 250px;
+  height: 180px;
+  background-color: #3c18bc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  color: #fff;
+  font-size: 20px;
+}
+
+.divButtonTaks button{
+  border: none;
+  border-radius: .50rem;
+  width: 50px;
+}
 

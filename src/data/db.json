@@ -40,7 +40,12 @@
       "name": "testando11",
       "email": "testando@gmail.com",
       "password": "testando11"
+    },
+    {
+      "id": "593e",
+      "name": "arthur1",
+      "email": "arthur@gmail.com",
+      "password": "arthur1"
     }
-    
   ]
 }
