@@ -51,7 +51,7 @@ const FormLogin = () => {
           
 
           alert("Login efetuado com Sucesso");
-          navigate('/home')
+          navigate('/Home')
           
           
         } else {
