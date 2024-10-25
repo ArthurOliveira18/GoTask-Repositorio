@@ -13,6 +13,7 @@ import EditRecompensa from './pages/Loja/EditarRecompensa/EditRecompensa.jsx';
 import EditListTask from './pages/Task/EditarTask/EditListTask.jsx';
 import CreateTask from './pages/Task/CriarTask/CreateTask.jsx';
 import RegisterChildren from './pages/Familia/RegistrarFilho/RegisterChildren.jsx';
+import PassagemTela from './pages/PassagemTela/PassagemTela.jsx';
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -63,6 +64,9 @@ function App() {
 
           {/*Rota registrar criança */}
           <Route path='/register-children' element ={<RegisterChildren/>}/>
+          
+          {/* Rota para tela de passagem para escolher as tasks */}
+          <Route path='/passagem-tela' element ={<PassagemTela/>}/>
 
 
 

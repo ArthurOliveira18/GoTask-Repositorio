@@ -1,6 +1,7 @@
 import style from "./Config.module.css";
 import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain'
+import {Link} from 'react-router-dom'
 
 
 const Config = () => {
@@ -24,7 +25,9 @@ const Config = () => {
         </div>
         <div className={style.divButtonSair}>
           {/* div apenas para o button */}
-          <button>SAIR DA CONTA</button>
+          <Link to='/'>
+            <button>SAIR DA CONTA</button>
+          </Link>
         </div>
       </div>
       <FooterMain />
