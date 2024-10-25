@@ -1,9 +1,16 @@
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
 import style from '../RegistrarFilho/RegisterChildren.module.css'
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 
 const RegisterChildren = () => {
+
+  const navigate = useNavigate();
+
+  // Função criada apenas para utilizar o useNavigate. Não sei pq em outras paginas ele não precisa disso...
+  const handleNavigate = () => {
+    navigate('/passagem-tela');
+  };
   return (
     
       <div className={style.pageContainer}>
@@ -41,14 +48,7 @@ const RegisterChildren = () => {
               <button type='submit' className={style.buttonRegister}>Cadastrar</button>
             </div>
 
-            <div className={style.divButtonTaks}>
-              <button type='submit'>
-                <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
-                  add
-                </span>
-              </button>
-              <p>Atribuir Tasks</p>
-            </div>
+           
           </div>
 
           

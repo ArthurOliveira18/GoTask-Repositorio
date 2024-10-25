@@ -46,6 +46,18 @@
       "name": "arthur1",
       "email": "arthur@gmail.com",
       "password": "arthur1"
+    },
+    {
+      "id": "89fe",
+      "name": "greg",
+      "email": "Gregoriano@gmail.com",
+      "password": "greg123"
+    },
+    {
+      "id": "855b",
+      "name": "klein",
+      "email": "klein@gmail.com",
+      "password": "klein123"
     }
   ]
 }

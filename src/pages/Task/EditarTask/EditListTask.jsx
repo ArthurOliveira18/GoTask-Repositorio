@@ -1,4 +1,4 @@
-import{useState} from 'react'
+import { useState } from 'react'
 import style from './EditListTask.module.css'
 import { useNavigate } from 'react-router-dom';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
@@ -8,7 +8,7 @@ import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
 const EditListTask = () => {
 
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [tasks, setTasks] = useState([
     { id: 1, task: 'Arrumar a cama' },
@@ -21,40 +21,40 @@ const EditListTask = () => {
     { id: 8, task: 'Não fazer pirraça' },
     { id: 9, task: 'Brincar com o seu irmão' },
     { id: 10, task: 'Se amar.' },
-    
-    
+
+
   ]);
   return (
     <div className={style.pageContainer}>
-        <HeaderMain />
+      <HeaderMain />
       <div className={style.pageMain}>
         <div className={style.divTasksDad}>
           {tasks.map((tarefas) => (
             <div key={tarefas.id} className={style.divInfoTask}>
-                
-                <h1>{tarefas.task}</h1>
+
+              <h1>{tarefas.task}</h1>
             </div>
           ))}
           <div className={style.divButtonTasks}>
 
-              <div className={style.divIcon}>
-                
-                  <button onClick={(e) => { e.preventDefault(); navigate('/TaskScreen'); }}>
-                    <span className="material-symbols-outlined" style={{fontSize:'40px' , color:'#593ACA'}}>
-                    Check  
-                    </span>
-                  </button>
-                
-              </div>
+            <div className={style.divIcon}>
 
-              
+              <button onClick={(e) => { e.preventDefault(); navigate('/TaskScreen'); }}>
+                <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
+                  Check
+                </span>
+              </button>
+
+            </div>
+
+
 
           </div>
 
-            
+
         </div>
-        
-        
+
+
       </div>
       <FooterMain />
     </div>

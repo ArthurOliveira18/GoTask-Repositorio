@@ -13,7 +13,7 @@ const Config = () => {
           {/* Div contendo as outras divs com as opções de trocar nome de usuario  */}
 
           <div>
-            <span class="material-symbols-outlined" style={{color:"#fff", fontSize:"40px"}}>
+            <span className="material-symbols-outlined" style={{color:"#fff", fontSize:"40px"}}>
               manufacturing
             </span>
           </div>

@@ -14,6 +14,8 @@ import EditListTask from './pages/Task/EditarTask/EditListTask.jsx';
 import CreateTask from './pages/Task/CriarTask/CreateTask.jsx';
 import RegisterChildren from './pages/Familia/RegistrarFilho/RegisterChildren.jsx';
 import PassagemTela from './pages/PassagemTela/PassagemTela.jsx';
+import EditarCrianca from './pages/EditarCrianca/EditChildren.jsx';
+
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -21,59 +23,61 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [count, setCount] = useState(0);
-  
+
   return (
     <Router>  {/* Aqui inicia o Router */}
-    {/* Coment apenas para dar um commit  */}
+      {/* Coment apenas para dar um commit  */}
       <div>
-        <Routes> 
+        <Routes>
           {/* Página de Login */}
           <Route path="/" element={<FormLogin />} />
 
           {/* tela de resgatar a senha*/}
-          <Route path="/forgot-password" element={<ForgotPassword />} /> 
+          <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* tela de registro*/}
-          <Route path="/register" element={<Register />} /> 
+          <Route path="/register" element={<Register />} />
 
           {/* casa*/}
-          <Route path='/Home' element ={<Home/>} />
+          <Route path='/Home' element={<Home />} />
 
           {/* loja*/}
-          <Route path='/Store' element ={<Store/>}/> 
+          <Route path='/Store' element={<Store />} />
 
-          {/* rota para os beneficios*/} 
-          <Route path='/cad-beneficio' element ={<CadBeneficio/>}/>
+          {/* rota para os beneficios*/}
+          <Route path='/cad-beneficio' element={<CadBeneficio />} />
 
           {/*Rota para as edits das recompensas*/}
-          <Route path='/edit-recompensa' element ={<EditRecompensa/>}/>
+          <Route path='/edit-recompensa' element={<EditRecompensa />} />
 
           {/* config*/}
-          <Route path='/Config' element ={<Config/>}/> 
+          <Route path='/Config' element={<Config />} />
 
           {/* tabela de task*/}
-          <Route path='/TaskScreen' element ={<TaskScreen/>}/>
+          <Route path='/TaskScreen' element={<TaskScreen />} />
 
           {/* familia*/}
-          <Route path='/FamilyScreen' element ={<FamilyScreen/>}/>
+          <Route path='/FamilyScreen' element={<FamilyScreen />} />
 
           {/* Rota para pagina de editar lista de task*/}
-          <Route path='/edit-list-task' element ={<EditListTask/>}/>
+          <Route path='/edit-list-task' element={<EditListTask />} />
 
           {/*Rota para pagina de criar task*/}
-          <Route path='/create-task' element ={<CreateTask/>}/>
+          <Route path='/create-task' element={<CreateTask />} />
 
           {/*Rota registrar criança */}
-          <Route path='/register-children' element ={<RegisterChildren/>}/>
-          
+          <Route path='/register-children' element={<RegisterChildren />} />
+
           {/* Rota para tela de passagem para escolher as tasks */}
-          <Route path='/passagem-tela' element ={<PassagemTela/>}/>
+          <Route path='/passagem-tela' element={<PassagemTela />} />
+          {/* Rota para pagina de editar a criança em especifico */}
+          <Route path='/editar-crianca' element={<EditarCrianca />} />
 
 
 
         </Routes>
       </div>
-    </Router>  
+    </Router>
   );
 }
 
