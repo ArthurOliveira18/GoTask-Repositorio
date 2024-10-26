@@ -15,6 +15,7 @@ import CreateTask from './pages/Task/CriarTask/CreateTask.jsx';
 import RegisterChildren from './pages/Familia/RegistrarFilho/RegisterChildren.jsx';
 import PassagemTela from './pages/PassagemTela/PassagemTela.jsx';
 import EditarCrianca from './pages/EditarCrianca/EditChildren.jsx';
+import SelectDays from './pages/SelectDays/SelectDays.jsx';
 
 
 
@@ -72,6 +73,11 @@ function App() {
           <Route path='/passagem-tela' element={<PassagemTela />} />
           {/* Rota para pagina de editar a criança em especifico */}
           <Route path='/editar-crianca' element={<EditarCrianca />} />
+
+
+
+          {/* Rota para a tela de selecionar os dias */}
+          <Route path='/select-days' element={<SelectDays />} />
 
 
 

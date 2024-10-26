@@ -2,16 +2,16 @@ import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain';
 import { useState } from 'react';
 import style from './EditChildren.module.css';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
 const EditChildren = () => {
 
     const navigate = useNavigate();
-  // Função criada apenas para utilizar o useNavigate. Não sei pq em outras paginas ele não precisa disso...
-  const handleNavigatePass = () => {
-    navigate('/passagem-tela');
-  };
+    // Função criada apenas para utilizar o useNavigate. Não sei pq em outras paginas ele não precisa disso...
+    const handleNavigatePass = () => {
+        navigate('/passagem-tela');
+    };
 
     const [tasks, setTasks] = useState([
         { id: 1, task: 'Arrumar a cama' },

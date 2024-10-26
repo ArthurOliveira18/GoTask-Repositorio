@@ -2,7 +2,7 @@ import style from './CadBeneficio.module.css';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
 import CardRecompensa from './CardRecompensa/CardRecompensa';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const CadBeneficio = () => {
@@ -12,21 +12,21 @@ const CadBeneficio = () => {
       <div className={style.pageMainCadTask}>
 
         <div className={style.arrowMain1}>
-        {/* criei essas outras divs vazias apenas para  */}
+          {/* criei essas outras divs vazias apenas para  */}
 
-          <Link to={'/Store'}>      
+          <Link to={'/Store'}>
             <span className="material-symbols-outlined">
               arrow_back
             </span>
           </Link>
 
           <div></div>
-          
+
           <div></div>
         </div>
 
-        <CardRecompensa/>
-        
+        <CardRecompensa />
+
       </div>
       <FooterMain />
     </div>
