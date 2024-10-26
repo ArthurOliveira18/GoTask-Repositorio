@@ -38,7 +38,7 @@ const PassagemTela = () => {
   
               <div className={style.divIcon}>
   
-                <button onClick={(e) => { e.preventDefault(); navigate('/TaskScreen'); }}>
+                <button onClick={(e) => { e.preventDefault(); navigate('/editar-crianca'); }}>
                   <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
                     Check
                   </span>

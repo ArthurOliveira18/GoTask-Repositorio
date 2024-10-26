@@ -2,8 +2,17 @@ import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain';
 import { useState } from 'react';
 import style from './EditChildren.module.css';
+import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const EditChildren = () => {
+
+    const navigate = useNavigate();
+  // Função criada apenas para utilizar o useNavigate. Não sei pq em outras paginas ele não precisa disso...
+  const handleNavigatePass = () => {
+    navigate('/passagem-tela');
+  };
+
     const [tasks, setTasks] = useState([
         { id: 1, task: 'Arrumar a cama' },
         { id: 2, task: 'Levar o Ozzy para passear' },
@@ -20,6 +29,20 @@ const EditChildren = () => {
     return (
         <div className={style.pageContainer}>
             <HeaderMain />
+
+            <div className={style.arrowMain1}>
+                {/* criei essas outras divs vazias apenas para  */}
+
+                <Link to={'/FamilyScreen'}>
+                    <span className="material-symbols-outlined">
+                        arrow_back
+                    </span>
+                </Link>
+
+                <div></div>
+
+                <div></div>
+            </div>
             <div className={style.pageMain}>
                 <div className={style.divEditChildren}>
                     <div className={style.divInfoChildren}>
@@ -34,10 +57,15 @@ const EditChildren = () => {
                 </div>
 
                 <div className={style.divEditTasks}>
+                    <div className={style.divIcon} onClick={handleNavigatePass}>
+                        <span className="material-symbols-outlined">edit</span>
+                    </div>
                     <p>Tasks atribuidas</p>
                     {tasks.map((tarefa) => (
-                        <div key={tarefa.id} className={style.divInfoTask}>
-                            <p>{tarefa.task}</p>
+                        <div className={style.divPurpleWhite}>
+                            <div key={tarefa.id} className={style.divInfoTask}>
+                                <p>{tarefa.task}</p>
+                            </div>
                         </div>
                     ))}
                 </div>

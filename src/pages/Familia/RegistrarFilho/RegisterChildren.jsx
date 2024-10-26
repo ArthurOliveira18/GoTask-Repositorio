@@ -1,7 +1,7 @@
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
 import style from '../RegistrarFilho/RegisterChildren.module.css'
-import {Link,useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const RegisterChildren = () => {
 
@@ -12,48 +12,48 @@ const RegisterChildren = () => {
     navigate('/passagem-tela');
   };
   return (
-    
-      <div className={style.pageContainer}>
-          <HeaderMain/>
 
-          <div className={style.arrowMain1}>
-          {/* criei essas outras divs vazias apenas para  */}
+    <div className={style.pageContainer}>
+      <HeaderMain />
 
-          <Link to={'/FamilyScreen'}>      
-            <span className="material-symbols-outlined">
-              arrow_back
-            </span>
-          </Link>
+      <div className={style.arrowMain1}>
+        {/* criei essas outras divs vazias apenas para  */}
 
-          <div></div>
-          
-          <div></div>
-        </div>
+        <Link to={'/FamilyScreen'}>
+          <span className="material-symbols-outlined">
+            arrow_back
+          </span>
+        </Link>
 
-          <div className={style.pageMain}>
-            <form className={style.formContainer}>
-              <div className={style.inputGrup}>
-                <label htmlFor="childName">Nome da Criança</label><br />
-                <input type="text" placeholder='Digite o nome da criança' id="childName" />
-                
-              </div>
+        <div></div>
 
-                <div className={style.inputGrup}>
-                  <label htmlFor="birthDate">Data de nascimento</label><br />
-                  <input type="date" id="birthDate" />
-                </div>
-            </form>
+        <div></div>
+      </div>
 
-            <div> 
-              <button type='submit' className={style.buttonRegister}>Cadastrar</button>
-            </div>
+      <div className={style.pageMain}>
+        <form className={style.formContainer}>
+          <div className={style.inputGrup}>
+            <label htmlFor="childName">Nome da Criança</label><br />
+            <input type="text" placeholder='Digite o nome da criança' id="childName" />
 
-           
           </div>
 
-          
-          <FooterMain/>
+          <div className={style.inputGrup}>
+            <label htmlFor="birthDate">Data de nascimento</label><br />
+            <input type="date" id="birthDate" />
+          </div>
+        </form>
+
+        <div>
+          <button type='submit' className={style.buttonRegister}>Cadastrar</button>
+        </div>
+
+
       </div>
+
+
+      <FooterMain />
+    </div>
   )
 }
 
