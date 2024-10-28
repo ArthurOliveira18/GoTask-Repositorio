@@ -58,6 +58,18 @@
       "name": "klein",
       "email": "klein@gmail.com",
       "password": "klein123"
+    },
+    {
+      "id": "801b",
+      "name": "testei1",
+      "email": "testei1@gmail.com",
+      "password": "testei1"
+    },
+    {
+      "id": "7257",
+      "name": "admin1",
+      "email": "admin@gmail.com",
+      "password": "admin123"
     }
   ]
 }

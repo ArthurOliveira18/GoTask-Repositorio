@@ -65,7 +65,7 @@
 }
 /* Estilização da div azul que dentro dela tem cada div com as tasks atribuidas */
 .divEditTasks {
-    background-color: #3c18bc;
+    background: linear-gradient(to bottom, #3c18bc, #7061a7);
     width: 70%;
     max-width: 500px;
     height: 27vh; 
