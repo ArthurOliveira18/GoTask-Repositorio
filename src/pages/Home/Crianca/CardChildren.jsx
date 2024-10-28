@@ -33,7 +33,7 @@ const CardChildren = () => {
     },
     {
       id: 4,
-      name: "Raimunda",
+      name: "Theodora",
       task: [
         { taskName: "Deitar mais cedo", points: 10, complete: false },
         { taskName: "Cuidar do irmão mais novo", points: 110, complete: false },

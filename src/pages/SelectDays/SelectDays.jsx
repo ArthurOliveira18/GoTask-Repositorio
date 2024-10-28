@@ -27,7 +27,7 @@ const SelectDays = () => {
                 <div className={style.divPurpleInfo}>
                     <h1>Nome da Task</h1>
                     <div className={style.nameTask}>
-                        <h2>Levar o Ozi para passear</h2>
+                        <h2>Levar o Ozzy para passear</h2>
                     </div>
                     <h1>Recompensa da Task</h1>
                     <div className={style.pointsTask}>

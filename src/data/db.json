@@ -58,6 +58,12 @@
       "name": "klein",
       "email": "klein@gmail.com",
       "password": "klein123"
+    },
+    {
+      "id": "01ac",
+      "name": "aa",
+      "email": "aaa@gmail.com",
+      "password": "123"
     }
   ]
 }
