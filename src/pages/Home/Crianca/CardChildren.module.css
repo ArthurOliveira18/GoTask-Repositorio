@@ -7,6 +7,13 @@
   align-items: center;
   flex-direction: column;
   flex-grow: 1;
+  gap: 1rem;
+}
+
+.divSettings{
+  display: flex;
+  justify-content: end;
+  width: 90vw;
 }
 
 .homePurple {

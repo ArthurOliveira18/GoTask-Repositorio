@@ -1,19 +1,27 @@
 .pageContainer {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    /* Garante que o contêiner ocupe toda a altura da viewport */
-  }
-  
-  .pageMain {
-    flex-grow: 1;
-    /* Faz o conteúdo principal expandir */
-    display: flex;
-    flex-direction: column;
-    /* Alinha o conteúdo verticalmente */
-    background-color: #DDE4FF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Garante que o contêiner ocupe toda a altura da viewport */
+}
+
+.pageMain {
+  flex-grow: 1;
+  /* Faz o conteúdo principal expandir */
+  display: flex;
+  flex-direction: column;
+  /* Alinha o conteúdo verticalmente */
+  background-color: #DDE4FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.arrowMain1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 130%;
+  height: 9vh;
+}

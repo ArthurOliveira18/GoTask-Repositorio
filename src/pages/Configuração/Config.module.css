@@ -1,23 +1,26 @@
-.pageContainer{
-    display: flex;
-      flex-direction: column;
-      min-height: 100vh; /* Garante que o contêiner ocupe toda a altura da viewport */
-}
-    
-.pageMain{
-    flex-grow: 1; /* Faz o conteúdo principal expandir */
-      display: flex;
-      flex-direction: column; /* Alinha o conteúdo verticalmente */
-      background-color: #DDE4FF;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      
-      
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Garante que o contêiner ocupe toda a altura da viewport */
 }
 
-.divInputConfig{
+.pageMain {
+  flex-grow: 1;
+  /* Faz o conteúdo principal expandir */
+  display: flex;
+  flex-direction: column;
+  /* Alinha o conteúdo verticalmente */
+  background-color: #DDE4FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+
+}
+
+.divInputConfig {
   display: flex;
   align-items: center;
   height: 100px;
@@ -28,7 +31,7 @@
   border-radius: .75rem;
 }
 
-.divExcluir{
+.divExcluir {
   width: 83%;
   height: 90%;
   align-items: center;
@@ -38,19 +41,19 @@
   border-radius: .50rem;
 }
 
-.divButtonSair{
+.divButtonSair {
   width: 400px;
-  
+
   display: flex;
   justify-content: center;
   height: 200px;
   align-items: center;
   position: absolute;
   bottom: 11rem;
-  
+
 }
 
-.divButtonSair button{
+.divButtonSair button {
   border: none;
   width: 50vw;
   height: 40px;
@@ -58,6 +61,6 @@
   color: #fff;
   border-radius: .50rem;
   font-size: 25px;
-  box-shadow: 0 4px 0px #0000004f ;
-  
+  box-shadow: 0 4px 0px #0000004f;
+
 }

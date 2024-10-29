@@ -1,7 +1,15 @@
-import  { useState } from "react";
+import { useState } from "react";
 import style from './CardChildren.module.css';
+import {useNavigate} from 'react-router-dom';
+
 
 const CardChildren = () => {
+
+  const navigate = useNavigate()
+  const handleConfig = () =>{
+    navigate('/Config')
+  }
+
   const [children, setChildren] = useState([
     {
       id: 1,
@@ -41,7 +49,6 @@ const CardChildren = () => {
       ],
       totalPoints: 0
     },
-    
   ]);
 
   // Função para lidar com a mudança do estado da tarefa (checkbox)
@@ -83,6 +90,11 @@ const CardChildren = () => {
   return (
     // Div para estilizar o layout
     <div className={style.homeMain}>
+      <div className={style.divSettings}>
+        <span className="material-symbols-outlined" style={{fontSize:'40px'}}onClick={handleConfig}>
+          settings
+        </span>
+      </div>
       <div className={style.homePurple}>
         {children.map((filho) => (
           <div key={filho.id} style={{
@@ -96,10 +108,10 @@ const CardChildren = () => {
             textAlign: "end",
             borderRadius: '1rem',
             padding: '1rem',
-            marginTop:'1rem',
-            marginLeft:'2rem',
-            marginRight:'2rem',
-            marginBottom:'.20rem',   
+            marginTop: '1rem',
+            marginLeft: '2rem',
+            marginRight: '2rem',
+            marginBottom: '.20rem',
           }}>
             <div className={style.nameChildren}>
               <h1>{filho.name}</h1>
