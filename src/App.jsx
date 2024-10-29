@@ -16,6 +16,9 @@ import RegisterChildren from './pages/Familia/RegistrarFilho/RegisterChildren.js
 import PassagemTela from './pages/PassagemTela/PassagemTela.jsx';
 import EditarCrianca from './pages/EditarCrianca/EditChildren.jsx';
 import SelectDays from './pages/SelectDays/SelectDays.jsx';
+import HistoricoTask from './pages/HistoricoTask/HistoricoTask.jsx';
+import HistoricoBenef from './pages/HistoricoBenef/HistoricoBenef.jsx';
+import EscolhaFilho from './pages/EscolhaFIlhosHis/EscolhaFilho.jsx';
 
 
 
@@ -74,10 +77,17 @@ function App() {
           {/* Rota para pagina de editar a criança em especifico */}
           <Route path='/editar-crianca' element={<EditarCrianca />} />
 
-
-
           {/* Rota para a tela de selecionar os dias */}
           <Route path='/select-days' element={<SelectDays />} />
+
+          {/* Rota para a tela de historico de tasks */}
+          <Route path='/historico-task' element={<HistoricoTask />} />
+
+          {/* Rota para a tela de historico de beneficio */}
+          <Route path='/historico-benef' element={<HistoricoBenef />} />
+
+          {/* Rota para a tela de escolher os filhos para ver qual historico, se é o de beneficio ou de tasks */}
+          <Route path='/escolha-filho' element={<EscolhaFilho />} />
 
 
 

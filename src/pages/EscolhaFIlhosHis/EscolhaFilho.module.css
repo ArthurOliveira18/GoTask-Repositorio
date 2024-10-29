@@ -1,0 +1,152 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Garante que o contêiner ocupe toda a altura da viewport */
+}
+
+.pageMain {
+  flex-grow: 1;
+  /* Faz o conteúdo principal expandir */
+  display: flex;
+  flex-direction: column;
+  /* Alinha o conteúdo verticalmente */
+  background-color: #DDE4FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+
+.userCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4B1DF2;
+  border-radius: 10px;
+  padding: 1vh 1vw;
+  /* Espaçamento interno */
+  margin: 1vh 0;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+}
+
+.profileIcon {
+  background-color: black;
+  border-radius: 20%;
+  padding: 7px;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+}
+
+.material-symbols-outlined {
+  font-size: 20px;
+  /* Tamanho do ícone */
+  color: #3f3f8b;
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  margin: 0 10px;
+  /* Espaçamento horizontal */
+  flex-grow: 1;
+  /* Ocupar espaço restante */
+}
+
+.printIcon {
+  background-color: #fff;
+  padding: 2vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: .75rem;
+  height: 5vh;
+  flex-grow: 1;
+
+}
+
+.addButton {
+  color: #593ACA;
+  width: 70px;
+  height: 40px;
+  border: none;
+  border: solid 2px #593ACA;
+  border-radius: .75rem;
+}
+
+/* Overlay que cobre toda a tela e obscurece o fundo */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Fundo semi-transparente para obscurecer o fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+}
+
+/* Conteúdo do modal centralizado */
+.modalContent {
+  background: linear-gradient(to bottom, #AA99E9, #5C39DB);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 70%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1001;
+  border-radius: 2rem;
+  /* Para que fique acima do modalOverlay */
+}
+
+.tabContainer  {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center; 
+  
+}
+
+
+
+/* Estilização da div azul que fica atras da div branca */
+.divBlueModal {
+  height: 130px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #380CD9;
+  border-radius: 1rem;
+  
+}
+
+/* Estilização da div branca que fica na frente da div azul */
+.divWhiteModal {
+  background-color: #fff;
+  width: 90%;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+}
+
+.divWhiteModal button {
+  border: none;
+}
