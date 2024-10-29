@@ -16,12 +16,52 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .arrowMain1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 130%;
-  height: 9vh;
+  width: 120%;
+  height: 3vh;
 }
+
+.divTasksDad {
+  width: 90vw;
+  height: 75vh;
+  display: flex;
+  justify-content: flex-start; /* Cresce o conteúdo de cima para baixo */
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto; 
+  scrollbar-width: none;
+  margin-top: 3rem;
+}
+
+.divInfoTask {
+  width: 80vw;
+  min-height: 11vh;/* Altura mínima para o conteúdo */
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 8px;
+  text-align: center;
+  border: solid 6px #512DD4;
+  border-left:10px solid #512DD4;
+  border-right: 10px solid #512DD4;
+  box-shadow: 0 5px 0px #0000003d;
+  margin-bottom: 1rem;
+}
+
+
+
+.inactiveTask {
+  border-color: gray;
+  color: gray;
+  opacity: 0.6; /* Visualmente "desativada" */
+}
+
