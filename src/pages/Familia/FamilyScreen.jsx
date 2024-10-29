@@ -2,7 +2,7 @@ import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain'
 import style from "./FamilyScreen.module.css";
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 
 
@@ -30,6 +30,11 @@ const FamilyScreen = () => {
     navigate('/editar-crianca');
   };
 
+  const handleNavigatePdf = () => {
+    navigate('/ScreenPdf');
+  };
+
+
   return (
     <div className={style.pageContainer/*pageContainerFamilyScreen*/}>
       <HeaderMain />
@@ -41,7 +46,10 @@ const FamilyScreen = () => {
             </div>
             <div className={style.printIcon}>
               <h1>{user.name}</h1>
-              <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>print</span>
+              <Link to={'/ScreenPdf'}>
+                <span className="material-symbols-outlined" style={{ fontSize: "40px" }}
+                >print</span>
+              </Link>
             </div>
           </div>
           // add comentario apenas para salvar e da um push
@@ -52,6 +60,7 @@ const FamilyScreen = () => {
             className={style.addButton}
             onClick={() => navigate('/register-children')}
           >
+
             <span className="material-symbols-outlined" style={{ fontSize: "35px" }}>add</span>
           </button>
         </div>
