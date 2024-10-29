@@ -1,56 +1,83 @@
-/* Estilos gerais */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #E2E6FA; /* Cor de fundo geral */
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    /* Garante que o contêiner ocupe toda a altura da viewport */
 }
 
-.title {
-  font-size: 24px;
-  color: white;
-  margin-bottom: 20px;
+.pageMain {
+    flex-grow: 1;
+    /* Faz o conteúdo principal expandir */
+    display: flex;
+    flex-direction: column;
+    /* Alinha o conteúdo verticalmente */
+    background-color: #DDE4FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+.title{
+    font-size: 24px;
+    margin-bottom: 20px;
+    align-items: center;
 }
 
-/* Estilos da div preta com a imagem */
-.table-container {
-  width: 90%;
-  max-width: 600px;
-  background-color: black; /* Fundo preto */
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+.title2{
+    font-size: 24px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+    
 }
 
-.table-img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
+.tableImg{
+    width: 100%;
+    height: 100%;
 }
 
-/* Estilos dos botões */
-.button-container {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  max-width: 400px;
+.divPurple{
+    background: linear-gradient(to bottom, #593ACA, #411EBE);
+    color: #fff;
+    width: 92%;
+    max-width: 500px;
+    height: 60vh;
+    /* Mantendo a altura de 70% */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    border-radius: 3rem;
+    gap: 1rem;
+}
+.imgTable{
+    border: 10px solid #000;
+    border-radius: 15px;
 }
 
-.print-button {
-  background-color: white;
-  color: #6F52C8;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 15px 30px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
-  transition: background-color 0.3s ease;
+.buttonContainer{
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    flex-direction: column;
 }
 
-.print-button:hover {
-  background-color: #f0f0f0; /* Cor quando o botão for "hovered" */
+.printButton{
+    background-color: #fff;
+    color: #6F52C8;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    
+
 }
+
