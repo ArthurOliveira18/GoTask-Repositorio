@@ -18,7 +18,7 @@
 
 .divTasksDad {
     width: 90vw;
-    height: 80vh;
+    height: 78vh;
     display: flex;
     justify-content: flex-start; /* Cresce o conteúdo de cima para baixo */
     align-items: center;
