@@ -23,6 +23,7 @@ import EscolhaFilho from './pages/EscolhaFIlhosHis/EscolhaFilho.jsx';
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScreenPdf from './pages/ImprimirPdf/ScreenPdf.jsx';
 
 
 function App() {
@@ -88,6 +89,10 @@ function App() {
 
           {/* Rota para a tela de escolher os filhos para ver qual historico, se é o de beneficio ou de tasks */}
           <Route path='/escolha-filho' element={<EscolhaFilho />} />
+
+          {/* rota para imprimir o PDF  */}
+          <Route path='/ScreenPdf' element={<ScreenPdf />}/>
+        
 
 
 
