@@ -1,6 +1,6 @@
 import Style from '../Footer/FooterMain.module.css';
 import { useLocation } from 'react-router-dom';
-import { CalendarToday, ShoppingCart, Home, Settings, FamilyRestroom, History } from '@mui/icons-material';
+import { CalendarToday, ShoppingCart, Home,  FamilyRestroom, History } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 
