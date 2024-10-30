@@ -1,19 +1,22 @@
-.pageContainer{
+.pageContainer {
     display: flex;
-      flex-direction: column;
-      min-height: 100vh; /* Garante que o contêiner ocupe toda a altura da viewport */
-      overflow: hidden;
-}
+    flex-direction: column;
+    min-height: 100vh;
     
-.pageMain{
-    flex-grow: 1; /* Faz o conteúdo principal expandir */
-      display: flex;
-      flex-direction: column; /* Alinha o conteúdo verticalmente */
-      background-color: #DDE4FF;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+    overflow: hidden;
+}
+
+.pageMain {
+    flex-grow: 1;
+    /* Faz o conteúdo principal expandir */
+    display: flex;
+    flex-direction: column;
+    /* Alinha o conteúdo verticalmente */
+    background-color: #DDE4FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .arrowMain1 {
@@ -24,7 +27,7 @@
     height: 9vh;
 }
 
-.formCreateTask{
+.formCreateTask {
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -32,7 +35,7 @@
 }
 
 
-.divCardCreateTask{
+.divCardCreateTask {
     background: linear-gradient(to bottom, #3c18bc, #5239ae);
     width: 90%;
     max-width: 700px;
@@ -43,22 +46,22 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    
+
 }
 
-.divInputsCreateTask{
-    width: 100% ;
+.divInputsCreateTask {
+    width: 100%;
     height: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;    
+    gap: 1rem;
     color: #fff;
 }
 
 
-.divInputsCreateTask input{
+.divInputsCreateTask input {
     border: none;
     width: 90%;
     border-radius: 3rem;
@@ -67,17 +70,17 @@
     font-size: 25px;
 }
 
-.divButtonCreateTask{
+.divButtonCreateTask {
     width: 100vw;
     height: 10vh;
-   
+
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
-.divButtonCreateTask button{
+.divButtonCreateTask button {
     border: none;
     width: 50%;
     max-width: 200px;

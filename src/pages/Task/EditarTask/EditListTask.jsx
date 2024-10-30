@@ -30,7 +30,7 @@ const EditListTask = () => {
       <div className={style.pageMain}>
         <div className={style.divTasksDad}>
           {tasks.map((tarefas) => (
-            <div key={tarefas.id} className={style.divInfoTask}>
+            <div key={tarefas.id} onClick={(e) => { e.preventDefault(); navigate('/edit-task-real'); }} className={style.divInfoTask}>
 
               <h1>{tarefas.task}</h1>
             </div>

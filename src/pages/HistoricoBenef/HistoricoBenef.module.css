@@ -53,10 +53,9 @@
   text-align: center;
   flex-direction: column;
   align-items: center;
-  border: 5px solid #000;
-  border-bottom: 10px solid #000;
+  border: 5px solid #633DD6;
+  border-bottom: 10px solid #633DD6;
   border-radius: 1rem;
-
 }
 
 

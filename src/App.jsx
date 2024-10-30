@@ -19,6 +19,7 @@ import SelectDays from './pages/SelectDays/SelectDays.jsx';
 import HistoricoTask from './pages/HistoricoTask/HistoricoTask.jsx';
 import HistoricoBenef from './pages/HistoricoBenef/HistoricoBenef.jsx';
 import EscolhaFilho from './pages/EscolhaFIlhosHis/EscolhaFilho.jsx';
+import EditarTaskReal from './pages/Task/EditarTaskReal/EditarTaskReal.jsx';
 
 
 
@@ -92,6 +93,9 @@ function App() {
 
           {/* rota para imprimir o PDF  */}
           <Route path='/ScreenPdf' element={<ScreenPdf />}/>
+
+          {/* rota para tela de editar task real  */}
+          <Route path='/edit-task-real' element={<EditarTaskReal />}/>
         
 
 

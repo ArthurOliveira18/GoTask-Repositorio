@@ -1,12 +1,11 @@
-
 import{useState} from 'react'
-import style from './CreateTask.module.css'
+import style from './EditarTaskReal.module.css'
 import {  Link } from 'react-router-dom';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
 const url = "http://localhost:5000/pais"
 
-const CreateTask = () => {
+const EditarTaskReal = () => {
   return (
     <div className={style.pageContainer/* nome da pagina*/}>
         <HeaderMain/>
@@ -33,7 +32,7 @@ const CreateTask = () => {
             <div className={style.divCardCreateTask}>
                 <div className={style.divInputsCreateTask}>
                     <h2>Descriçao da task</h2>
-                    <input type="text" />
+                    <input type="tFext" />
                 </div>
 
                 <div className={style.divInputsCreateTask}>
@@ -44,7 +43,7 @@ const CreateTask = () => {
             </div>
 
             <div className={style.divButtonCreateTask}>
-                <button type='submit'>Cadastrar task</button>
+                <button type='submit'>Atualizar task</button>
             </div>
         </form>
       </div>
@@ -53,4 +52,4 @@ const CreateTask = () => {
   )
 }
 
-export default CreateTask
+export default EditarTaskReal

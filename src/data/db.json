@@ -82,6 +82,12 @@
       "name": "matheus",
       "email": "matheus@gmail.com",
       "password": "matheus1"
+    },
+    {
+      "id": "d5c2",
+      "name": "greg",
+      "email": "gregoria@gmail.com",
+      "password": "gregoria1"
     }
   ]
 }
