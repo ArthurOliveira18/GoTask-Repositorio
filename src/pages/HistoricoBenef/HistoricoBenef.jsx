@@ -24,6 +24,7 @@ const HistoricoBenef = () => {
     { id: 6, name: 'Cansei', points: 25, isActive: false },
     { id: 6, name: 'Desisto ', points: 25, isActive: false },
     { id: 6, name: 'Se amar', points: 25, isActive: true },
+    // coment
   ]);
 
   return (
