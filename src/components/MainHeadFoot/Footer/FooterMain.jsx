@@ -27,7 +27,7 @@ const FooterMain = () => {
 
 
   <Link to="/FamilyScreen">  <FamilyRestroom className="material-symbols-outlined" style={{ color: getIconColor(['/FamilyScreen', '/editar-crianca', '/ScreenPdf', '/register-children']), fontSize: "40px"  }} />  </Link>
-{/* aaa */}
+{/* Coment para upar pro git */}
 
 </nav>
 );
