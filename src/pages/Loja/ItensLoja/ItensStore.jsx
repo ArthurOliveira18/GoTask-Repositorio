@@ -103,7 +103,7 @@ const ItensStore = () => {
 
             <div className={style.divIcon}>
               <button className={style.closeButton}>Resgatar</button>
-              <span className="material-symbols-outlined">edit</span>
+              <span className="material-symbols-outlined" onClick={() => {navigate('/edit-recompensa')}}>edit</span>
             </div>
             <button onClick={closeModal} className={style.closeButton}>Fechar</button>
           </div>

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const TaskScreen = () => {
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [tasks, setTasks] = useState([
     { id: 1, task: 'Arrumar a cama' },
@@ -22,20 +22,20 @@ const TaskScreen = () => {
   ]);
 
 
-    const [users, setUsers] = useState([
-      {
-        id:1,
-        name:"Cristiano"
-      },
-      {
-        id:2,
-        name:"Juliana"
-      },
-      {
-        id:3,
-        name:"Enzo"
-      }
-    ])
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      name: "Cristiano"
+    },
+    {
+      id: 2,
+      name: "Juliana"
+    },
+    {
+      id: 3,
+      name: "Enzo"
+    }
+  ])
 
   const [selectedTask, setSelectedTask] = useState(null);
 
@@ -58,26 +58,22 @@ const TaskScreen = () => {
             </div>
           ))}
 
-          
+
           <div className={style.divButtonTasks}>
 
-          <button onClick={() => { navigate('/edit-list-task') }}> 
-                <span className="material-symbols-outlined" style={{fontSize:'40px' , color:'#593ACA'}}>
-                    edit
-                </span>
+            <button onClick={() => { navigate('/edit-list-task') }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
+                edit
+              </span>
             </button>
-            <button onClick={() => { navigate('/create-task') }}> 
-                <span className="material-symbols-outlined" style={{fontSize:'40px' , color:'#593ACA'}}>
-                    add
-                </span>
+            <button onClick={() => { navigate('/create-task') }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
+                add
+              </span>
             </button>
-            
+
           </div>
         </div>
-
-          
-          
-        
       </div>
       <FooterMain />
     </div>

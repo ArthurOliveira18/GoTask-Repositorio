@@ -34,7 +34,8 @@
 
 .divCardCreateTask{
     background: linear-gradient(to bottom, #3c18bc, #5239ae);
-    width: 90vw;
+    width: 90%;
+    max-width: 700px;
     height: 50vh;
     border-radius: 1rem;
     display: flex;
@@ -79,6 +80,7 @@
 .divButtonCreateTask button{
     border: none;
     width: 50%;
+    max-width: 200px;
     height: 50%;
     background-color: #6249BF;
     border-radius: 10rem;

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import style from './CardChildren.module.css';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const CardChildren = () => {
 
   const navigate = useNavigate()
-  const handleConfig = () =>{
+  const handleConfig = () => {
     navigate('/Config')
   }
 
@@ -91,7 +91,7 @@ const CardChildren = () => {
     // Div para estilizar o layout
     <div className={style.homeMain}>
       <div className={style.divSettings}>
-        <span className="material-symbols-outlined" style={{fontSize:'40px'}}onClick={handleConfig}>
+        <span className="material-symbols-outlined" style={{ fontSize: '40px' }} onClick={handleConfig}>
           settings
         </span>
       </div>

@@ -15,7 +15,7 @@ const FooterMain = () => {
 
   <nav className={Style.divFooterMain}>
 
-  <Link to="/escolha-filho">  <Settings className="material-symbols-outlined" style={{ color: getIconColor('/escolha-filho'), fontSize: "40px"  }} />  </Link>
+  <Link to="/escolha-filho">  <History className="material-symbols-outlined" style={{ color: getIconColor('/escolha-filho'), fontSize: "40px"  }} />  </Link>
 
   <Link to="/TaskScreen">  <CalendarToday className="material-symbols-outlined" style={{ color: getIconColor('/TaskScreen'), fontSize: "40px"  }} />  </Link>
 

@@ -18,6 +18,7 @@
 
 .homePurple {
   width: 90%;
+  max-width: 800px;
   height: 70vh; /* Mantém a altura da homePurple */
   background-color: #6249BF;
   display: flex;
