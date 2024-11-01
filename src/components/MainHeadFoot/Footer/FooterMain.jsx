@@ -1,6 +1,6 @@
 import Style from '../Footer/FooterMain.module.css';
 import { useLocation } from 'react-router-dom';
-import { CalendarToday, ShoppingCart, Home,  FamilyRestroom, History } from '@mui/icons-material';
+import { CalendarToday, EmojiEvents, Home,  FamilyRestroom, History } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 
@@ -23,7 +23,7 @@ const FooterMain = () => {
   <Link to="/Home">  <Home className="material-symbols-outlined" style={{ color: getIconColor(['/Home', '/Config']), fontSize: "40px" }} />  </Link>
 
 
-  <Link to="/Store">  <ShoppingCart className="material-symbols-outlined" style={{ color: getIconColor(['/Store', '/cad-beneficio']), fontSize: "40px"  }} />  </Link>
+  <Link to="/Store">  <EmojiEvents className="material-symbols-outlined" style={{ color: getIconColor(['/Store', '/cad-beneficio']), fontSize: "40px"  }} />  </Link>
 
 
   <Link to="/FamilyScreen">  <FamilyRestroom className="material-symbols-outlined" style={{ color: getIconColor(['/FamilyScreen', '/editar-crianca', '/ScreenPdf', '/register-children']), fontSize: "40px"  }} />  </Link>

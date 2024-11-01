@@ -3,6 +3,7 @@
     flex-direction: column;
     min-height: 100vh;
     align-items: center;
+    overflow: hidden;
     /* Garante que o contêiner ocupe toda a altura da viewport */
 }
 
@@ -81,6 +82,7 @@
 .printButton {
     background-color: #fff;
     color: #6F52C8;
+    border: none;
     font-size: 18px;
     font-weight: bold;
     padding: 15px 30px;

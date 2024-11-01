@@ -15,7 +15,7 @@ const HistoricoTask = () => {
     { id: 7, task: 'Cuidar da sua irmã', isActive: true },
     { id: 8, task: 'Não fazer pirraça', isActive: false },
     { id: 9, task: 'Brincar com o seu irmão', isActive: true },
-    { id: 10, task: 'Se amar.', isActive: false },
+    { id: 10, task: 'Limpar o quarto', isActive: false },
   ]);
 
   return (

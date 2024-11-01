@@ -18,7 +18,7 @@ const TaskScreen = () => {
     { id: 7, task: 'Cuidar da sua irmã' },
     { id: 8, task: 'Não fazer pirraça' },
     { id: 9, task: 'Brincar com o seu irmão' },
-    { id: 10, task: 'Se amar.' },
+    { id: 10, task: 'Limpar o quarto' },
   ]);
 
 

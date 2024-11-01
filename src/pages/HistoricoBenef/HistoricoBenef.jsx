@@ -10,20 +10,14 @@ const HistoricoBenef = () => {
   const navigate = useNavigate();
 
   const [recompensas] = useState([
-    { id: 1, name: 'Dormir duas horas mais tarde', points: 30, isActive: true  },
+    { id: 1, name: 'Dormir duas horas mais tarde', points: 30, isActive: false  },
     { id: 2, name: 'Sair com os amigos', points: 70 },
-    { id: 3, name: 'Brincar mais tempo com os amigos', points: 10, isActive: true  },
-    { id: 4, name: 'Jogar por mais de uma hora', points: 20, isActive: true  },
-    { id: 5, name: 'Ir ao cinema', points: 90, isActive: true  },
-    { id: 6, name: 'Vê desenho até mais tarde', points: 25, isActive: true },
-    { id: 6, name: 'Descansar ', points: 25, isActive: false },
-    { id: 6, name: 'Fome', points: 25, isActive: true },
-    { id: 6, name: 'No ideias aqui', points: 25, isActive: true },
-    { id: 6, name: 'MAIONESE KKKKKKKKKKKKKK', points: 10000, isActive: false },
-    { id: 6, name: 'Sem comentários sobre o Davi', points: 1, isActive: true },
-    { id: 6, name: 'Cansei', points: 25, isActive: false },
-    { id: 6, name: 'Desisto ', points: 25, isActive: false },
-    { id: 6, name: 'Se amar', points: 25, isActive: true },
+    { id: 3, name: 'Brincar mais tempo com os amigos', points: 10, isActive: false  },
+    { id: 4, name: 'Jogar por mais de uma hora', points: 20, isActive: false  },
+    { id: 5, name: 'Ir ao cinema', points: 90, isActive: false  },
+    { id: 6, name: 'Vê desenho até mais tarde', points: 25, isActive: false },
+  
+  
     // coment
   ]);
 
@@ -53,8 +47,10 @@ const HistoricoBenef = () => {
               className={`${style.divBenefs} ${!recomp.isActive ? style.inactiveTask : ''}`}>
               <p>{recomp.name}</p>
               <br />
-              <p>Pontos:</p>
-              <h2>{recomp.points} P</h2>
+              <p>-{recomp.points}</p>
+              <p>Data de resgate:</p>
+              <p>13-10-2024</p>
+              <p>13:00 H</p>
             </div>
           ))}
         </div>
