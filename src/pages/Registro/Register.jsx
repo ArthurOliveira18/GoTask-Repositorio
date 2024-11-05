@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const url = "http://localhost:5000/pais"
+const url = "http://localhost:3000/pais"
 
 const Register = () => {
   const navigate = useNavigate()
