@@ -76,18 +76,6 @@
       "name": "aaa1",
       "email": "aaa@gmail.com",
       "password": "aaa1"
-    },
-    {
-      "id": "42bb",
-      "name": "matheus",
-      "email": "matheus@gmail.com",
-      "password": "matheus1"
-    },
-    {
-      "id": "d5c2",
-      "name": "greg",
-      "email": "gregoria@gmail.com",
-      "password": "gregoria1"
     }
   ]
 }
