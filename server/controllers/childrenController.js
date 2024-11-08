@@ -9,6 +9,7 @@ const getUsers = async (req, res) => {
         database: "gotask",
         port: 3306
     });
+    // a
 
     pool.connect((erro) => {
         if (erro) {
