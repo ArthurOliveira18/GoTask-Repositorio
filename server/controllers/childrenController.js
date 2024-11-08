@@ -18,7 +18,7 @@ const getUsers = async (req, res) => {
         }
     });
 
-    let query = 'SELECT * FROM Pai;'
+    let query = 'SELECT * FROM Crianca;'
     pool.query(query, (err, results) => {
         if (err) {
             return res.status(500).send(err);
