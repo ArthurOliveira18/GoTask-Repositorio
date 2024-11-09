@@ -3,22 +3,21 @@ import { useNavigate } from 'react-router-dom'; // Importe o hook de navegação
 import Style from './FormLogin.module.css';
 import FoorterLogCad from '../../components/Logins/FoorterLogCad'
 import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
-const url = "http://localhost:5000/pais"
+const url = "http://localhost:3000/responsaveis"
 
 const FormLogin = () => {
-
-  // Variaveis pro usuario
+  // Variáveis pro usuário
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Definindo uma variavel pro useNavigate
+  // Definindo uma variável pro useNavigate
   const navigate = useNavigate(); 
 
-  //Lista de usuarios
+  // Lista de usuários
   const [usuarios, setUsuarios] = useState([]);
 
-   //Resgate de dados da API
-   useEffect(() => {
+  // Resgate de dados da API
+  useEffect(() => {
     async function fetchData() {
       try {
         const res = await fetch(url);
@@ -29,44 +28,35 @@ const FormLogin = () => {
       }
     }
     fetchData();
-    console.log(usuarios);
   }, []);
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Evitar recarregar a página
 
     const user = { email, password };
 
-     //Verifica na lista de usuarios se tem o usuario digitado
-     const userToFind = usuarios.find(
-      (userFind) => userFind.email == user.email
+    // Verifica na lista de usuários se tem o usuário digitado
+    const userToFind = usuarios.find(
+      (userFind) => userFind.Email === user.email
     );
     
-    // Confirmando se todas credenciais são corretas
-    if (email != "") {
-      if (password != "") {
-        if (userToFind != undefined && userToFind.password == password) {
-          console.log(userToFind);
-          console.log("entrou");
-          
-
-          alert("Login efetuado com Sucesso");
-          navigate('/Home')
-          
-          
-        } else {
-          
-          alert("Usuário ou senha inválides");
-        }
-      } else {
+    // Confirmando se todas as credenciais estão corretas
+    if (email && password) {
+      if (userToFind && userToFind.Senha === password) {
+        console.log(userToFind);
+        alert("Login efetuado com sucesso");
         
-        alert("O campo senha não pode ser vazio");
+        // Salva o usuário logado no localStorage (opcional)
+        localStorage.setItem("user", JSON.stringify(userToFind));
+
+        // Navega para a página Home após login bem-sucedido
+        navigate('/Home');
+      } else {
+        alert("Usuário ou senha inválidos");
       }
     } else {
-      
-      alert("O campo email não pode ser vazio");
+      alert("Por favor, preencha todos os campos.");
     }
-
   };
 
   return (
@@ -85,9 +75,7 @@ const FormLogin = () => {
             className={Style.inputFormLogin}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            
           />
-          
         </div>
 
         <label htmlFor="password" className={Style.labelFormLogin}>Senha</label>
@@ -103,8 +91,6 @@ const FormLogin = () => {
           <button type="submit" className={Style.buttonForm}>Entrar</button>
         </div>
       </form>
-
-    
 
       <FoorterLogCad />
     </div>

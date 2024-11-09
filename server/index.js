@@ -1,16 +1,17 @@
-// Codigo do banco de dados... Sinceramente? não sei nem por onde começar. Arthur do futuro, deu tudo certo?
+
 const express = require("express");
 const app = express();
-// const mysql = require('mysql2');
-// const conn = require('./db/db')
+const cors = require("cors"); // Importação do CORS
 const usersRoutes = require('./routes/usuariosRoutes')
 const historyTaskRoutes = require('./routes/historyTaskRoutes')
 const childrenRoutes = require('./routes/childrenRoutes')
-
 const path = require("path");
 const basePath = path.join(__dirname, "pages");
+const port = 3000
 
-const port = 5000
+// Middleware para interpretar JSON e habilitar CORS
+app.use(express.json());
+app.use(cors({ origin: "http://localhost:5173" }));  // Permite requisições do front-end
 
 // const mysql = require("mysql2");
 const exp = require("constants");
