@@ -1,4 +1,4 @@
-// const pool = require('../index');
+
 const mysql = require('mysql2');
 
 const getUsers = async (req, res) => {

@@ -1,6 +1,7 @@
 // const pool = require('../index');
 const mysql = require('mysql2');
 
+// Conexão com o banco
 const getUsers = async (req, res) => {
     const pool = mysql.createConnection({
         host: "localhost",
@@ -9,7 +10,7 @@ const getUsers = async (req, res) => {
         database: "gotask",
         port: 3306
     });
-    // a
+    
 
     pool.connect((erro) => {
         if (erro) {
