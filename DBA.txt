@@ -3,8 +3,8 @@ CREATE SCHEMA IF NOT EXISTS `gotask` DEFAULT CHARACTER SET utf8;
 USE `gotask`;
 
 -- Tabela Pai
-CREATE TABLE IF NOT EXISTS `Pai` (
-  `idPai` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `responsavel` (
+  `idResponsavel` INT NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(50) NOT NULL UNIQUE,
   `Senha` VARCHAR(25) NOT NULL UNIQUE,
   `Nome_Pai` VARCHAR(45) NOT NULL,
@@ -12,10 +12,10 @@ CREATE TABLE IF NOT EXISTS `Pai` (
 );
 
 -- Tabela Crianca
-CREATE TABLE IF NOT EXISTS `Crianca` (
+CREATE TABLE IF NOT EXISTS `crianca` (
   `idCrianca` INT NOT NULL AUTO_INCREMENT,
-  `Nome_crianca` VARCHAR(45) NOT NULL,
-  `Dt_nasc` DATE,
+  `nomeCrianca` VARCHAR(45) NOT NULL,
+  `dtNasc` DATE,
   `pontos` INT NOT NULL,
   `Pai_idPai` INT NOT NULL,
   PRIMARY KEY (`idCrianca`),
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `Crianca` (
 );
 
 -- Tabela Task
-CREATE TABLE IF NOT EXISTS `Task` (
+CREATE TABLE IF NOT EXISTS `task` (
   `idTask` INT NOT NULL AUTO_INCREMENT,
   `Nome_task` VARCHAR(45) NOT NULL,
   `Pontos_task` INT NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `Task` (
 );
 
 -- Tabela Beneficio
-CREATE TABLE IF NOT EXISTS `Beneficio` (
+CREATE TABLE IF NOT EXISTS `beneficio` (
   `idBeneficio` INT NOT NULL AUTO_INCREMENT,
   `Nome_ben` VARCHAR(100) NOT NULL,
   `pontos_ben` INT NOT NULL DEFAULT 0,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `Beneficio` (
 );
 
 -- Tabela Historico_Task
-CREATE TABLE IF NOT EXISTS `Historico_Task` (
+CREATE TABLE IF NOT EXISTS `historicoTask` (
   `Crianca_idCrianca` INT NOT NULL,
   `Task_idTask` INT NOT NULL,
   `dia` SET("seg", "ter", "qua", "qui", "sex", "fds") NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `Historico_Task` (
 );
 
 -- Tabela Historico_Beneficio
-CREATE TABLE IF NOT EXISTS `Historico_Beneficio` (
+CREATE TABLE IF NOT EXISTS `historicoBeneficio` (
   `Crianca_idCrianca` INT NOT NULL,
   `Beneficio_idBeneficio` INT NOT NULL,
   `data` DATETIME NOT NULL,
@@ -72,6 +72,8 @@ CREATE TABLE IF NOT EXISTS `Historico_Beneficio` (
     FOREIGN KEY (`Beneficio_idBeneficio`)
     REFERENCES `Beneficio` (`idBeneficio`)
 );
+
+
 
 
 
