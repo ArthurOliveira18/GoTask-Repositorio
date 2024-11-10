@@ -3,7 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain';
 import style from '../RegistrarFilho/RegisterChildren.module.css';
-const url = "http://localhost:3000/children"
+
+const url = "http://localhost:3000/children";
 
 const RegisterChildren = () => {
   const navigate = useNavigate();
@@ -16,20 +17,20 @@ const RegisterChildren = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = JSON.parse(localStorage.getItem('user')); // Obtém o usuário logado do localStorage
+    const responsavelId = localStorage.getItem('responsavelId'); // Obtém o ID do responsável do localStorage
 
-    if (!user) {
-      alert("Responsável não está logado!");
+    if (!responsavelId) {
+      alert('Responsável não encontrado!');
       return;
     }
 
-    // Enviar os dados para o backend (Node.js)
+    // Enviar os dados para o backend
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'responsavel-id': user.idResp, // Envia o ID do responsável no cabeçalho
+          'responsavel-id': responsavelId, // Envia o ID do responsável no cabeçalho
         },
         body: JSON.stringify({ nomeCrianca: childName, dtNasc: birthDate }),
       });
@@ -51,7 +52,7 @@ const RegisterChildren = () => {
   return (
     <div className={style.pageContainer}>
       <HeaderMain />
-
+      
       <div className={style.arrowMain1}>
         <Link to={'/FamilyScreen'}>
           <span className="material-symbols-outlined">arrow_back</span>

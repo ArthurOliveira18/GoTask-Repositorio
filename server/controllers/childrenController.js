@@ -14,7 +14,7 @@ const getChildren = async (req, res) => {
     const responsavelId = req.headers['responsavel-id']; // Pega o id do responsável no cabeçalho
 
     if (!responsavelId) {
-        return res.status(400).json({ message: 'Responsável não informado' });
+        return res.status(400).json({ message: 'Responsável não encontrado' });
     }
 
     // Query para selecionar as crianças associadas ao responsável
@@ -28,16 +28,13 @@ const getChildren = async (req, res) => {
     });
 };
 
-
-
-
 // Função para criar a criança
 const createChildren = async (req, res) => {
     const { nomeCrianca, dtNasc } = req.body;
     const responsavelId = req.headers['responsavel-id']; // Obtém o id do responsável do cabeçalho
 
     if (!responsavelId) {
-        return res.status(400).json({ message: 'Responsável não informado' });
+        return res.status(400).json({ message: 'Responsável não fornecido no cabeçalho' });
     }
 
     try {

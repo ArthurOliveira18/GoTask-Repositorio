@@ -13,8 +13,7 @@ const FamilyScreen = () => {
     const responsavelId = localStorage.getItem('responsavelId'); // Verifique se o id do responsável está no localStorage
 
     if (!responsavelId) {
-      alert("Você precisa estar logado para ver suas crianças.");
-      navigate('/'); // Redireciona para a tela de login caso não tenha o idResp
+      alert('Responsável não encontrado!');
       return;
     }
 
@@ -26,37 +25,36 @@ const FamilyScreen = () => {
     })
       .then((response) => response.json())
       .then((data) => setChildren(data))
-      .catch((error) => console.error('Erro ao buscar crianças:', error))}
-  );
+      .catch((error) => console.error('Erro ao buscar crianças:', error));
+  }, []);
 
-
-    return (
-      <div className={style.pageContainer}>
-        <HeaderMain />
-        <div className={style.pageMain}>
-          {children.map((child, index) => (
-            <div key={index} className={style.userCard}>
-              <div className={style.profileIcon}>
-                <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>
-              </div>
-              <div className={style.printIcon}>
-                <h1>{child.nomeCrianca}</h1>
-              </div>
+  return (
+    <div className={style.pageContainer}>
+      <HeaderMain />
+      <div className={style.pageMain}>
+        {children.map((child, index) => (
+          <div key={index} className={style.userCard}>
+            <div className={style.profileIcon}>
+              <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>
             </div>
-          ))}
-
-          <div>
-            <button
-              className={style.addButton}
-              onClick={() => navigate('/register-children')}
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: "35px" }}>add</span>
-            </button>
+            <div className={style.printIcon}>
+              <h1>{child.nomeCrianca}</h1>
+            </div>
           </div>
-        </div>
-        <FooterMain />
-      </div>
-    );
-  };
+        ))}
 
-  export default FamilyScreen;
+        <div>
+          <button
+            className={style.addButton}
+            onClick={() => navigate('/register-children')}
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: "35px" }}>add</span>
+          </button>
+        </div>
+      </div>
+      <FooterMain />
+    </div>
+  );
+};
+
+export default FamilyScreen;
