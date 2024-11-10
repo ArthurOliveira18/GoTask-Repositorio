@@ -2,7 +2,7 @@
 const mysql = require('mysql2');
 
 // Conexão com o banco
-const getUsers = async (req, res) => {
+const getChildren = async (req, res) => {
     const pool = mysql.createConnection({
         host: "localhost",
         user: "root",
@@ -10,7 +10,7 @@ const getUsers = async (req, res) => {
         database: "gotask",
         port: 3306
     });
-    
+
 
     pool.connect((erro) => {
         if (erro) {
@@ -20,7 +20,7 @@ const getUsers = async (req, res) => {
         }
     });
 
-    let query = 'SELECT * FROM Crianca;'
+    let query = 'SELECT * FROM crianca;'
     pool.query(query, (err, results) => {
         if (err) {
             return res.status(500).send(err);
@@ -31,14 +31,22 @@ const getUsers = async (req, res) => {
 
 
 
-const createUser = async (req, res) => {
-  const { name, email } = req.body;
-  try {
-    const [result] = conn.query('INSERT INTO users (name, email) VALUES (?, ?)', [name, email]);
-    res.json({ id: result.insertId, name, email });
-  } catch (error) {
-    res.status(500).json({ message: 'Erro ao criar usuário', error });
-  }
+const createChildren = async (req, res) => {
+    // Capturando os dados do req.body com os mesmos nomes das colunas no MySQL
+    const { nomeCrianca, dtNasc, pontos, responsavel } = req.body;
+
+    // Query de inserção no MySQL com os nomes corretos das colunas
+    const query = 'INSERT INTO crianca (nomeCrianca, dtNasc, pontos, responsavel) VALUES (?, ?, ?, ?)';
+    const values = [nomeCrianca, dtNasc, 0, responsavel];
+
+    // Executa a query
+    pool.query(query, values, (error, result) => {
+        if (error) {
+            return res.status(500).json({ message: 'Erro ao cadastrar criança', error });
+        }
+        res.status(201).json({ message: 'Criança cadastrada com sucesso', idCrianca: result.insertId });
+    });
 };
 
-module.exports = { getUsers, createUser };
+
+module.exports = { getChildren, createChildren };
