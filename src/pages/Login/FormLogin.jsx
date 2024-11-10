@@ -11,7 +11,7 @@ const FormLogin = () => {
   const [password, setPassword] = useState('');
 
   // Definindo uma variável pro useNavigate
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   // Lista de usuários
   const [usuarios, setUsuarios] = useState([]);
@@ -39,20 +39,15 @@ const FormLogin = () => {
     const userToFind = usuarios.find(
       (userFind) => userFind.Email === user.email
     );
-
+    
     // Confirmando se todas as credenciais estão corretas
     if (email && password) {
       if (userToFind && userToFind.Senha === password) {
         console.log(userToFind);
         alert("Login efetuado com sucesso");
-
+        
         // Salva o usuário logado no localStorage (opcional)
         localStorage.setItem("user", JSON.stringify(userToFind));
-
-        // Salva o id do responsável (idResp)
-        localStorage.setItem("responsavelId", userToFind.idResp);
-        console.log(localStorage.getItem("responsavelId")); // Verifique se o valor foi salvo corretamente
-        // Adiciona o idResp no localStorage
 
         // Navega para a página Home após login bem-sucedido
         navigate('/Home');
@@ -63,7 +58,6 @@ const FormLogin = () => {
       alert("Por favor, preencha todos os campos.");
     }
   };
-
 
   return (
     <div className={Style.formMain}>
