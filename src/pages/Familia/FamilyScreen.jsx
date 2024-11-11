@@ -6,18 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const FamilyScreen = () => {
   const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: "Cristiano"
-    },
-    {
-      id: 2,
-      name: "Juliana"
-    },
-    {
-      id: 3,
-      name: "Enzo"
-    }
+   
   ]);
 
   const navigate = useNavigate();
@@ -69,3 +58,4 @@ const FamilyScreen = () => {
 };
 
 export default FamilyScreen;
+
