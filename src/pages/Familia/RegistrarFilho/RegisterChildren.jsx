@@ -9,11 +9,16 @@ import { Link, useNavigate } from 'react-router-dom';
 const RegisterChildren = () => {
   const [nomeCrianca, setNomeCrianca] = useState('');
   const [dtNasc, setDtNasc] = useState('');
-  const responsavelId = 1
+  const navigate = useNavigate()
 
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    const loggedUser = JSON.parse(localStorage.getItem("user"));
+    const responsavelId = loggedUser ? loggedUser.idResp : null; // Usando o idResp do responsável
+
+    
 
     
 
@@ -34,6 +39,8 @@ const RegisterChildren = () => {
 
       const result = await response.json();
       console.log(result);
+      alert("criança cadastrada com sucesso!!")
+      navigate('/FamilyScreen')
     } catch (error) {
       console.error("Erro ao cadastrar criança:", error);
     }
