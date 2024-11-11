@@ -30,6 +30,9 @@ CREATE TABLE IF NOT EXISTS task (
   Pontos_task INT NOT NULL,
   status INT NOT NULL
 );
+INSERT INTO task (Nome_task, Pontos_task)
+VALUES("Fazer dever de história" , 10);
+SELECT * FROM task;
 
 -- Tabela Beneficio
 CREATE TABLE IF NOT EXISTS beneficio (
