@@ -15,6 +15,7 @@ const ScreenPdf = () => {
           <Link to={'/FamilyScreen'}>
             <span className="material-symbols-outlined">arrow_back</span>
           </Link>
+          
           <div></div>
           <div></div>
         </div>
