@@ -18,10 +18,6 @@ const RegisterChildren = () => {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
     const responsavelId = loggedUser ? loggedUser.idResp : null; // Usando o idResp do responsável
 
-    
-
-    
-
     const newChild = {
       nomeCrianca,
       dtNasc,

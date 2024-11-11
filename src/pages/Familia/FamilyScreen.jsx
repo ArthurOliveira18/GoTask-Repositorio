@@ -1,17 +1,44 @@
 import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain';
 import style from "./FamilyScreen.module.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 const FamilyScreen = () => {
-  const [users, setUsers] = useState([
-   
-  ]);
-
+  const [children, setChildren] = useState([]);
   const navigate = useNavigate();
+  
+  
+  // Obtém o objeto 'user' do localStorage e faz o parse para um objeto JavaScript
+const user = JSON.parse(localStorage.getItem('user'));
 
-  // Função criada apenas para utilizar o useNavigate.
+// Acessa o idResp dentro do objeto 'user'
+const idResp = user ? user.idResp : null;
+
+console.log(idResp);
+
+  
+  // Função para buscar os dados das crianças
+  const fetchChildren = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/children'); // Endpoint para buscar crianças
+      const allChildren = response.data;
+      
+      // Filtra as crianças que têm o mesmo responsavelId que o idResp
+      const filteredChildren = allChildren.filter(child => child.responsavel === parseInt(idResp));
+      setChildren(filteredChildren);
+      
+    } catch (error) {
+      console.error("Erro ao buscar crianças:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchChildren();
+  }, []);
+
+  // Função para navegar para a edição de criança
   const handleNavigate = () => {
     navigate('/editar-crianca');
   };
@@ -20,7 +47,7 @@ const FamilyScreen = () => {
     <div className={style.pageContainer}>
       <HeaderMain />
       <div className={style.pageMain}>
-        {users.map((user, index) => (
+        {children.map((child, index) => (
           <div
             key={index}
             className={style.userCard}
@@ -35,7 +62,7 @@ const FamilyScreen = () => {
               <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>
             </div>
             <div className={style.printIcon}>
-              <h1>{user.name}</h1>
+              <h1>{child.nomeCrianca}</h1>
               <Link to={'/ScreenPdf'} className="printLink">
                 <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>print</span>
               </Link>
@@ -58,4 +85,3 @@ const FamilyScreen = () => {
 };
 
 export default FamilyScreen;
-
