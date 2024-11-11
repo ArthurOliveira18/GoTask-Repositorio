@@ -4,30 +4,40 @@ import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain';
 import style from '../RegistrarFilho/RegisterChildren.module.css';
 
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 
 const RegisterChildren = () => {
   const [nomeCrianca, setNomeCrianca] = useState('');
   const [dtNasc, setDtNasc] = useState('');
 
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
+    
+
+    const newChild = {
+      nomeCrianca,
+      dtNasc,
+      
+    };
+
     try {
-      // Enviando os dados para o backend
-      await axios.post('http://localhost:3000/children', {
-        nomeCrianca,
-        dtNasc,
-        pontos: 0,
-        
+      const response = await fetch("http://localhost:3000/children", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newChild)
       });
 
-      alert('Criança cadastrada com sucesso');
+      const result = await response.json();
+      console.log(result);
     } catch (error) {
-      console.error('Erro ao cadastrar criança:', error);
-      alert('Erro ao cadastrar criança');
+      console.error("Erro ao cadastrar criança:", error);
     }
-  };
+
+  }
 
   return (
     <div className={style.pageContainer}>
@@ -36,6 +46,8 @@ const RegisterChildren = () => {
         <Link to={'/FamilyScreen'}>
           <span className="material-symbols-outlined">arrow_back</span>
         </Link>
+        <div></div>
+        <div></div>
       </div>
 
       <div className={style.pageMain}>

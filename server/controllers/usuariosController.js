@@ -1,13 +1,21 @@
 const mysql = require('mysql2');
 
 // Configuração da conexão do banco de dados
-const pool = mysql.createPool({
+const pool = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
     database: "gotask",
     port: 3306
 }).promise();
+
+pool.connect((erro) => {
+  if (erro) {
+      console.log(erro);
+  } else {
+      console.log("Conectado com sucesso");
+  }
+});
 
 const getUsers = async (req, res) => {
     try {

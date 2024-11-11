@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'; // Importe o hook de navegação
+import { useNavigate } from 'react-router-dom';
 import Style from './FormLogin.module.css';
-import FoorterLogCad from '../../components/Logins/FoorterLogCad'
+import FoorterLogCad from '../../components/Logins/FoorterLogCad';
 import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
-const url = "http://localhost:3000/responsaveis"
+
+const url = "http://localhost:3000/responsaveis";
 
 const FormLogin = () => {
   // Variáveis pro usuário
@@ -46,7 +47,7 @@ const FormLogin = () => {
         console.log(userToFind);
         alert("Login efetuado com sucesso");
         
-        // Salva o usuário logado no localStorage (opcional)
+        // Salva o usuário logado no localStorage (incluindo o ID)
         localStorage.setItem("user", JSON.stringify(userToFind));
 
         // Navega para a página Home após login bem-sucedido
