@@ -8,27 +8,31 @@ import axios from 'axios';
 const FamilyScreen = () => {
   const [children, setChildren] = useState([]);
   const navigate = useNavigate();
-  
-  
+
+
   // Obtém o objeto 'user' do localStorage e faz o parse para um objeto JavaScript
-const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
 
-// Acessa o idResp dentro do objeto 'user'
-const idResp = user ? user.idResp : null;
+  // Acessa o idResp dentro do objeto 'user'
+  const idResp = user ? user.idResp : null;
 
-console.log(idResp);
+ 
 
-  
+
   // Função para buscar os dados das crianças
   const fetchChildren = async () => {
     try {
+
+      // Faz a requisição para o servidor para buscar todas as crianças
       const response = await axios.get('http://localhost:3000/children'); // Endpoint para buscar crianças
+
+      // Acessa os dados retornados, que estão no response.data
       const allChildren = response.data;
-      
+
       // Filtra as crianças que têm o mesmo responsavelId que o idResp
       const filteredChildren = allChildren.filter(child => child.responsavel === parseInt(idResp));
       setChildren(filteredChildren);
-      
+
     } catch (error) {
       console.error("Erro ao buscar crianças:", error);
     }

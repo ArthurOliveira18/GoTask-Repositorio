@@ -1,26 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain'
 import style from './TaskScreen.module.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';  // Importe o axios
+const url = "http://localhost:3000/task"
 
 const TaskScreen = () => {
 
   const navigate = useNavigate();
 
   const [tasks, setTasks] = useState([
-    { id: 1, task: 'Arrumar a cama' },
-    { id: 2, task: 'Levar o Ozzy para passear' },
-    { id: 3, task: 'Fazer dever de casa' },
-    { id: 4, task: 'Lavar os pratos do almoço' },
-    { id: 5, task: 'Fazer o dever de matemática' },
-    { id: 6, task: 'Dormir mais cedo' },
-    { id: 7, task: 'Cuidar da sua irmã' },
-    { id: 8, task: 'Não fazer pirraça' },
-    { id: 9, task: 'Brincar com o seu irmão' },
-    { id: 10, task: 'Limpar o quarto' },
-  ]);
 
+  ]);
 
   const [users, setUsers] = useState([
     {
@@ -47,6 +39,23 @@ const TaskScreen = () => {
     setSelectedTask(null);
   };
 
+
+  // Função para buscar as tarefas com axios
+  const fetchTasks = async () => {
+    try {
+      const response = await axios.get(url); // Usando axios para pegar os dados
+      setTasks(response.data); // Atualiza o estado com as tarefas
+    } catch (error) {
+      console.error("Erro ao buscar as tarefas:", error);
+    }
+  };
+
+  // UseEffect para chamar a função de fetch quando o componente for montado
+  useEffect(() => {
+    fetchTasks();
+  }, []); // O array vazio significa que o useEffect só será executado uma vez, quando o componente for montado
+
+
   return (
     <div className={style.pageContainer}>
       <HeaderMain />
@@ -54,7 +63,7 @@ const TaskScreen = () => {
         <div className={style.divTasksDad}>
           {tasks.map((task) => (
             <div key={task.id} className={style.divInfoTask} onClick={() => openModal(task)}>
-              <h1>{task.task}</h1>
+              <h1>{task.Nome_task}</h1>
             </div>
           ))}
 

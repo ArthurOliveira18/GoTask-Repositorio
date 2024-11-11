@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors"); // Importação do CORS
 const usersRoutes = require('./routes/usuariosRoutes')
-const historyTaskRoutes = require('./routes/historyTaskRoutes')
+const TasksRoutes = require('./routes/TasksRoutes')
 const childrenRoutes = require('./routes/childrenRoutes')
 const path = require("path");
 const basePath = path.join(__dirname, "pages");
@@ -19,7 +19,7 @@ app.use(cors({ origin: "http://localhost:5173" }));  // Permite requisições do
 const exp = require("constants");
 
 app.use("/", usersRoutes)
-app.use("/", historyTaskRoutes)
+app.use("/", TasksRoutes)
 app.use("/", childrenRoutes)
 
 

@@ -1,54 +1,94 @@
-
-import{useState} from 'react'
+import { useState } from 'react'
 import style from './CreateTask.module.css'
-import {  Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
-const url = "http://localhost:5000/pais"
+const url = "http://localhost:3000/tasks"
+
 
 const CreateTask = () => {
+  const navigate = useNavigate()
+
+  const [Nome_task, setNome_task] = useState('');  
+  const [Pontos_task, setPontos_task] = useState('');  
+
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    const newTask = {
+      Nome_task,
+      Pontos_task,
+      
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/task", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newTask)
+      });
+
+      const result = await response.json();
+      console.log(result);
+      alert("Task cadastrada com sucesso!!")
+      navigate('/TaskScreen')
+    } catch (error) {
+      console.error("Erro ao cadastrar task:", error);
+    }
+
+  }
+
   return (
     <div className={style.pageContainer/* nome da pagina*/}>
-        <HeaderMain/>
+      <HeaderMain />
       <div className={style.pageMain/*nome da pagina*/}>
 
-      <div className={style.arrowMain1}>
-        {/* criei essas outras divs vazias apenas para  */}
-        {/* Comentario apenas para dar commit na main */}
+        <div className={style.arrowMain1}>
+          {/* criei essas outras divs vazias apenas para  */}
+          {/* Comentario apenas para dar commit na main */}
 
-          <Link to={'/TaskScreen'}>      
+          <Link to={'/TaskScreen'}>
             <span className="material-symbols-outlined">
               arrow_back
             </span>
           </Link>
 
           <div></div>
-          
+
           <div></div>
         </div>
 
-      <form className={style.formCreateTask}>
-            {/* Essa div é a parte roxa que contem os inputs dentro dela. */}
+        <form className={style.formCreateTask} onSubmit={handleRegister}>
+          {/* Essa div é a parte roxa que contem os inputs dentro dela. */}
 
-            <div className={style.divCardCreateTask}>
-                <div className={style.divInputsCreateTask}>
-                    <h2>Descriçao da task</h2>
-                    <input type="text" />
-                </div>
-
-                <div className={style.divInputsCreateTask}>
-                    <h2>Pontos para task</h2>
-                    <input type="number"  />
-                </div>
-
+          <div className={style.divCardCreateTask}>
+            <div className={style.divInputsCreateTask}>
+              <h2>Descriçao da task</h2>
+              <input type="text"
+                value={Nome_task}
+                onChange={(e) => setNome_task(e.target.value)}
+              />
             </div>
 
-            <div className={style.divButtonCreateTask}>
-                <button type='submit'>Cadastrar task</button>
+            <div className={style.divInputsCreateTask}>
+              <h2>Pontos para task</h2>
+              <input type="number"
+                value={Pontos_task}
+                onChange={(e) => setPontos_task(e.target.value)}
+              />
             </div>
+
+          </div>
+
+          <div className={style.divButtonCreateTask}>
+            <button type='submit'>Cadastrar task</button>
+          </div>
         </form>
       </div>
-      <FooterMain/>
+      <FooterMain />
     </div>
   )
 }
