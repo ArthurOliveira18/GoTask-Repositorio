@@ -10,7 +10,7 @@ const childrenRoutes = require('./routes/childrenRoutes')
 const path = require("path");
 const basePath = path.join(__dirname, "pages");
 
-const port = 5000
+const port = 3000
 
 // const mysql = require("mysql2");
 const exp = require("constants");

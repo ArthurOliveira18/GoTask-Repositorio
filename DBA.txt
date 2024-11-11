@@ -1,77 +1,71 @@
 -- Criação do schema
-CREATE SCHEMA IF NOT EXISTS `gotask` DEFAULT CHARACTER SET utf8;
-USE `gotask`;
+CREATE SCHEMA IF NOT EXISTS gotask DEFAULT CHARACTER SET utf8;
+USE gotask;
 
 -- Tabela Pai
-CREATE TABLE IF NOT EXISTS `Pai` (
-  `idPai` INT NOT NULL AUTO_INCREMENT,
-  `Email` VARCHAR(50) NOT NULL UNIQUE,
-  `Senha` VARCHAR(25) NOT NULL UNIQUE,
-  `Nome_Pai` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idPai`)
+CREATE TABLE IF NOT EXISTS responsavel (
+  idResp INT NOT NULL AUTO_INCREMENT,
+  Email VARCHAR(50) NOT NULL UNIQUE,
+  Senha VARCHAR(25) NOT NULL UNIQUE,
+  Nome_Resp VARCHAR(45) NOT NULL,
+  PRIMARY KEY (idResp)
 );
 
 -- Tabela Crianca
-CREATE TABLE IF NOT EXISTS `Crianca` (
-  `idCrianca` INT NOT NULL AUTO_INCREMENT,
-  `Nome_crianca` VARCHAR(45) NOT NULL,
-  `Dt_nasc` DATE,
-  `pontos` INT NOT NULL,
-  `Pai_idPai` INT NOT NULL,
-  PRIMARY KEY (`idCrianca`),
-  INDEX `fk_Crianca_Pai` (`Pai_idPai`),
-  CONSTRAINT `fk_Crianca_Pai`
-    FOREIGN KEY (`Pai_idPai`)
-    REFERENCES `Pai` (`idPai`)
+CREATE TABLE IF NOT EXISTS crianca (
+  idCrianca INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nomeCrianca VARCHAR(45) NOT NULL,
+  dtNasc DATE,
+  pontos INT NOT NULL,
+  responsavel INT NOT NULL,
+  CONSTRAINT fk_Crianca_Pai
+    FOREIGN KEY (responsavel)
+    REFERENCES responsavel (idResp)
 );
 
 -- Tabela Task
-CREATE TABLE IF NOT EXISTS `Task` (
-  `idTask` INT NOT NULL AUTO_INCREMENT,
-  `Nome_task` VARCHAR(45) NOT NULL,
-  `Pontos_task` INT NOT NULL,
-  `status` INT NOT NULL,
-  PRIMARY KEY (`idTask`)
+CREATE TABLE IF NOT EXISTS task (
+  idTask INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Nome_task VARCHAR(45) NOT NULL,
+  Pontos_task INT NOT NULL,
+  status INT NOT NULL
 );
 
 -- Tabela Beneficio
-CREATE TABLE IF NOT EXISTS `Beneficio` (
-  `idBeneficio` INT NOT NULL AUTO_INCREMENT,
-  `Nome_ben` VARCHAR(100) NOT NULL,
-  `pontos_ben` INT NOT NULL DEFAULT 0,
-  PRIMARY KEY (`idBeneficio`)
+CREATE TABLE IF NOT EXISTS beneficio (
+  idBeneficio INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Nome_ben VARCHAR(100) NOT NULL,
+  pontos_ben INT NOT NULL DEFAULT 0
 );
 
 -- Tabela Historico_Task
-CREATE TABLE IF NOT EXISTS `Historico_Task` (
-  `Crianca_idCrianca` INT NOT NULL,
-  `Task_idTask` INT NOT NULL,
-  `dia` SET("seg", "ter", "qua", "qui", "sex", "fds") NOT NULL,
-  `feita` TINYINT NOT NULL,
-  `data` DATETIME NOT NULL,
-  PRIMARY KEY (`Crianca_idCrianca`, `Task_idTask`),
-  CONSTRAINT `fk_Historico_Task_Crianca`
-    FOREIGN KEY (`Crianca_idCrianca`)
-    REFERENCES `Crianca` (`idCrianca`),
-  CONSTRAINT `fk_Historico_Task_Task`
-    FOREIGN KEY (`Task_idTask`)
-    REFERENCES `Task` (`idTask`)
+CREATE TABLE IF NOT EXISTS historicoTask (
+  idCrianca INT NOT NULL,
+  idTask INT NOT NULL,
+  dia SET("seg", "ter", "qua", "qui", "sex", "fds") NOT NULL,
+  feita TINYINT NOT NULL,
+  data DATETIME NOT NULL,
+  PRIMARY KEY (idCrianca, idTask, data), 
+  CONSTRAINT crianca_historico_T
+    FOREIGN KEY (idCrianca)
+    REFERENCES crianca (idCrianca),
+  CONSTRAINT task_historico
+    FOREIGN KEY (idTask)
+    REFERENCES task (idTask)
 );
 
 -- Tabela Historico_Beneficio
-CREATE TABLE IF NOT EXISTS `Historico_Beneficio` (
-  `Crianca_idCrianca` INT NOT NULL,
-  `Beneficio_idBeneficio` INT NOT NULL,
-  `data` DATETIME NOT NULL,
-  `valor` INT NOT NULL,
-  PRIMARY KEY (`Crianca_idCrianca`, `Beneficio_idBeneficio`),
-  CONSTRAINT `fk_Historico_Beneficio_Crianca`
-    FOREIGN KEY (`Crianca_idCrianca`)
-    REFERENCES `Crianca` (`idCrianca`),
-  CONSTRAINT `fk_Historico_Beneficio_Beneficio`
-    FOREIGN KEY (`Beneficio_idBeneficio`)
-    REFERENCES `Beneficio` (`idBeneficio`)
+CREATE TABLE IF NOT EXISTS historicoBeneficio (
+  idCrianca INT NOT NULL,
+  idBeneficio INT NOT NULL,
+  data DATETIME NOT NULL,
+  valor INT NOT NULL,
+  PRIMARY KEY (idCrianca, idBeneficio, data),
+  CONSTRAINT crianca_historico_B
+    FOREIGN KEY (idCrianca)
+    REFERENCES crianca (idCrianca),
+  CONSTRAINT beneficio_historico
+    FOREIGN KEY (idBeneficio)
+    REFERENCES beneficio (idBeneficio)
 );
-
-
 
