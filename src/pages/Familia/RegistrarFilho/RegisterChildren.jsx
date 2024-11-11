@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const RegisterChildren = () => {
   const [nomeCrianca, setNomeCrianca] = useState('');
   const [dtNasc, setDtNasc] = useState('');
+  const responsavelId = 1
 
 
   const handleRegister = async (e) => {
@@ -19,7 +20,7 @@ const RegisterChildren = () => {
     const newChild = {
       nomeCrianca,
       dtNasc,
-      
+      responsavelId
     };
 
     try {
