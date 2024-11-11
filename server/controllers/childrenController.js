@@ -40,7 +40,7 @@ const createChildren = async (req, res) => {
     const values = [nomeCrianca, dtNasc, 0, responsavel];
 
     // Executa a query
-    pool.query(query, values, (error, result) => {
+    conn.query(query, values, (error, result) => {
         if (error) {
             return res.status(500).json({ message: 'Erro ao cadastrar criança', error });
         }

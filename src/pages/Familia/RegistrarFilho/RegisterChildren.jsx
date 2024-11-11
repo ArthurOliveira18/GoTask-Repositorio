@@ -10,7 +10,6 @@ const RegisterChildren = () => {
   const [nomeCrianca, setNomeCrianca] = useState('');
   const [dtNasc, setDtNasc] = useState('');
 
-
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -19,6 +18,7 @@ const RegisterChildren = () => {
       await axios.post('http://localhost:3000/children', {
         nomeCrianca,
         dtNasc,
+        pontos: 0,
         
       });
 
