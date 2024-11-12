@@ -15,14 +15,28 @@ const EditListTask = () => {
     
   ]);
 
-  
-  // Função para buscar as tarefas com axios
+  // Obtém o objeto 'user' do localStorage e faz o parse para um objeto JavaScript
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  // Acessa o idResp dentro do objeto 'user'
+  const idResp = user ? user.idResp : null;
+
+  // Função para buscar os dados das crianças
   const fetchTasks = async () => {
     try {
-      const response = await axios.get(url); // Usando axios para pegar os dados
-      setTasks(response.data); // Atualiza o estado com as tarefas
+
+      // Faz a requisição para o servidor para buscar todas as crianças
+      const response = await axios.get(url); // Endpoint para buscar crianças
+
+      // Acessa os dados retornados, que estão no response.data
+      const allTask = response.data;
+
+      // Filtra as crianças que têm o mesmo responsavelId que o idResp
+      const filteredTask = allTask.filter(task => task.responsavel === parseInt(idResp));
+      setTasks(filteredTask);
+
     } catch (error) {
-      console.error("Erro ao buscar as tarefas:", error);
+      console.error("Erro ao buscar tasks:", error);
     }
   };
 

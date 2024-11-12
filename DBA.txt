@@ -39,7 +39,7 @@ REFERENCES responsavel (idResp)
 );
 SELECT * FROM task;
 DELETE FROM task
-WHERE idTask IN ( 7 , 8 ,9 );
+WHERE idTask IN ( 6 );
 
 INSERT INTO task (Nome_task,Pontos_task,status ,responsavel)
 VALUES ("Fazer dever de História" , 10 , 0 , 1);
@@ -50,7 +50,11 @@ VALUES ("Fazer dever de História" , 10 , 0 , 1);
 CREATE TABLE IF NOT EXISTS beneficio (
   idBeneficio INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   Nome_ben VARCHAR(100) NOT NULL,
-  pontos_ben INT NOT NULL DEFAULT 0
+  pontos_ben INT NOT NULL DEFAULT 0,
+  responsavel INT NOT NULL,
+  CONSTRAINT fk_beneficio_responsavel
+FOREIGN KEY (responsavel)
+REFERENCES responsavel (idResp)
 );
 
 -- Tabela Historico_Task
@@ -83,7 +87,4 @@ CREATE TABLE IF NOT EXISTS historicoBeneficio (
     FOREIGN KEY (idBeneficio)
     REFERENCES beneficio (idBeneficio)
 );
-
-
-
 

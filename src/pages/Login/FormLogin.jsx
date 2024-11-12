@@ -44,7 +44,7 @@ const FormLogin = () => {
     // Confirmando se todas as credenciais estão corretas
     if (email && password) {
       if (userToFind && userToFind.Senha === password) {
-        console.log(userToFind);
+        
         alert("Login efetuado com sucesso");
         
         // Salva o usuário logado no localStorage (incluindo o ID)
