@@ -4,6 +4,7 @@ import style from "./FamilyScreen.module.css";
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+const url = 'http://localhost:3000/children'
 
 const FamilyScreen = () => {
   const [children, setChildren] = useState([]);
@@ -16,15 +17,12 @@ const FamilyScreen = () => {
   // Acessa o idResp dentro do objeto 'user'
   const idResp = user ? user.idResp : null;
 
- 
-
-
   // Função para buscar os dados das crianças
   const fetchChildren = async () => {
     try {
 
       // Faz a requisição para o servidor para buscar todas as crianças
-      const response = await axios.get('http://localhost:3000/children'); // Endpoint para buscar crianças
+      const response = await axios.get(url); // Endpoint para buscar crianças
 
       // Acessa os dados retornados, que estão no response.data
       const allChildren = response.data;

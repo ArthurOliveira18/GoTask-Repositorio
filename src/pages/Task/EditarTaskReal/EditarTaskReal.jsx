@@ -1,9 +1,9 @@
-import{useState} from 'react'
+import{useState, useEffect} from 'react'
 import style from './EditarTaskReal.module.css'
 import {  Link } from 'react-router-dom';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
-const url = "http://localhost:5000/pais"
+const url = "http://localhost:3000/task"
 
 const EditarTaskReal = () => {
   return (
@@ -15,7 +15,7 @@ const EditarTaskReal = () => {
         {/* criei essas outras divs vazias apenas para  */}
         {/* Comentario apenas para dar commit na main */}
 
-          <Link to={'/TaskScreen'}>      
+          <Link to={'/edit-list-task'}>      
             <span className="material-symbols-outlined">
               arrow_back
             </span>

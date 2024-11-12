@@ -1,9 +1,11 @@
 import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import style from './EditChildren.module.css';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';  
+const url = "http://localhost:3000/task"
 
 const EditChildren = () => {
 
@@ -14,17 +16,23 @@ const EditChildren = () => {
     };
 
     const [tasks, setTasks] = useState([
-        { id: 1, task: 'Arrumar a cama' },
-        { id: 2, task: 'Levar o Ozzy para passear' },
-        { id: 3, task: 'Fazer dever de casa' },
-        { id: 4, task: 'Lavar os pratos do almoço' },
-        { id: 5, task: 'Fazer o dever de matemática' },
-        { id: 6, task: 'Dormir mais cedo' },
-        { id: 7, task: 'Cuidar da sua irmã' },
-        { id: 8, task: 'Não fazer pirraça' },
-        { id: 9, task: 'Brincar com o seu irmão' },
-        { id: 10, task: 'Limpar o quarto' },
+        
     ]);
+
+    // Função para buscar as tarefas com axios
+  const fetchTasks = async () => {
+    try {
+      const response = await axios.get(url); // Usando axios para pegar os dados
+      setTasks(response.data); // Atualiza o estado com as tarefas
+    } catch (error) {
+      console.error("Erro ao buscar as tarefas:", error);
+    }
+  };
+
+  // UseEffect para chamar a função de fetch quando o componente for montado
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
     return (
         <div className={style.pageContainer}>
@@ -64,7 +72,7 @@ const EditChildren = () => {
                     {tasks.map((tarefa) => (
                         <div className={style.divPurpleWhite}>
                             <div key={tarefa.id} className={style.divInfoTask}>
-                                <p>{tarefa.task}</p>
+                                <p>{tarefa.Nome_task}</p>
                             </div>
                         </div>
                     ))}
