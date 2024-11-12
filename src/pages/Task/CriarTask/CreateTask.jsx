@@ -3,7 +3,7 @@ import style from './CreateTask.module.css'
 import { Link, useNavigate } from 'react-router-dom';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain'
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain'
-const url = "http://localhost:3000/tasks"
+const url = "http://localhost:3000/task"
 
 
 const CreateTask = () => {
@@ -12,6 +12,9 @@ const CreateTask = () => {
   const [Nome_task, setNome_task] = useState('');  
   const [Pontos_task, setPontos_task] = useState('');  
 
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+  const responsavelId = loggedUser ? loggedUser.idResp : null; // Usando o idResp do responsável
+ 
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -19,6 +22,7 @@ const CreateTask = () => {
     const newTask = {
       Nome_task,
       Pontos_task,
+      responsavelId,
       
     };
 

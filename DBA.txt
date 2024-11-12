@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS responsavel (
   PRIMARY KEY (idResp)
 );
 
+SELECT * FROM responsavel;
+
 -- Tabela Crianca
 CREATE TABLE IF NOT EXISTS crianca (
   idCrianca INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -28,11 +30,19 @@ CREATE TABLE IF NOT EXISTS task (
   idTask INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   Nome_task VARCHAR(45) NOT NULL,
   Pontos_task INT NOT NULL,
-  status INT NOT NULL
+  status INT NOT NULL,
+	responsavel INT NOT NULL,
+  CONSTRAINT fk_task_responsavel
+FOREIGN KEY (responsavel)
+REFERENCES responsavel (idResp)
+
 );
 SELECT * FROM task;
 DELETE FROM task
-WHERE idTask IN (1, 2, 3, 4, 5, 6);
+WHERE idTask IN ( 7 , 8 ,9 );
+
+INSERT INTO task (Nome_task,Pontos_task,status ,responsavel)
+VALUES ("Fazer dever de História" , 10 , 0 , 1);
 
 
 
@@ -73,4 +83,7 @@ CREATE TABLE IF NOT EXISTS historicoBeneficio (
     FOREIGN KEY (idBeneficio)
     REFERENCES beneficio (idBeneficio)
 );
+
+
+
 
