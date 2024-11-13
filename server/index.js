@@ -14,7 +14,7 @@ const port = 3000
 // Middleware para interpretar JSON e habilitar CORS
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:5173" }));  // Permite requisições do front-end
-
+// comment para commit
 
 
 const exp = require("constants");
