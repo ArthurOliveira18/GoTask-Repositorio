@@ -18,14 +18,11 @@ const CreateTask = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     const newTask = {
       Nome_task,
       Pontos_task,
-      responsavelId,
       
     };
-
     try {
       const response = await fetch("http://localhost:3000/task", {
         method: "POST",
@@ -34,7 +31,6 @@ const CreateTask = () => {
         },
         body: JSON.stringify(newTask)
       });
-
       const result = await response.json();
       console.log(result);
       alert("Task cadastrada com sucesso!!")
@@ -42,7 +38,6 @@ const CreateTask = () => {
     } catch (error) {
       console.error("Erro ao cadastrar task:", error);
     }
-
   }
 
   return (

@@ -5,6 +5,7 @@ const cors = require("cors"); // Importação do CORS
 const usersRoutes = require('./routes/usuariosRoutes')
 const TasksRoutes = require('./routes/TasksRoutes')
 const childrenRoutes = require('./routes/childrenRoutes')
+const historicoTask = require('./routes/historicoTaskRoutes')
 const path = require("path");
 const basePath = path.join(__dirname, "pages");
 
@@ -21,6 +22,7 @@ const exp = require("constants");
 app.use("/", usersRoutes)
 app.use("/", TasksRoutes)
 app.use("/", childrenRoutes)
+app.use("/", historicoTask)
 
 
 

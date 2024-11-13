@@ -29,22 +29,23 @@ const getTasks = async (req, res) => {
 
 // Criar do banco
 const createTasks = async (req, res) => {
-  const { Nome_task, Pontos_task, responsavelId } = req.body;
+  const { Nome_task, Pontos_task } = req.body;
 
   // Verifique se os dados estão chegando corretamente
-  console.log('Dados recebidos:', { Nome_task, Pontos_task, responsavelId });
+  console.log('Dados recebidos:', { Nome_task, Pontos_task });
 
   try {
     const [result] = await pool.query(
-      'INSERT INTO task (Nome_task, Pontos_task , status , responsavel) VALUES (?, ?, ? ,?)',
-      [Nome_task, Pontos_task, 0, responsavelId]  // Dados enviados do frontend
+      'INSERT INTO task (Nome_task, Pontos_task , status) VALUES (?, ?, ?)',
+      [Nome_task, Pontos_task, 0]  // Dados enviados do frontend
     );
-    res.json({ id: result.insertId, Nome_task, Pontos_task, responsavelId });
+    res.json({ id: result.insertId, Nome_task, Pontos_task });
   } catch (error) {
     console.error('Erro ao criar usuário:', error);  // Exibe o erro no console
     res.status(500).json({ message: 'Erro ao criar usuário', error });
   }
 };
+
 
 const editTasks = async (req, res) => {
 
