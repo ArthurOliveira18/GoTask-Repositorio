@@ -42,6 +42,7 @@ const createHistoricoTasks = async (req, res) => {
     } catch (error) {
         console.error("Erro ao adicionar tarefa ao histórico:", error);
         res.status(500).json({ message: "Erro ao adicionar tarefa ao histórico" });
+        // commit para 
     }
 };
 
