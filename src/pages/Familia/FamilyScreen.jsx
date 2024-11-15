@@ -40,10 +40,18 @@ const FamilyScreen = () => {
     fetchChildren();
   }, []);
 
-  // Função para navegar para a edição de criança
-  const handleNavigate = () => {
+  const handleNavigate = (childId) => {
+    // Armazena o ID da criança no localStorage
+    localStorage.setItem('selectedChildId', childId);
+
+    // Verifica se o ID foi armazenado
+    console.log("ID da criança armazenado:", localStorage.getItem('selectedChildId'));
+
+    // Navega para a página de edição da criança
     navigate('/editar-crianca');
   };
+
+
 
   return (
     <div className={style.pageContainer}>
@@ -53,12 +61,7 @@ const FamilyScreen = () => {
           <div
             key={index}
             className={style.userCard}
-            onClick={(e) => {
-              // Verifica se o clique não foi no link do print
-              if (!e.target.closest('.printLink')) {
-                handleNavigate();
-              }
-            }}
+            onClick={() => handleNavigate(child.idCrianca)}  // Passa o idCrianca da criança
           >
             <div className={style.profileIcon}>
               <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>

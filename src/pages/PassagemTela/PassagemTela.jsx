@@ -11,6 +11,18 @@ const PassagemTela = () => {
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
 
+  // Função para navegar para SelectDays e passar as informações da tarefa
+  const handleNavigatePassTask = (task) => {
+    navigate('/select-days', {
+      state: {
+        taskName: task.Nome_task,
+        taskPoints: task.Pontos_task,
+        taskId: task.idTask  // Passa o idTask aqui
+      }
+    });
+  };
+
+
   // Função para buscar as tarefas usando axios
   const fetchTasks = async () => {
     try {

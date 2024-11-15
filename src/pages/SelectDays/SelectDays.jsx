@@ -9,7 +9,7 @@ const SelectDays = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { taskName, taskPoints, taskId } = location.state || { taskName: "", taskPoints: 0, taskId: null };
-  
+
   // State para armazenar os dias selecionados
   const [selectedDays, setSelectedDays] = useState([]);
 
@@ -38,9 +38,9 @@ const SelectDays = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          idCrianca: 1, // Exemplo: você pode obter esse ID de alguma forma, por exemplo, do contexto ou do estado do usuário
-          idTask: taskId,
-          dias: selectedDays,
+          idCrianca: 1,
+          idTask: 1,
+          dias: selectedDays
         }),
       });
 
@@ -78,21 +78,21 @@ const SelectDays = () => {
 
           <div className={style.divSemanas}>
             <div className={style.divTresInline}>
-              <div 
+              <div
                 className={style.divDays}
                 onClick={() => toggleDaySelection('seg')}
                 style={{ backgroundColor: selectedDays.includes('seg') ? '#c3a2f5' : '' }}
               >
                 Segunda
               </div>
-              <div 
+              <div
                 className={style.divDays}
                 onClick={() => toggleDaySelection('ter')}
                 style={{ backgroundColor: selectedDays.includes('ter') ? '#c3a2f5' : '' }}
               >
                 Terça
               </div>
-              <div 
+              <div
                 className={style.divDays}
                 onClick={() => toggleDaySelection('qua')}
                 style={{ backgroundColor: selectedDays.includes('qua') ? '#c3a2f5' : '' }}
@@ -101,21 +101,21 @@ const SelectDays = () => {
               </div>
             </div>
             <div className={style.divTresInline}>
-              <div 
+              <div
                 className={style.divDays}
                 onClick={() => toggleDaySelection('qui')}
                 style={{ backgroundColor: selectedDays.includes('qui') ? '#c3a2f5' : '' }}
               >
                 Quinta
               </div>
-              <div 
+              <div
                 className={style.divDays}
                 onClick={() => toggleDaySelection('sex')}
                 style={{ backgroundColor: selectedDays.includes('sex') ? '#c3a2f5' : '' }}
               >
                 Sexta
               </div>
-              <div 
+              <div
                 className={style.divDays}
                 onClick={() => toggleDaySelection('fds')}
                 style={{ backgroundColor: selectedDays.includes('fds') ? '#c3a2f5' : '' }}
@@ -128,7 +128,7 @@ const SelectDays = () => {
 
         <div className={style.divButtons}>
           <button className={style.purpleButton} onClick={handleSubmit}>Adicionar</button>
-          <button className={style.redButton}>Cancelar</button>
+
         </div>
       </div>
       <FooterMain />
