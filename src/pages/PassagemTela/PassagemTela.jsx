@@ -38,10 +38,23 @@ const PassagemTela = () => {
     fetchTasks();
   }, []);
 
-  // Função para navegar e passar nome e pontos da tarefa selecionada
-  const handleNavigatePass = (task) => {
-    navigate('/select-days', { state: { taskName: task.Nome_task, taskPoints: task.Pontos_task } });
-  };
+  // Função para navegar para SelectDays e passar as informações da tarefa
+const handleNavigatePass = (task) => {
+  // Armazenando o idTask no localStorage
+  localStorage.setItem('selectedTaskId', task.idTask);
+
+  // Verifica se o idTask foi armazenado
+  console.log("ID da task armazenado:", localStorage.getItem('selectedTaskId'));
+
+  // Navega para a tela SelectDays passando as informações da tarefa
+  navigate('/select-days', {
+    state: {
+      taskName: task.Nome_task,
+      taskPoints: task.Pontos_task,
+      taskId: task.idTask  // Passa o idTask aqui também
+    }
+  });
+};
 
   return (
     <div className={style.pageContainer}>
