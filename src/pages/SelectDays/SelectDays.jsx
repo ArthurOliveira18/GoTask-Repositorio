@@ -9,6 +9,12 @@ const SelectDays = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { taskName, taskPoints, taskId } = location.state || { taskName: "", taskPoints: 0, taskId: null };
+  const selectedTaskId = localStorage.getItem('selectedTaskId');
+  
+  const selectChild = localStorage.getItem('selectedChildId');
+  
+
+
 
   // State para armazenar os dias selecionados
   const [selectedDays, setSelectedDays] = useState([]);
@@ -38,8 +44,8 @@ const SelectDays = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          idCrianca: 1,
-          idTask: 1,
+          idCrianca: selectChild,
+          idTask: selectedTaskId,
           dias: selectedDays
         }),
       });
