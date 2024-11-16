@@ -28,11 +28,11 @@ CREATE TABLE IF NOT EXISTS `task` (
   `idTask` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Nome_task` VARCHAR(45) NOT NULL,
   `Pontos_task` INT NOT NULL,
-  `status` INT NOT NULL,
+  `status` INT NOT NULL default 0,
   `RespT` int not null,
-  constraint `Resp_task`
-  foreign key(`RespT`)
-  references `responsavel`(`idResp`)
+  CONSTRAINT `Resp_task`
+  FOREIGN KEY(`RespT`)
+  REFERENCES `responsavel` (`idResp`)
 );
 
 -- Tabela Beneficio
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `beneficio` (
   `RespB` int not null,
   constraint `Resp_Bene`
   foreign key(`RespB`)
-  references `responsavel`(`idResp`)
+  references `responsavel` (`idResp`)
 );
 
 
@@ -102,5 +102,9 @@ on b.idBeneficio = hb.Beneficio;
 
 
 
-select * from carregandoFilho;
+select * from responsavel;
+
+insert into Task (Nome_task, Pontos_task, RespT)
+values ("aaa", 2, 1);
+
 
