@@ -9,25 +9,30 @@ const CardChildren = () => {
   const [loading, setLoading] = useState(true); // Estado de carregamento
   const [error, setError] = useState(null); // Estado para erros
 
+
+  
   // Busca os dados das crianças e suas tarefas do backend
   useEffect(() => {
     axios.get('http://localhost:3000/childrenTask')
       .then(response => {
         console.log("Dados recebidos:", response.data); // Verifique os dados recebidos
   
-        // Transformar dados recebidos para agrupar tarefas por criança
+        // Transformar dados recebidos para agrupar tarefas por criança e remover duplicatas
         const groupedData = response.data.reduce((acc, current) => {
           const existingChild = acc.find(child => child.id === current.criancaId);
   
           if (existingChild) {
-            // Adiciona a tarefa ao array de tarefas existentes
-            existingChild.task.push({
-              taskName: current.taskName,
-              points: current.taskPoints,
-              complete: current.taskComplete === 1
-            });
+            // Verifica se a tarefa já existe com o mesmo nome para a criança, se sim, não adiciona
+            const taskExists = existingChild.task.some(task => task.taskName === current.taskName);
+            if (!taskExists) {
+              existingChild.task.push({
+                taskName: current.taskName,
+                points: current.taskPoints,
+                complete: current.taskComplete === 1
+              });
+            }
           } else {
-            // Cria uma nova entrada para a criança
+            // Cria uma nova entrada para a criança e adiciona a tarefa, se não duplicada
             acc.push({
               id: current.criancaId,
               nomeCrianca: current.nomeCrianca,
@@ -54,7 +59,6 @@ const CardChildren = () => {
       });
   }, []);
   
-
   const handleConfig = () => {
     navigate('/Config');
   };
@@ -140,13 +144,12 @@ const CardChildren = () => {
                       checked={tarefas.complete}
                       onChange={() => handleTaskChange(filho.id, index)}
                     />
-                    <label htmlFor="">{tarefas.taskName} + {tarefas.points}</label>
+                    <label htmlFor=""> {tarefas.taskName} + {tarefas.points}</label>
                   </form>
                 ))
               ) : (
                 <p>Sem tarefas para exibir.</p>
               )}
-
             </div>
             <div className={style.progressBarContainer}>
               <div
