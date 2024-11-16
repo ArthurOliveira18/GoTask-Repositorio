@@ -14,23 +14,6 @@ const TaskScreen = () => {
 
   ]);
 
-  
-
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: "Cristiano"
-    },
-    {
-      id: 2,
-      name: "Juliana"
-    },
-    {
-      id: 3,
-      name: "Enzo"
-    }
-  ])
-
   const [selectedTask, setSelectedTask] = useState(null);
 
   const openModal = (task) => {
@@ -40,12 +23,26 @@ const TaskScreen = () => {
   const closeModal = () => {
     setSelectedTask(null);
   };
+    // inicio verificação 
+
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    const idResp = user ? user.idResp : null;
+
+    // verificação
 
   // Função para buscar as tarefas com axios
   const fetchTasks = async () => {
     try {
-      const response = await axios.get(url); // Usando axios para pegar os dados
-      setTasks(response.data); // Atualiza o estado com as tarefas
+
+      const response = await axios.get(url);  // Usando axios para pegar os dados
+
+      const allTask = response.data;
+
+      const filteredTask = allTask.filter(task => task.RespT === parseInt(idResp))
+
+      setTasks(filteredTask); // Atualiza o estado com as tarefas
+
     } catch (error) {
       console.error("Erro ao buscar as tarefas:", error);
     }

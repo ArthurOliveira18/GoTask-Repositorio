@@ -29,15 +29,15 @@ const getTasks = async (req, res) => {
 
 // Criar do banco
 const createTasks = async (req, res) => {
-  const { Nome_task, Pontos_task } = req.body;
+  const { Nome_task, Pontos_task, RespT } = req.body;
 
   // Verifique se os dados estão chegando corretamente
-  console.log('Dados recebidos:', { Nome_task, Pontos_task });
+  console.log('Dados recebidos:', { Nome_task, Pontos_task, RespT });
 
   try {
     const [result] = await pool.query(
-      'INSERT INTO task (Nome_task, Pontos_task , status) VALUES (?, ?, ?)',
-      [Nome_task, Pontos_task, 0]  // Dados enviados do frontend
+      'INSERT INTO task (Nome_task, Pontos_task , status, RespT) VALUES (?, ?, ?, ?)',
+      [Nome_task, Pontos_task, 0, RespT]  // Dados enviados do frontend
     );
     res.json({ id: result.insertId, Nome_task, Pontos_task });
   } catch (error) {

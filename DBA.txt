@@ -28,14 +28,22 @@ CREATE TABLE IF NOT EXISTS `task` (
   `idTask` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Nome_task` VARCHAR(45) NOT NULL,
   `Pontos_task` INT NOT NULL,
-  `status` INT NOT NULL
+  `status` INT NOT NULL,
+  `RespT` int not null,
+  constraint `Resp_task`
+  foreign key(`RespT`)
+  references `responsavel`(`idResp`)
 );
 
 -- Tabela Beneficio
 CREATE TABLE IF NOT EXISTS `beneficio` (
   `idBeneficio` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Nome_ben` VARCHAR(100) NOT NULL,
-  `pontos_ben` INT NOT NULL DEFAULT 0
+  `pontos_ben` INT NOT NULL DEFAULT 0,
+  `RespB` int not null,
+  constraint `Resp_Bene`
+  foreign key(`RespB`)
+  references `responsavel`(`idResp`)
 );
 
 
@@ -91,6 +99,7 @@ join task t
 on t.idTask = ht.Task
 join beneficio b
 on b.idBeneficio = hb.Beneficio;
+
 
 
 select * from carregandoFilho;
