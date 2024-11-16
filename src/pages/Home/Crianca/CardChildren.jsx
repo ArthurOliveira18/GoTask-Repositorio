@@ -14,32 +14,32 @@ const CardChildren = () => {
     axios.get('http://localhost:3000/childrenTask')
       .then(response => {
         console.log("Dados recebidos:", response.data); // Verifique os dados recebidos
-
+  
+        // Transformando os dados no formato esperado
         const transformedData = response.data.map(child => ({
           id: child.criancaId,
           nomeCrianca: child.nomeCrianca,
           totalPoints: child.totalPoints,
-          task: Array.isArray(child.task) ? child.task.map(task => ({
-            taskName: task.taskName,
-            points: task.taskPoints,
-            complete: task.taskComplete === 1,
-          })) : [], // Se task não for um array, retorna um array vazio
+          task: [
+            {
+              taskName: child.taskName,
+              points: child.taskPoints,
+              complete: child.taskComplete === 1 // Convertendo 0/1 para true/false
+            }
+          ]
         }));
-        
-
+  
         setChildren(transformedData);
-        console.log("Dados transformados:", transformedData); // Verifique os dados transformados
       })
       .catch(err => {
         console.error("Erro ao buscar os dados:", err);
-        setError(`Erro ao carregar dados: ${err.message}. Tente novamente mais tarde.`);
+        setError("Erro ao carregar dados. Tente novamente mais tarde.");
       })
-
       .finally(() => {
         setLoading(false); // Finaliza o carregamento
       });
   }, []);
-
+  
 
   const handleConfig = () => {
     navigate('/Config');
