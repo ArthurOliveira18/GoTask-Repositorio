@@ -15,28 +15,42 @@ const CardChildren = () => {
       .then(response => {
         console.log("Dados recebidos:", response.data); // Verifique os dados recebidos
   
-        // Transformando os dados no formato esperado
-        const transformedData = response.data.map(child => ({
-          id: child.criancaId,
-          nomeCrianca: child.nomeCrianca,
-          totalPoints: child.totalPoints,
-          task: [
-            {
-              taskName: child.taskName,
-              points: child.taskPoints,
-              complete: child.taskComplete === 1 // Convertendo 0/1 para true/false
-            }
-          ]
-        }));
+        // Transformar dados recebidos para agrupar tarefas por criança
+        const groupedData = response.data.reduce((acc, current) => {
+          const existingChild = acc.find(child => child.id === current.criancaId);
   
-        setChildren(transformedData);
+          if (existingChild) {
+            // Adiciona a tarefa ao array de tarefas existentes
+            existingChild.task.push({
+              taskName: current.taskName,
+              points: current.taskPoints,
+              complete: current.taskComplete === 1
+            });
+          } else {
+            // Cria uma nova entrada para a criança
+            acc.push({
+              id: current.criancaId,
+              nomeCrianca: current.nomeCrianca,
+              totalPoints: current.totalPoints,
+              task: [{
+                taskName: current.taskName,
+                points: current.taskPoints,
+                complete: current.taskComplete === 1
+              }]
+            });
+          }
+  
+          return acc;
+        }, []);
+  
+        setChildren(groupedData);
       })
       .catch(err => {
         console.error("Erro ao buscar os dados:", err);
         setError("Erro ao carregar dados. Tente novamente mais tarde.");
       })
       .finally(() => {
-        setLoading(false); // Finaliza o carregamento
+        setLoading(false);
       });
   }, []);
   
