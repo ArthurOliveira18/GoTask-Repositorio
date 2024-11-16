@@ -1,6 +1,7 @@
 // const pool = require('../index');
 const mysql = require('mysql2');
 
+//Conexão com o banco
 const pool = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -18,39 +19,36 @@ pool.connect((erro) => {
     }
 });
 
-// Conexão com o banco
-const getChildren = async (req, res) => {
 
-    let query = 'SELECT * FROM crianca;'
+const getChildrenTask = async (req, res) => {
+
+    const query = `
+        SELECT 
+            c.idCrianca AS criancaId, 
+            c.nomeCrianca, 
+            c.dtNasc, 
+            c.pontos AS totalPoints, 
+            t.idTask AS taskId, 
+            t.Nome_task AS taskName, 
+            t.Pontos_task AS taskPoints, 
+            ht.dia, 
+            ht.feita AS taskComplete,
+            ht.dataTask
+        FROM crianca c
+        LEFT JOIN historicoTask ht ON c.idCrianca = ht.CriancaT
+        LEFT JOIN task t ON ht.Task = t.idTask;
+    `;
+
     pool.query(query, (err, results) => {
         if (err) {
-            return res.status(500).send(err);
+            console.error("Erro ao buscar dados:", err);
+            return res.status(500).send("Erro ao buscar dados");
         }
         res.json(results);
     });
-};
 
-// Rota para criar a criança, agora com o ID do responsável
-const createChildren = async (req, res) => {
-    console.log(req.body); // Verificar o conteúdo de req.body
-
-    const { nomeCrianca, dtNasc, pontos, responsavelId } = req.body;
-
-    if (!responsavelId) {
-        return res.status(400).json({ message: "Responsável não encontrado" });
-    }
-
-    const query = 'INSERT INTO crianca (nomeCrianca, dtNasc, pontos, responsavel) VALUES (?, ?, ?, ?)';
-    const values = [nomeCrianca, dtNasc, 0, responsavelId]; // Aqui estamos passando o ID do responsável
-
-    pool.query(query, values, (error, result) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).json({ message: 'Erro ao cadastrar criança', error });
-        }
-        res.status(201).json({ message: 'Criança cadastrada com sucesso', idCrianca: result.insertId });
-    });
 };
 
 
-module.exports = { getChildren, createChildren };
+
+module.exports = { getChildrenTask };

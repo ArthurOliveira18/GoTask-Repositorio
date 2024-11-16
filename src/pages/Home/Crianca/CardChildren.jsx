@@ -1,67 +1,60 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from './CardChildren.module.css';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 const CardChildren = () => {
+  const navigate = useNavigate();
+  const [children, setChildren] = useState([]);
+  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [error, setError] = useState(null); // Estado para erros
 
-  const navigate = useNavigate()
+  // Busca os dados das crianças e suas tarefas do backend
+  useEffect(() => {
+    axios.get('http://localhost:3000/childrenTask')
+      .then(response => {
+        console.log("Dados recebidos:", response.data); // Verifique os dados recebidos
+
+        const transformedData = response.data.map(child => ({
+          id: child.criancaId,
+          nomeCrianca: child.nomeCrianca,
+          totalPoints: child.totalPoints,
+          task: Array.isArray(child.task) ? child.task.map(task => ({
+            taskName: task.taskName,
+            points: task.taskPoints,
+            complete: task.taskComplete === 1,
+          })) : [], // Se task não for um array, retorna um array vazio
+        }));
+        
+
+        setChildren(transformedData);
+        console.log("Dados transformados:", transformedData); // Verifique os dados transformados
+      })
+      .catch(err => {
+        console.error("Erro ao buscar os dados:", err);
+        setError(`Erro ao carregar dados: ${err.message}. Tente novamente mais tarde.`);
+      })
+
+      .finally(() => {
+        setLoading(false); // Finaliza o carregamento
+      });
+  }, []);
+
+
   const handleConfig = () => {
-    navigate('/Config')
-  }
+    navigate('/Config');
+  };
 
-  const [children, setChildren] = useState([
-    {
-      id: 1,
-      name: "Cristiano",
-      task: [
-        { taskName: "Arrumar a cama", points: 10, complete: false },
-        { taskName: "Tirar o lixo de casa", points: 30, complete: false }
-      ],
-      totalPoints: 0
-    },
-    {
-      id: 2,
-      name: "Amanda",
-      task: [
-        { taskName: "Fazer dever de matemática", points: 40, complete: false },
-        { taskName: "Dormir mais cedo", points: 10, complete: false }
-      ],
-      totalPoints: 0
-    },
-    {
-      id: 3,
-      name: "Claudio",
-      task: [
-        { taskName: "Arrumar a casa", points: 60, complete: false },
-        { taskName: "Ir passear com o cachorro", points: 10, complete: false },
-        { taskName: "Fazer o dever de história", points: 30, complete: false },
-      ],
-      totalPoints: 0
-    },
-    {
-      id: 4,
-      name: "Theodora",
-      task: [
-        { taskName: "Deitar mais cedo", points: 10, complete: false },
-        { taskName: "Cuidar do irmão mais novo", points: 110, complete: false },
-        { taskName: "Fazer o dever de portugues", points: 30, complete: false },
-      ],
-      totalPoints: 0
-    },
-  ]);
-
-  // Função para lidar com a mudança do estado da tarefa (checkbox)
   const handleTaskChange = (childId, taskIndex) => {
     setChildren(prevChildren => {
       return prevChildren.map(child => {
         if (child.id === childId) {
           const updatedTasks = child.task.map((task, index) => {
             if (index === taskIndex) {
-              const isNowComplete = !task.complete; // Inverte o estado de complete
+              const isNowComplete = !task.complete;
               return {
                 ...task,
-                complete: isNowComplete // Atualiza o estado de complete
+                complete: isNowComplete
               };
             }
             return task;
@@ -72,23 +65,30 @@ const CardChildren = () => {
             task: updatedTasks,
             totalPoints: updatedTasks.reduce((acc, t) => {
               return t.complete ? acc + t.points : acc;
-            }, 0) // Calcula os pontos totais somando os pontos das tarefas completas
+            }, 0)
           };
         }
-        return child; // Retorna a criança como está se o ID não for o correto
+        return child;
       });
     });
   };
 
-  // Função para a barra de status aumentar ou diminuir com base nas checkbox marcadas
   const calculateProgress = (tasks) => {
+    if (!Array.isArray(tasks)) return 0;
     const totalTask = tasks.length;
     const completedTasks = tasks.filter(task => task.complete).length;
     return (completedTasks / totalTask) * 100;
   };
 
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
-    // Div para estilizar o layout
     <div className={style.homeMain}>
       <div className={style.divSettings}>
         <span className="material-symbols-outlined" style={{ fontSize: '40px' }} onClick={handleConfig}>
@@ -114,25 +114,30 @@ const CardChildren = () => {
             marginBottom: '.20rem',
           }}>
             <div className={style.nameChildren}>
-              <h1>{filho.name}</h1>
+              <h1>{filho.nomeCrianca}</h1>
               <p>Total de pontos: {filho.totalPoints}</p>
             </div>
             <div className={style.taskChildren}>
-              {filho.task.map((tarefas, index) => (
-                <form key={index}>
-                  <input
-                    type="checkbox"
-                    checked={tarefas.complete}
-                    onChange={() => handleTaskChange(filho.id, index)} // Chama handleTaskChange quando o checkbox é alterado
-                  />
-                  <label htmlFor=""> {tarefas.taskName} + {tarefas.points}</label>
-                </form>
-              ))}
+              {Array.isArray(filho.task) && filho.task.length > 0 ? (
+                filho.task.map((tarefas, index) => (
+                  <form key={index}>
+                    <input
+                      type="checkbox"
+                      checked={tarefas.complete}
+                      onChange={() => handleTaskChange(filho.id, index)}
+                    />
+                    <label htmlFor="">{tarefas.taskName} + {tarefas.points}</label>
+                  </form>
+                ))
+              ) : (
+                <p>Sem tarefas para exibir.</p>
+              )}
+
             </div>
             <div className={style.progressBarContainer}>
               <div
                 className={style.progressBar}
-                style={{ width: `${calculateProgress(filho.task)}%` }} // Define a largura com base na porcentagem
+                style={{ width: `${calculateProgress(filho.task)}%` }}
               ></div>
               <p>{calculateProgress(filho.task).toFixed(0)}% concluído!</p>
             </div>
