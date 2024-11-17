@@ -36,7 +36,15 @@ const SelectDays = () => {
       alert('Por favor, selecione pelo menos um dia.');
       return;
     }
-
+  
+    if (!selectChild || !selectedTaskId) {
+      alert('Informações insuficientes para adicionar a tarefa.');
+      return;
+    }
+  
+    // Montar string de dias no formato `SET` (separados por vírgulas)
+    const diasSet = selectedDays.join(','); // Exemplo: "seg,ter,qua"
+  
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -44,24 +52,25 @@ const SelectDays = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          idCrianca: selectChild,
-          idTask: selectedTaskId,
-          dias: selectedDays
+          idCrianca: selectChild, // ID da criança
+          idTask: selectedTaskId, // ID da tarefa
+          dias: diasSet, // Envia no formato correto para o MySQL `SET`
         }),
       });
-
+  
       if (response.ok) {
         alert('Tarefa adicionada com sucesso!');
-        navigate('/passagem-tela'); // Redireciona para a página anterior ou para a desejada
+        navigate('/passagem-tela'); // Redireciona para a página desejada
       } else {
-        alert('Erro ao adicionar a tarefa.');
+        const error = await response.json();
+        alert(`Erro ao adicionar a tarefa: ${error.message || 'Tente novamente.'}`);
       }
     } catch (error) {
       console.error('Erro ao enviar os dados:', error);
-      alert('Erro ao enviar os dados.');
+      alert('Erro ao enviar os dados. Por favor, tente novamente mais tarde.');
     }
   };
-
+  
   return (
     <div className={style.pageContainer}>
       <HeaderMain />
