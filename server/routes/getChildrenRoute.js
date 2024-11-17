@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const godsTableController = require('../controllers/godsTableController');
+const godsTableController = require('../controllers/getChildrenController');
 
 router.get('/childrenTask', godsTableController.getChildrenTask);
 
