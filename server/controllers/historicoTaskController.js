@@ -35,18 +35,16 @@ const createHistoricoTasks = async (req, res) => {
     const { idCrianca, idTask, dias } = req.body;
 
     // Verificação dos dados recebidos
-    if (!idCrianca || !idTask || !dias || dias.length === 0) {
+    if (!idCrianca || !idTask || !dias) {
         console.error("Dados incompletos recebidos:", req.body);
         return res.status(400).json({ message: "Dados incompletos" });
     }
 
     try {
-        const values = dias.map(day => [idCrianca, idTask, day, 0, new Date()]);
-        console.log("Valores a serem inseridos no banco:", values);
-
+        // Cria a query diretamente com os dados no formato correto
         await pool.query(
-            'INSERT INTO historicoTask (CriancaT, Task, dia, feita, dataTask) VALUES ?',
-            [values]
+            'INSERT INTO historicoTask (CriancaT, Task, dia, feita, dataTask) VALUES (?, ?, ?, ?, ?)',
+            [idCrianca, idTask, dias, 0, new Date()]
         );
 
         res.status(201).json({ message: "Tarefa adicionada ao histórico da criança" });
@@ -55,5 +53,4 @@ const createHistoricoTasks = async (req, res) => {
         res.status(500).json({ message: "Erro ao adicionar tarefa ao histórico" });
     }
 };
-
 module.exports = { getHistoricoTasks, createHistoricoTasks };
