@@ -23,20 +23,35 @@ const PassagemTela = () => {
   };
 
 
-  // Função para buscar as tarefas usando axios
-  const fetchTasks = async () => {
-    try {
-      const response = await axios.get(url); // Obtém as tarefas da API
-      setTasks(response.data); // Atualiza o estado com as tarefas recebidas
-    } catch (error) {
-      console.error("Erro ao buscar as tarefas:", error);
-    }
-  };
+  // inicio verificação 
 
-  // Chama fetchTasks quando o componente é montado
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const idResp = user ? user.idResp : null;
+
+  // verificação
+
+// Função para buscar as tarefas com axios
+const fetchTasks = async () => {
+  try {
+
+    const response = await axios.get(url);  // Usando axios para pegar os dados
+
+    const allTask = response.data;
+
+    const filteredTask = allTask.filter(task => task.RespT === parseInt(idResp))
+
+    setTasks(filteredTask); // Atualiza o estado com as tarefas
+
+  } catch (error) {
+    console.error("Erro ao buscar as tarefas:", error);
+  }
+};
+// UseEffect para chamar a função de fetch quando o componente for montado
+useEffect(() => {
+  fetchTasks();
+}, []); // O array vazio significa que o useEffect só será executado uma vez, quando o componente for montado
+
 
   // Função para navegar para SelectDays e passar as informações da tarefa
 const handleNavigatePass = (task) => {

@@ -15,35 +15,35 @@ const EditListTask = () => {
     
   ]);
 
-  // Obtém o objeto 'user' do localStorage e faz o parse para um objeto JavaScript
+  // inicio verificação 
+
   const user = JSON.parse(localStorage.getItem('user'));
 
-  // Acessa o idResp dentro do objeto 'user'
   const idResp = user ? user.idResp : null;
 
-  // Função para buscar os dados das crianças
-  const fetchTasks = async () => {
-    try {
+  // verificação
 
-      // Faz a requisição para o servidor para buscar todas as crianças
-      const response = await axios.get(url); // Endpoint para buscar crianças
+// Função para buscar as tarefas com axios
+const fetchTasks = async () => {
+  try {
 
-      // Acessa os dados retornados, que estão no response.data
-      const allTask = response.data;
+    const response = await axios.get(url);  // Usando axios para pegar os dados
 
-      // Filtra as crianças que têm o mesmo responsavelId que o idResp
-      const filteredTask = allTask.filter(task => task.responsavel === parseInt(idResp));
-      setTasks(filteredTask);
+    const allTask = response.data;
 
-    } catch (error) {
-      console.error("Erro ao buscar tasks:", error);
-    }
-  };
+    const filteredTask = allTask.filter(task => task.RespT === parseInt(idResp))
 
-  // UseEffect para chamar a função de fetch quando o componente for montado
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+    setTasks(filteredTask); // Atualiza o estado com as tarefas
+
+  } catch (error) {
+    console.error("Erro ao buscar as tarefas:", error);
+  }
+};
+// UseEffect para chamar a função de fetch quando o componente for montado
+useEffect(() => {
+  fetchTasks();
+}, []); // O array vazio significa que o useEffect só será executado uma vez, quando o componente for montado
+
   
   return (
     <div className={style.pageContainer}>
