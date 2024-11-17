@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const CardRecompensa = () => {
 
     const navigate = useNavigate()
+    
 
     const [beneficio, setBeneficio] = useState('');
     const [pontos, setPontos] = useState('');

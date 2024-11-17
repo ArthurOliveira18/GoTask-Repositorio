@@ -63,6 +63,8 @@ CREATE TABLE IF NOT EXISTS `historicoTask` (
     REFERENCES `task` (`idTask`)
 );
 
+select * from historicoTask;
+
 -- Tabela Historico_Beneficio
 CREATE TABLE IF NOT EXISTS `historicoBeneficio` (
   `idHistoricoBeneficio` int not null primary key AUTO_INCREMENT,
@@ -103,8 +105,5 @@ on b.idBeneficio = hb.Beneficio;
 
 
 select * from responsavel;
-
-insert into Task (Nome_task, Pontos_task, RespT)
-values ("aaa", 2, 1);
 
 
