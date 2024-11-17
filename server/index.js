@@ -6,7 +6,7 @@ const usersRoutes = require('./routes/usuariosRoutes')
 const TasksRoutes = require('./routes/TasksRoutes')
 const childrenRoutes = require('./routes/childrenRoutes')
 const historicoTask = require('./routes/historicoTaskRoutes')
-const godsTableRoute = require('./routes/godsTableRoute')
+const godsTableRoute = require('./routes/getChildrenRoute')
 const path = require("path");
 const basePath = path.join(__dirname, "pages");
 
