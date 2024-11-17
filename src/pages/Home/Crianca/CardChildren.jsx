@@ -6,59 +6,62 @@ import axios from 'axios';
 const CardChildren = () => {
   const navigate = useNavigate();
   const [children, setChildren] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado de carregamento
-  const [error, setError] = useState(null); // Estado para erros
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Obtém o objeto 'user' do localStorage
+  const user = JSON.parse(localStorage.getItem('user'));
+  const idResp = user ? user.idResp : null;
 
-  
-  // Busca os dados das crianças e suas tarefas do backend
-  useEffect(() => {
-    axios.get('http://localhost:3000/childrenTask')
-      .then(response => {
-        console.log("Dados recebidos:", response.data); // Verifique os dados recebidos
-  
-        // Transformar dados recebidos para agrupar tarefas por criança e remover duplicatas
-        const groupedData = response.data.reduce((acc, current) => {
-          const existingChild = acc.find(child => child.id === current.criancaId);
-  
-          if (existingChild) {
-            // Verifica se a tarefa já existe com o mesmo nome para a criança, se sim, não adiciona
-            const taskExists = existingChild.task.some(task => task.taskName === current.taskName);
-            if (!taskExists) {
-              existingChild.task.push({
-                taskName: current.taskName,
-                points: current.taskPoints,
-                complete: current.taskComplete === 1
-              });
-            }
-          } else {
-            // Cria uma nova entrada para a criança e adiciona a tarefa, se não duplicada
-            acc.push({
-              id: current.criancaId,
-              nomeCrianca: current.nomeCrianca,
-              totalPoints: current.totalPoints,
-              task: [{
-                taskName: current.taskName,
-                points: current.taskPoints,
-                complete: current.taskComplete === 1
-              }]
+  // Função para buscar dados do backend
+  const fetchChildrenAndTasks = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/childrenTask/${idResp}`);
+      const groupedData = response.data.reduce((acc, current) => {
+        const existingChild = acc.find(child => child.id === current.criancaId);
+
+        if (existingChild) {
+          // Evita duplicação de tarefas
+          const taskExists = existingChild.task.some(task => task.taskName === current.taskName);
+          if (!taskExists) {
+            existingChild.task.push({
+              taskName: current.taskName,
+              points: current.taskPoints,
+              complete: current.taskComplete === 1
             });
           }
-  
-          return acc;
-        }, []);
-  
-        setChildren(groupedData);
-      })
-      .catch(err => {
-        console.error("Erro ao buscar os dados:", err);
-        setError("Erro ao carregar dados. Tente novamente mais tarde.");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-  
+        } else {
+          acc.push({
+            id: current.criancaId,
+            nomeCrianca: current.nomeCrianca,
+            totalPoints: current.totalPoints,
+            task: current.taskName ? [{
+              taskName: current.taskName,
+              points: current.taskPoints,
+              complete: current.taskComplete === 1
+            }] : []
+          });
+        }
+        return acc;
+      }, []);
+      setChildren(groupedData);
+    } catch (error) {
+      console.error("Erro ao buscar os dados:", error);
+      setError("Erro ao carregar dados. Tente novamente mais tarde.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (idResp) {
+      fetchChildrenAndTasks();
+    } else {
+      setError("Usuário não identificado.");
+      setLoading(false);
+    }
+  }, [idResp]);
+
   const handleConfig = () => {
     navigate('/Config');
   };
@@ -70,10 +73,7 @@ const CardChildren = () => {
           const updatedTasks = child.task.map((task, index) => {
             if (index === taskIndex) {
               const isNowComplete = !task.complete;
-              return {
-                ...task,
-                complete: isNowComplete
-              };
+              return { ...task, complete: isNowComplete };
             }
             return task;
           });
@@ -81,9 +81,7 @@ const CardChildren = () => {
           return {
             ...child,
             task: updatedTasks,
-            totalPoints: updatedTasks.reduce((acc, t) => {
-              return t.complete ? acc + t.points : acc;
-            }, 0)
+            totalPoints: updatedTasks.reduce((acc, t) => t.complete ? acc + t.points : acc, 0)
           };
         }
         return child;
@@ -114,37 +112,33 @@ const CardChildren = () => {
         </span>
       </div>
       <div className={style.homePurple}>
-        {children.map((filho) => (
+        {children.map(filho => (
           <div key={filho.id} style={{
             backgroundColor: '#FFFFFF',
             width: '85%',
             display: 'flex',
-            justifyContent: "center",
             flexDirection: 'column',
             gap: '1rem',
             alignItems: "center",
             textAlign: "end",
             borderRadius: '1rem',
             padding: '1rem',
-            marginTop: '1rem',
-            marginLeft: '2rem',
-            marginRight: '2rem',
-            marginBottom: '.20rem',
+            margin: '1rem 2rem 0.2rem',
           }}>
             <div className={style.nameChildren}>
               <h1>{filho.nomeCrianca}</h1>
               <p>Total de pontos: {filho.totalPoints}</p>
             </div>
             <div className={style.taskChildren}>
-              {Array.isArray(filho.task) && filho.task.length > 0 ? (
-                filho.task.map((tarefas, index) => (
+              {filho.task.length > 0 ? (
+                filho.task.map((task, index) => (
                   <form key={index}>
                     <input
                       type="checkbox"
-                      checked={tarefas.complete}
+                      checked={task.complete}
                       onChange={() => handleTaskChange(filho.id, index)}
                     />
-                    <label htmlFor=""> {tarefas.taskName} + {tarefas.points}</label>
+                    <label> {task.taskName} + {task.points}</label>
                   </form>
                 ))
               ) : (
