@@ -1,23 +1,63 @@
 import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain';
 import style from './HistoricoTask.module.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+
+const url = 'http://localhost:3000/historicoTask';
 
 const HistoricoTask = () => {
-  const [tasks, setTasks] = useState([
-    { id: 1, task: 'Arrumar a cama', isActive: true },
-    { id: 2, task: 'Levar o Ozzy para passear', isActive: false },
-    { id: 3, task: 'Fazer dever de casa', isActive: true },
-    { id: 4, task: 'Lavar os pratos do almoço', isActive: false },
-    { id: 5, task: 'Fazer o dever de matemática', isActive: true },
-    { id: 6, task: 'Dormir mais cedo', isActive: false },
-    { id: 7, task: 'Cuidar da sua irmã', isActive: true },
-    { id: 8, task: 'Não fazer pirraça', isActive: false },
-    { id: 9, task: 'Brincar com o seu irmão', isActive: true },
-    { id: 10, task: 'Limpar o quarto', isActive: false },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
+  const fetchHistoryTask = async () => {
+    try {
+      const idCrianca = localStorage.getItem('selectedChildId');
+
+      if (!idCrianca) {
+        console.error("ID da criança não encontrado no localStorage.");
+        return;
+      }
+
+      const response = await axios.get(url);
+      const allHistoryTask = response.data;
+
+      // Filtra as tarefas pelo ID da criança
+      const filtredHistoryTask = allHistoryTask.filter(
+        (historyT) => historyT.CriancaT === parseInt(idCrianca)
+      );
+      setTasks(filtredHistoryTask);
+    } catch (error) {
+      console.error("Erro ao buscar tarefas:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchHistoryTask();
+  }, []);
+
+  const handleTaskClick = (task) => {
+    const idCrianca = localStorage.getItem('selectedChildId');
+    if (task.CriancaT === parseInt(idCrianca)) {
+      console.log("Tarefa pertencente à criança:", task);
+    } else {
+      console.warn("Tarefa não pertence à criança selecionada.");
+    }
+  };
+
+  const formatDateTime = (dateTimeString) => {
+    const date = new Date(dateTimeString);
+  
+    // Formatação: dd/MM/yyyy HH:mm
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Meses começam em 0
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+  
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  };
+  
   return (
     <div className={style.pageContainer}>
       <HeaderMain />
@@ -26,18 +66,17 @@ const HistoricoTask = () => {
           <Link to={'/escolha-filho'}>
             <span className="material-symbols-outlined">arrow_back</span>
           </Link>
-          <div></div>
-          <div></div>
         </div>
 
         <div className={style.divTasksDad}>
           {tasks.map((task) => (
             <div
-              key={task.id}
-              className={`${style.divInfoTask} ${!task.isActive ? style.inactiveTask : ''}`}
-              
+              key={task.idHistoricoTask}
+              className={`${style.divInfoTask} ${task.feita === 0 ? style.incompleteTask : style.inactiveTask}`} // Adiciona estilo baseado no valor de 'feita'
+              onClick={() => handleTaskClick(task)}
             >
-              <h1>{task.task}</h1>
+              <h1>{task.Nome_task}</h1>
+              <p> {task.feita === 0 ? 'Status: Não feita' : formatDateTime(task.dataTask)}</p>
             </div>
           ))}
         </div>

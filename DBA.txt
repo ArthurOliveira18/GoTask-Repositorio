@@ -6,7 +6,7 @@ USE `gotask`;
 CREATE TABLE IF NOT EXISTS `responsavel` (
   `idResp` INT NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(50) NOT NULL UNIQUE,
-  `Senha` VARCHAR(25) NOT NULL UNIQUE,
+  `Senha` VARCHAR(25) NOT NULL,
   `Nome_Resp` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idResp`)
 );
