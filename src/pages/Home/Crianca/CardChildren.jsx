@@ -15,20 +15,21 @@ const CardChildren = () => {
   const fetchChildrenAndTasks = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/childrenTask/${idResp}`);
-      
+
       // Verifique os dados recebidos da API
       console.log('Dados recebidos do servidor:', response.data);
-  
+
       const groupedData = response.data.reduce((acc, current) => {
         const existingChild = acc.find(child => child.id === current.criancaId);
-  
+
         if (existingChild) {
           const taskExists = existingChild.task.some(task => task.taskName === current.taskName);
           if (!taskExists) {
             existingChild.task.push({
               taskName: current.taskName,
               points: current.taskPoints,
-              complete: current.taskComplete === 1
+              complete: current.taskComplete === 1,
+              taskId: current.taskId // Garantir que taskId é passado
             });
           }
         } else {
@@ -39,13 +40,14 @@ const CardChildren = () => {
             task: current.taskName ? [{
               taskName: current.taskName,
               points: current.taskPoints,
-              complete: current.taskComplete === 1
+              complete: current.taskComplete === 1,
+              taskId: current.taskId // Garantir que taskId é passado
             }] : []
           });
         }
         return acc;
-      }, []); 
-      
+      }, []);
+
       setChildren(groupedData);
     } catch (error) {
       console.error("Erro ao buscar os dados:", error);
@@ -54,7 +56,6 @@ const CardChildren = () => {
       setLoading(false);
     }
   };
-  
 
   useEffect(() => {
     if (idResp) {
@@ -91,32 +92,36 @@ const CardChildren = () => {
     );
   };
 
-  // Função handleAddTask que adiciona uma nova tarefa para uma criança
+  // Função handleAddTask que adiciona todas as tarefas de uma criança
   const handleAddTask = async (childId) => {
-    const taskId = 1; // ID da tarefa
-    const day = ""; // O dia da tarefa, se fixo, pode ser mantido
     const now = new Date();
     const dataTask = now.toISOString().slice(0, 19).replace('T', ' '); // A data da tarefa formatada
-    
-    // Verificar o estado das tarefas para esse filho (completas ou não)
-    const tasksToUpdate = children.find(child => child.id === childId).task.map(task => ({
-      taskId: task.taskId,
-      complete: task.complete ? 1 : 0 // Enviar 1 para completada e 0 para não completada
-    }));
   
     try {
-      // Chama o backend para salvar as tarefas no banco
-      const response = await axios.post(`http://localhost:3000/childrenTask/${idResp}/add`, {
-        criancaId: childId,
-        taskId,
-        dia: day,
-        feita: tasksToUpdate[0].complete,  // Apenas a primeira tarefa como exemplo
-        dataTask
-      });
+      const child = children.find(filho => filho.id === childId);
+      const tasksToAdd = child.task.filter(task => !task.complete);
   
-      if (response.status === 201) {
-        alert('Tarefa adicionada com sucesso!');
-        fetchChildrenAndTasks(); // Atualiza as tarefas após a adição
+      if (tasksToAdd.length > 0) {
+        for (const task of tasksToAdd) {
+          const response = await axios.post(`http://localhost:3000/childrenTask/${idResp}/add`, {
+            criancaId: childId,
+            taskId: task.taskId,
+            dia: null,  // Altere aqui para 'null' se não for necessária uma data ou para um valor válido
+            feita: 1,   // Considerando que a tarefa foi marcada como completada
+            dataTask
+          });
+  
+          if (response.status === 201) {
+            alert('Tarefa adicionada com sucesso!');
+          } else {
+            alert('Erro ao adicionar a tarefa.');
+            break; // Caso algum erro ocorra, para o processo
+          }
+        }
+  
+        fetchChildrenAndTasks();  // Atualiza as tarefas após a adição
+      } else {
+        alert('Nenhuma tarefa disponível para adicionar.');
       }
     } catch (error) {
       console.error("Erro ao adicionar tarefa:", error);
@@ -124,6 +129,8 @@ const CardChildren = () => {
     }
   };
   
+
+
   const calculateProgress = (tasks) => {
     if (!Array.isArray(tasks)) return 0;
     const totalTask = tasks.length;
@@ -180,8 +187,15 @@ const CardChildren = () => {
                 <p>Sem tarefas para exibir.</p>
               )}
             </div>
-            <button 
-              onClick={() => handleAddTask(filho.id)} // Chama a função handleAddTask
+            <div className={style.progressBarContainer}>
+              <div
+                className={style.progressBar}
+                style={{ width: `${calculateProgress(filho.task)}%` }}
+              ></div>
+              <p>{calculateProgress(filho.task).toFixed(0)}% concluído!</p>
+            </div>
+            <button
+              onClick={() => handleAddTask(filho.id)}
               style={{
                 padding: '10px 20px',
                 backgroundColor: '#6200EE',
@@ -191,15 +205,8 @@ const CardChildren = () => {
                 cursor: 'pointer',
               }}
             >
-              Adicionar Tarefa
+              Adicionar Tarefas
             </button>
-            <div className={style.progressBarContainer}>
-              <div
-                className={style.progressBar}
-                style={{ width: `${calculateProgress(filho.task)}%` }}
-              ></div>
-              <p>{calculateProgress(filho.task).toFixed(0)}% concluído!</p>
-            </div>
           </div>
         ))}
       </div>
