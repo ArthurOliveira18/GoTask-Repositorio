@@ -41,6 +41,7 @@
     color: #fff;
     font-size: 25px;
     border-radius: 2rem;
+    padding-bottom: 1rem;
 }
 
 /* Estilização da div que contém os inputs e label, que é filo da "divEditChildren" */
@@ -79,6 +80,7 @@
     padding: 2rem; /* Adiciona espaçamento interno */
     scrollbar-width: none;
     gap: 1rem;
+    
 }
 
 .divPurpleWhite {
@@ -126,4 +128,29 @@
     border-radius: .50rem;
     color: #7061a7;
     border: solid 4px #816ad4;
+  }
+
+  .buttonAtualizar{
+  background-color: #3600FF;
+  color: white;
+  border: none;
+  border-radius: 0.50rem;
+  width: 150px;
+  height: 45px;
+  border: none;
+  font-size: 20px;
+  margin-right: 10px;
+  
+  }
+  
+  .buttonExcluir{
+    background-color: #b60909;
+    color: white;
+    border: none;
+    border-radius: 0.50rem;
+    width: 150px;
+    height: 45px;
+    border: none;
+    font-size: 20px;
+    
   }

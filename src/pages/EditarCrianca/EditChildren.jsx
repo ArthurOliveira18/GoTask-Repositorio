@@ -1,11 +1,9 @@
 import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import style from './EditChildren.module.css';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-const url = "http://localhost:3000/task"
 
 const EditChildren = () => {
 
@@ -18,9 +16,6 @@ const EditChildren = () => {
     const [tasks, setTasks] = useState([
 
     ]);
-
-    
-
 
     return (
         <div className={style.pageContainer}>
@@ -50,17 +45,21 @@ const EditChildren = () => {
                         <label htmlFor="date">Data de nascimento</label>
                         <input type="date" name="date" id="date" />
                     </div>
+                    <div>
+                        <button type='submit' className={style.buttonAtualizar}>Atualizar</button>
+                        <button type='submit' className={style.buttonExcluir}>Excluir</button>
+                    </div>
                 </div>
 
                 <div className={style.divEditTasks}>
                     <div className={style.divIcon} onClick={handleNavigatePass}>
                         <span className="material-symbols-outlined">edit</span>
                     </div>
-                    <p>Tasks</p>
+                    <p>Tasks atribuidas</p>
                     {tasks.map((tarefa) => (
                         <div className={style.divPurpleWhite}>
                             <div key={tarefa.id} className={style.divInfoTask}>
-                                <p>{tarefa.Nome_task}</p>
+                                <p>{tarefa.task}</p>
                             </div>
                         </div>
                     ))}

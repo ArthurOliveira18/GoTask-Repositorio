@@ -36,12 +36,13 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    
   }
   
   .material-symbols-outlined {
     font-size: 20px; /* Tamanho do ícone */
-    color: #3f3f8b; 
+    color: #3f3f8b;
+    border: none; /* Remove qualquer borda */
+    outline: none; /* Remove contornos que aparecem ao focar */
   }
   
   .userName {
@@ -61,7 +62,6 @@
     border-radius: .75rem;
     height:5vh;
     flex-grow: 1;
-    
   }
   .addButton{
     color: #593ACA;

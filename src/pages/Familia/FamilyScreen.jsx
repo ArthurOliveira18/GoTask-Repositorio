@@ -68,13 +68,16 @@ const FamilyScreen = () => {
             </div>
             <div className={style.printIcon}>
               <h1>{child.nomeCrianca}</h1>
-              <Link to={'/ScreenPdf'} className="printLink">
-                <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>print</span>
-              </Link>
-            </div>
+          <button onClick={() => navigate('/ScreenPdf')}><span 
+          className="material-symbols-outlined" 
+          style={{ fontSize: "40px",}} 
+          onClick={(e) => {
+            e.stopPropagation(); // Evita que eventos adicionais do botão sejam disparados
+            navigate('/ScreenPdf');}}>print</span>
+        </button>
           </div>
+        </div>
         ))}
-
         <div>
           <button
             className={style.addButton}
