@@ -9,19 +9,20 @@ const CardChildren = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Obtém o objeto 'user' do localStorage
   const user = JSON.parse(localStorage.getItem('user'));
   const idResp = user ? user.idResp : null;
 
-  // Função para buscar dados do backend
   const fetchChildrenAndTasks = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/childrenTask/${idResp}`);
+      
+      // Verifique os dados recebidos da API
+      console.log('Dados recebidos do servidor:', response.data);
+  
       const groupedData = response.data.reduce((acc, current) => {
         const existingChild = acc.find(child => child.id === current.criancaId);
-
+  
         if (existingChild) {
-          // Evita duplicação de tarefas
           const taskExists = existingChild.task.some(task => task.taskName === current.taskName);
           if (!taskExists) {
             existingChild.task.push({
@@ -43,7 +44,8 @@ const CardChildren = () => {
           });
         }
         return acc;
-      }, []);
+      }, []); 
+      
       setChildren(groupedData);
     } catch (error) {
       console.error("Erro ao buscar os dados:", error);
@@ -52,6 +54,7 @@ const CardChildren = () => {
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     if (idResp) {
@@ -67,13 +70,12 @@ const CardChildren = () => {
   };
 
   const handleTaskChange = (childId, taskIndex) => {
-    setChildren(prevChildren => {
-      return prevChildren.map(child => {
+    setChildren(prevChildren =>
+      prevChildren.map(child => {
         if (child.id === childId) {
           const updatedTasks = child.task.map((task, index) => {
             if (index === taskIndex) {
-              const isNowComplete = !task.complete;
-              return { ...task, complete: isNowComplete };
+              return { ...task, complete: !task.complete };
             }
             return task;
           });
@@ -81,14 +83,47 @@ const CardChildren = () => {
           return {
             ...child,
             task: updatedTasks,
-            totalPoints: updatedTasks.reduce((acc, t) => t.complete ? acc + t.points : acc, 0)
+            totalPoints: updatedTasks.reduce((acc, t) => t.complete ? acc + t.points : acc, 0),
           };
         }
         return child;
-      });
-    });
+      })
+    );
   };
 
+  // Função handleAddTask que adiciona uma nova tarefa para uma criança
+  const handleAddTask = async (childId) => {
+    const taskId = 1; // ID da tarefa
+    const day = ""; // O dia da tarefa, se fixo, pode ser mantido
+    const now = new Date();
+    const dataTask = now.toISOString().slice(0, 19).replace('T', ' '); // A data da tarefa formatada
+    
+    // Verificar o estado das tarefas para esse filho (completas ou não)
+    const tasksToUpdate = children.find(child => child.id === childId).task.map(task => ({
+      taskId: task.taskId,
+      complete: task.complete ? 1 : 0 // Enviar 1 para completada e 0 para não completada
+    }));
+  
+    try {
+      // Chama o backend para salvar as tarefas no banco
+      const response = await axios.post(`http://localhost:3000/childrenTask/${idResp}/add`, {
+        criancaId: childId,
+        taskId,
+        dia: day,
+        feita: tasksToUpdate[0].complete,  // Apenas a primeira tarefa como exemplo
+        dataTask
+      });
+  
+      if (response.status === 201) {
+        alert('Tarefa adicionada com sucesso!');
+        fetchChildrenAndTasks(); // Atualiza as tarefas após a adição
+      }
+    } catch (error) {
+      console.error("Erro ao adicionar tarefa:", error);
+      alert('Erro ao adicionar tarefa. Tente novamente.');
+    }
+  };
+  
   const calculateProgress = (tasks) => {
     if (!Array.isArray(tasks)) return 0;
     const totalTask = tasks.length;
@@ -145,6 +180,19 @@ const CardChildren = () => {
                 <p>Sem tarefas para exibir.</p>
               )}
             </div>
+            <button 
+              onClick={() => handleAddTask(filho.id)} // Chama a função handleAddTask
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#6200EE',
+                color: '#FFF',
+                borderRadius: '5px',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              Adicionar Tarefa
+            </button>
             <div className={style.progressBarContainer}>
               <div
                 className={style.progressBar}

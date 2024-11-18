@@ -1,22 +1,15 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise'); // Usando o modo Promise
 
 // Conexão com o banco
-const pool = mysql.createConnection({
+const pool = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "",
     database: "gotask",
-    port: 3306
+    port: 3306,
 });
 
-pool.connect((erro) => {
-    if (erro) {
-        console.log(erro);
-    } else {
-        console.log("Conectado com sucesso");
-    }
-});
-
+// Função para buscar crianças e tarefas
 const getChildrenTask = async (req, res) => {
     const { idResp } = req.params;
 
@@ -42,19 +35,37 @@ const getChildrenTask = async (req, res) => {
     `;
 
     try {
-        // Use pool.query ou pool.promise().execute dependendo do método escolhido
-        pool.query(query, [idResp], (error, results) => {
-            if (error) {
-                console.error("Erro ao buscar tarefas e crianças:", error);
-                return res.status(500).json({ error: "Erro ao buscar os dados." });
-            }
-
-            res.json(results);
-        });
+        const [results] = await pool.query(query, [idResp]); // Executa a query com await
+        res.json(results); // Retorna os resultados para o frontend
     } catch (error) {
         console.error("Erro ao buscar tarefas e crianças:", error);
         res.status(500).json({ error: "Erro ao buscar os dados." });
     }
 };
 
-module.exports = { getChildrenTask };
+// Função para inserir uma nova tarefa
+const createInsert = async (req, res) => {
+    const { criancaId, taskId, dia, feita, dataTask } = req.body;
+  
+    // Log dos dados recebidos
+    console.log("Dados recebidos para inserção:", { criancaId, taskId, dia, feita, dataTask });
+  
+    try {
+      const query = `
+        INSERT INTO historicoTask (CriancaT, Task, dia, feita, dataTask) 
+        VALUES (?, ?, ?, ?, ?)
+      `;
+      const [result] = await pool.query(query, [criancaId, taskId, dia, feita, dataTask]);
+  
+      // Log do resultado da inserção
+      console.log("Resultado da inserção:", result);
+  
+      res.json({ id: result.insertId, criancaId, taskId, dia, feita, dataTask });
+    } catch (error) {
+      console.error("Erro ao inserir tarefa no histórico:", error);
+      res.status(500).json({ message: "Erro ao inserir tarefa", error });
+    }
+  };
+  
+
+module.exports = { getChildrenTask, createInsert };
