@@ -15,9 +15,7 @@ const CardChildren = () => {
   const fetchChildrenAndTasks = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/childrenTask/${idResp}`);
-
-      // Verifique os dados recebidos da API
-      console.log('Dados recebidos do servidor:', response.data);
+      console.log('Dados recebidos do servidor:', response.data); // Depuração
 
       const groupedData = response.data.reduce((acc, current) => {
         const existingChild = acc.find(child => child.id === current.criancaId);
@@ -48,6 +46,7 @@ const CardChildren = () => {
         return acc;
       }, []);
 
+      console.log('Dados agrupados:', groupedData); // Depuração dos dados após agrupamento
       setChildren(groupedData);
     } catch (error) {
       console.error("Erro ao buscar os dados:", error);
@@ -96,21 +95,29 @@ const CardChildren = () => {
   const handleAddTask = async (childId) => {
     const now = new Date();
     const dataTask = now.toISOString().slice(0, 19).replace('T', ' '); // A data da tarefa formatada
-  
+    
     try {
       const child = children.find(filho => filho.id === childId);
       const tasksToAdd = child.task.filter(task => !task.complete);
-  
+
+      console.log('Tarefas para adicionar:', tasksToAdd); // Depuração
+
       if (tasksToAdd.length > 0) {
         for (const task of tasksToAdd) {
+          console.log('Enviando dados para o backend:', {
+            criancaId: childId,
+            taskId: task.taskId,
+            feita: 1,
+            dataTask
+          });
+
           const response = await axios.post(`http://localhost:3000/childrenTask/${idResp}/add`, {
             criancaId: childId,
             taskId: task.taskId,
-            dia: null,  // Altere aqui para 'null' se não for necessária uma data ou para um valor válido
             feita: 1,   // Considerando que a tarefa foi marcada como completada
             dataTask
           });
-  
+
           if (response.status === 201) {
             alert('Tarefa adicionada com sucesso!');
           } else {
@@ -118,7 +125,7 @@ const CardChildren = () => {
             break; // Caso algum erro ocorra, para o processo
           }
         }
-  
+
         fetchChildrenAndTasks();  // Atualiza as tarefas após a adição
       } else {
         alert('Nenhuma tarefa disponível para adicionar.');
@@ -128,8 +135,6 @@ const CardChildren = () => {
       alert('Erro ao adicionar tarefa. Tente novamente.');
     }
   };
-  
-
 
   const calculateProgress = (tasks) => {
     if (!Array.isArray(tasks)) return 0;
@@ -176,7 +181,6 @@ const CardChildren = () => {
                 filho.task.map((task, index) => (
                   <form key={index}>
                     <input
-                    // dad
                       type="checkbox"
                       checked={task.complete}
                       onChange={() => handleTaskChange(filho.id, index)}
@@ -206,7 +210,7 @@ const CardChildren = () => {
                 cursor: 'pointer',
               }}
             >
-              Adicionar Tarefas
+              Adicionar pts
             </button>
           </div>
         ))}
