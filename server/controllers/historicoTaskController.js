@@ -20,7 +20,7 @@ pool.connect((erro) => {
 // Função para listar as tasks do histórico
 const getHistoricoTasks = async (req, res) => {
     try {
-        const [results] = await pool.query('SELECT * FROM historicoTask');
+        const [results] = await pool.query('select * from crianca c join historicoTask ht on c.idCrianca = ht.CriancaT join historicoBeneficio hb on c.idCrianca = hb.CriancaB join task t on t.idTask = ht.Task');
         res.json(results);
     } catch (err) {
         res.status(500).send(err);

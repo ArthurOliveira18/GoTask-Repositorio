@@ -14,11 +14,11 @@ const CardChildren = () => {
 
   const fetchChildrenAndTasks = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/childrenTask/${idResp}`);
+      const response = await axios.get(`http://localhost:3000/historicoTask`);
       console.log('Dados recebidos do servidor:', response.data); // Depuração
 
       const groupedData = response.data.reduce((acc, current) => {
-        const existingChild = acc.find(child => child.id === current.criancaId);
+        const existingChild = acc.find(crianca => child.id === current.criancaId);
 
         if (existingChild) {
           const taskExists = existingChild.task.some(task => task.taskName === current.taskName);

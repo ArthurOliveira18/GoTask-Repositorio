@@ -6,7 +6,7 @@ USE `gotask`;
 CREATE TABLE IF NOT EXISTS `responsavel` (
   `idResp` INT NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(50) NOT NULL UNIQUE,
-  `Senha` VARCHAR(25) NOT NULL UNIQUE,
+  `Senha` VARCHAR(25) NOT NULL ,
   `Nome_Resp` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idResp`)
 );
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `historicoTask` (
   `idHistoricoTask` int not null primary key AUTO_INCREMENT,
   `CriancaT` INT NOT NULL,
   `Task` INT NOT NULL,
-  `dia` SET("seg", "ter", "qua", "qui", "sex", "fds") NOT NULL,
+  `dia` SET("seg", "ter", "qua", "qui", "sex", "fds"),
   `feita` TINYINT NOT NULL,
   `dataTask` DATETIME NOT NULL,
   CONSTRAINT `crianca_historico_T`
@@ -62,8 +62,6 @@ CREATE TABLE IF NOT EXISTS `historicoTask` (
     FOREIGN KEY (`Task`)
     REFERENCES `task` (`idTask`)
 );
-
-select * from historicoTask;
 
 -- Tabela Historico_Beneficio
 CREATE TABLE IF NOT EXISTS `historicoBeneficio` (
@@ -91,7 +89,7 @@ join responsavel r
 on c.responsavel = r.idResp;
 
 -- view crianca e agregados
-create view godsTable as
+create view funtask as
 select * from crianca c
 join historicoTask ht
 on c.idCrianca = ht.CriancaT
@@ -100,10 +98,7 @@ on c.idCrianca = hb.CriancaB
 join task t
 on t.idTask = ht.Task
 join beneficio b
-on b.idBeneficio = hb.Beneficio;
-
-
-
-select * from responsavel;
-
+on b.idBeneficio = hb.Beneficio
+join responsavel r
+on r.idResp = c.responsavel;
 
