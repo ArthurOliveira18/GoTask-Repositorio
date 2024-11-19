@@ -12,13 +12,19 @@ const Register = () => {
   const [Nome_Resp, setNomeResp] = useState("");  
   const [Email, setEmail] = useState("");
   const [Senha, setSenha] = useState("");
+  const [ConfirmaSenha, setConfSenha] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validação dos campos
-    if (!Nome_Resp || !Email || !Senha) {
+    if (!Nome_Resp || !Email || !Senha || !ConfirmaSenha) {
       alert('Por favor, preencha todos os campos');
+      return;
+    }
+
+    if (Senha !== ConfirmaSenha) {
+      alert('A senha e a confirmação de senha não coincidem');
       return;
     }
 
@@ -36,6 +42,7 @@ const Register = () => {
         setNomeResp("");  
         setEmail("");
         setSenha("");
+        setConfSenha("");
         navigate("/"); // Redireciona após o cadastro
       } else {
         alert('Erro ao cadastrar o usuário');
@@ -62,6 +69,17 @@ const Register = () => {
       <form className={Style.mainFormRegister} onSubmit={handleSubmit}>
 
         <div className={Style.formRegister}>
+
+        <label htmlFor="nome_Resp">Nome de usuário</label>
+          <input 
+            type="text"
+            name="Nome_Resp"
+            id="nome_Resp"
+            value={Nome_Resp}
+            onChange={(e) => setNomeResp(e.target.value)} 
+            className={Style.inputRegister}
+          />
+
           <label htmlFor="email">Email</label>
           <input 
             type="email" 
@@ -82,13 +100,13 @@ const Register = () => {
             className={Style.inputRegister}
           />
 
-          <label htmlFor="nome_Resp">Nome de usuário</label>
+          <label htmlFor="confirmaSenha">Confirmar senha</label>
           <input 
-            type="text"
-            name="Nome_Resp"
-            id="nome_Resp"
-            value={Nome_Resp}
-            onChange={(e) => setNomeResp(e.target.value)} 
+            type="password"
+            name="confirmaSenha" 
+            id="confirmaSenha"
+            value={ConfirmaSenha}
+            onChange={(e) => setConfSenha(e.target.value)} 
             className={Style.inputRegister}
           />
 
