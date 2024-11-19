@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise');  // Alterado para 'mysql2/promise'
+const mysql = require('mysql2/promise');
 
 // Conexão com o banco
 const pool = mysql.createPool({
@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 const getChildrenTask = async (req, res) => {
     const { idResp } = req.params;
 
-    console.log(`Recebendo solicitação para buscar tarefas para o responsável com ID: ${idResp}`); // Depuração
+    console.log(`Recebendo solicitação para buscar tarefas para o responsável com ID: ${idResp}`);
 
     const query = `
       SELECT 
@@ -26,48 +26,45 @@ const getChildrenTask = async (req, res) => {
         t.Pontos_task AS taskPoints, 
         ht.dia, 
         ht.feita AS taskComplete,
-        ht.dataTask,
-        r.idResp AS responsavelId, 
-        r.Nome_Resp AS responsavelNome
+        ht.dataTask
       FROM crianca c
       LEFT JOIN historicoTask ht ON c.idCrianca = ht.CriancaT
       LEFT JOIN task t ON ht.Task = t.idTask
-      INNER JOIN responsavel r ON c.responsavel = r.idResp
-      WHERE r.idResp = ?;
+      WHERE c.responsavel = ?;
     `;
 
     try {
-        
         const [results] = await pool.query(query, [idResp]);
-        
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: "Nenhuma criança ou tarefa encontrada." });
+        }
+
         res.json(results);
     } catch (error) {
-        console.error("Erro ao buscar tarefas e crianças:", error); // Depuração
+        console.error("Erro ao buscar tarefas e crianças:", error);
         res.status(500).json({ error: "Erro ao buscar os dados." });
     }
 };
 
-// Função para criar e inserir dados no histórico de tarefas
+// Função para inserir dados no histórico
 const createInsert = async (req, res) => {
     const { criancaId, taskId, feita, dataTask } = req.body;
-    console.log(`Recebendo dados para inserir tarefa:`, req.body); // Depuração
+
+    if (!criancaId || !taskId || typeof feita !== 'number' || !dataTask) {
+        return res.status(400).json({ message: "Dados inválidos." });
+    }
 
     try {
-        // Adiciona log para depurar os dados antes de executar a query
-        console.log(`Inserindo dados no banco para a criança ID: ${criancaId}, task ID: ${taskId}, feita: ${feita}, dataTask: ${dataTask}`);
-
         const [result] = await pool.query(
             'INSERT INTO historicoTask (CriancaT, Task, feita, dataTask) VALUES (?, ?, ?, ?)',
             [criancaId, taskId, feita, dataTask]
         );
-        
-        console.log(`Tarefa inserida com sucesso. ID inserido: ${result.insertId}`); // Depuração
 
-        // Responde com os dados inseridos e o ID gerado
-        res.json({ id: result.insertId, criancaId, taskId, feita, dataTask });
+        res.status(201).json({ id: result.insertId, criancaId, taskId, feita, dataTask });
     } catch (error) {
-        console.error('Erro ao inserir tarefa no histórico:', error); // Depuração
-        res.status(500).json({ message: 'Erro ao inserir tarefa', error });
+        console.error("Erro ao inserir tarefa no histórico:", error);
+        res.status(500).json({ message: "Erro ao inserir tarefa", error });
     }
 };
 

@@ -12,49 +12,59 @@ const CardChildren = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const idResp = user ? user.idResp : null;
 
-  const fetchChildrenAndTasks = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3000/historicoTask`);
-      console.log('Dados recebidos do servidor:', response.data); // Depuração
+const fetchChildrenAndTasks = async () => {
+  try {
+    const response = await axios.get(`http://localhost:3000/childrenTask/${idResp}`);
+    console.log("Dados recebidos do servidor:", response.data);
 
-      const groupedData = response.data.reduce((acc, current) => {
-        const existingChild = acc.find(crianca => child.id === current.criancaId);
+    const groupedData = response.data.reduce((acc, current) => {
+      // Verifica se a criança já está no agrupamento
+      let existingChild = acc.find((crianca) => crianca.id === current.criancaId);
 
-        if (existingChild) {
-          const taskExists = existingChild.task.some(task => task.taskName === current.taskName);
-          if (!taskExists) {
-            existingChild.task.push({
-              taskName: current.taskName,
-              points: current.taskPoints,
-              complete: current.taskComplete === 1,
-              taskId: current.taskId // Garantir que taskId é passado
-            });
-          }
-        } else {
-          acc.push({
-            id: current.criancaId,
-            nomeCrianca: current.nomeCrianca,
-            totalPoints: current.totalPoints,
-            task: current.taskName ? [{
-              taskName: current.taskName,
-              points: current.taskPoints,
-              complete: current.taskComplete === 1,
-              taskId: current.taskId // Garantir que taskId é passado
-            }] : []
+      if (existingChild) {
+        // Verifica se a tarefa já existe com base no idTask do histórico
+        const taskExists = existingChild.task.some((task) => task.taskId === current.taskId);
+
+        if (!taskExists && current.taskId) {
+          existingChild.task.push({
+            taskId: current.taskId,          // ID da tarefa (historicoTask)
+            taskName: current.taskName,     // Nome da tarefa
+            points: current.taskPoints,     // Pontos da tarefa
+            complete: current.taskComplete === 1, // Status (feita ou não)
           });
         }
-        return acc;
-      }, []);
+      } else {
+        // Adiciona nova criança e inicializa suas tarefas
+        acc.push({
+          id: current.criancaId,
+          nomeCrianca: current.nomeCrianca,
+          totalPoints: current.totalPoints || 0,
+          task: current.taskId
+            ? [
+                {
+                  taskId: current.taskId,          // ID da tarefa (historicoTask)
+                  taskName: current.taskName,     // Nome da tarefa
+                  points: current.taskPoints,     // Pontos da tarefa
+                  complete: current.taskComplete === 1, // Status (feita ou não)
+                },
+              ]
+            : [],
+        });
+      }
 
-      console.log('Dados agrupados:', groupedData); // Depuração dos dados após agrupamento
-      setChildren(groupedData);
-    } catch (error) {
-      console.error("Erro ao buscar os dados:", error);
-      setError("Erro ao carregar dados. Tente novamente mais tarde.");
-    } finally {
-      setLoading(false);
-    }
-  };
+      return acc;
+    }, []);
+
+    console.log("Dados agrupados:", groupedData);
+    setChildren(groupedData);
+  } catch (error) {
+    console.error("Erro ao buscar os dados:", error);
+    setError("Erro ao carregar dados. Tente novamente mais tarde.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     if (idResp) {
@@ -98,7 +108,7 @@ const CardChildren = () => {
     
     try {
       const child = children.find(filho => filho.id === childId);
-      const tasksToAdd = child.task.filter(task => !task.complete);
+      const tasksToAdd = child.task.filter(task => task.complete);
 
       console.log('Tarefas para adicionar:', tasksToAdd); // Depuração
 
