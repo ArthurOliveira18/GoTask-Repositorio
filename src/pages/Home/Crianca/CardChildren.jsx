@@ -129,12 +129,13 @@ const fetchChildrenAndTasks = async () => {
           });
 
           if (response.status === 201) {
-            alert('Tarefa adicionada com sucesso!');
+            
           } else {
             alert('Erro ao adicionar a tarefa.');
             break; // Caso algum erro ocorra, para o processo
           }
         }
+        alert('Tarefa adicionada com sucesso!');
 
         fetchChildrenAndTasks();  // Atualiza as tarefas após a adição
       } else {
