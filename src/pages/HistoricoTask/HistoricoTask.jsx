@@ -26,7 +26,24 @@ const HistoricoTask = () => {
       const filtredHistoryTask = allHistoryTask.filter(
         (historyT) => historyT.CriancaT === parseInt(idCrianca)
       );
-      setTasks(filtredHistoryTask);
+
+      // Substituir duplicatas (feita substitui não feita)
+      const updatedTasks = [];
+      filtredHistoryTask.forEach((task) => {
+        const existingTaskIndex = updatedTasks.findIndex(
+          (t) => t.Task === task.Task
+        );
+        if (existingTaskIndex !== -1) {
+          // Substitui tarefa não feita por feita
+          if (task.feita === 1) {
+            updatedTasks[existingTaskIndex] = task;
+          }
+        } else {
+          updatedTasks.push(task);
+        }
+      });
+
+      setTasks(updatedTasks);
     } catch (error) {
       console.error("Erro ao buscar tarefas:", error);
     }
@@ -36,12 +53,23 @@ const HistoricoTask = () => {
     fetchHistoryTask();
   }, []);
 
-  const handleTaskClick = (task) => {
-    const idCrianca = localStorage.getItem('selectedChildId');
-    if (task.CriancaT === parseInt(idCrianca)) {
-      console.log("Tarefa pertencente à criança:", task);
-    } else {
-      console.warn("Tarefa não pertence à criança selecionada.");
+  const handleMarkAsDone = async (idHistoricoTask) => {
+    try {
+      // Atualiza no back-end
+      await axios.put(`${url}/${idHistoricoTask}`, { feita: 1 });
+
+      // Atualiza o estado local
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.idHistoricoTask === idHistoricoTask
+            ? { ...task, feita: 1 }
+            : task
+        )
+      );
+
+      console.log(`Tarefa ${idHistoricoTask} marcada como feita.`);
+    } catch (error) {
+      console.error("Erro ao marcar tarefa como feita:", error);
     }
   };
 
@@ -59,9 +87,8 @@ const HistoricoTask = () => {
     const minutes = String(utcMinus3.getMinutes()).padStart(2, '0');
 
     return `${day}/${month}/${year} ${hours}:${minutes}`;
-};
+  };
 
-  
   return (
     <div className={style.pageContainer}>
       <HeaderMain />
@@ -76,11 +103,18 @@ const HistoricoTask = () => {
           {tasks.map((task) => (
             <div
               key={task.idHistoricoTask}
-              className={`${style.divInfoTask} ${task.feita === 0 ? style.incompleteTask : style.inactiveTask}`} // Adiciona estilo baseado no valor de 'feita'
-              onClick={() => handleTaskClick(task)}
+              className={`${style.divInfoTask} ${task.feita === 0 ? style.incompleteTask : style.inactiveTask
+                }`} // Estilo baseado no status 'feita'
+              onClick={() =>
+                task.feita === 0 ? handleMarkAsDone(task.idHistoricoTask) : null
+              } // Só marca como feita se ainda não estiver
             >
               <h1>{task.Nome_task}</h1>
-              <p> {task.feita === 0 ? 'Status: Não feita' : formatDateTime(task.dataTask)}</p>
+              <p>
+                {task.feita === 0
+                  ? 'Status: Não feita'
+                  : `Feita em: ${formatDateTime(task.dataTask)}`}
+              </p>
             </div>
           ))}
         </div>
@@ -91,3 +125,4 @@ const HistoricoTask = () => {
 };
 
 export default HistoricoTask;
+

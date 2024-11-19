@@ -53,4 +53,27 @@ const createHistoricoTasks = async (req, res) => {
         res.status(500).json({ message: "Erro ao adicionar tarefa ao histórico" });
     }
 };
-module.exports = { getHistoricoTasks, createHistoricoTasks };
+
+const updateTaskStatus = async (req, res) => {
+    const { idHistoricoTask } = req.params;
+    const { feita } = req.body;
+  
+    if (feita === undefined) {
+      return res.status(400).json({ message: "Campo 'feita' é obrigatório." });
+    }
+  
+    try {
+      await pool.query(
+        'UPDATE historicoTask SET feita = ? WHERE idHistoricoTask = ?',
+        [feita, idHistoricoTask]
+      );
+      res.status(200).json({ message: "Status da tarefa atualizado com sucesso." });
+    } catch (error) {
+      console.error("Erro ao atualizar status da tarefa:", error);
+      res.status(500).json({ message: "Erro ao atualizar status da tarefa." });
+    }
+  };
+  
+
+  
+module.exports = { getHistoricoTasks, createHistoricoTasks, updateTaskStatus };
