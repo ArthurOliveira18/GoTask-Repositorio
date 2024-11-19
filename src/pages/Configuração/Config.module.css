@@ -41,6 +41,29 @@
   border-radius: .50rem;
 }
 
+.divPerfil {
+  width: 83%;
+  height: 90%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: .50rem;
+}
+
+.divInputPerfil{
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 400px;
+  justify-content: center;
+  background-color: #4B1DF2;
+  gap: 1rem;
+  border-radius: .75rem;
+}
+
+
+
 .divButtonSair {
   width: 400px;
 

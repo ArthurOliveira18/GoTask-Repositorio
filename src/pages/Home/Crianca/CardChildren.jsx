@@ -164,9 +164,8 @@ const fetchChildrenAndTasks = async () => {
   return (
     <div className={style.homeMain}>
       <div className={style.divSettings}>
-        <span className="material-symbols-outlined" style={{ fontSize: '40px' }} onClick={handleConfig}>
-          settings
-        </span>
+        <span class="material-symbols-outlined" style={{ fontSize: '40px' }} onClick={handleConfig}>account_circle</span>
+        
       </div>
       <div className={style.homePurple}>
         {children.map(filho => (
