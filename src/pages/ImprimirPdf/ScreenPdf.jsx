@@ -15,7 +15,6 @@ const ScreenPdf = () => {
           <Link to={'/FamilyScreen'}>
             <span className="material-symbols-outlined">arrow_back</span>
           </Link>
-          
           <div></div>
           <div></div>
         </div>
@@ -26,9 +25,7 @@ const ScreenPdf = () => {
           </div>
           {/* buttons */}
           <div className={style.buttonContainer}>
-            <h1 className={style.title2}>Imprimir em</h1>
-            <button className={style.printButton}>Imprimir em PDF</button>
-            <button className={style.printButton}>Impressora</button>
+            <button className={style.printButton}>Baixar PDF</button>
           </div>
         </div>
       </div>
