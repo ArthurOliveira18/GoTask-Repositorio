@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import style from './ItensStore.module.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from "axios";
 
-const urlBenef = "http://localhost:3000/beneficios";
+const urlBenef = "http://localhost:3000/beneficios"; // URL para buscar os benefícios
+const urlChild = "http://localhost:3000/children"; // URL para buscar as crianças
 
 const ItensStore = () => {
   const navigate = useNavigate();
+
   const [recompensas, setRecompensas] = useState([]);
+  const [criancas, setCriancas] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
 
   // Obtém o objeto 'user' do localStorage e faz o parse para um objeto JavaScript
@@ -19,15 +22,36 @@ const ItensStore = () => {
     try {
       const response = await axios.get(urlBenef);
       const allBenef = response.data;
-      const filteredBenef = allBenef.filter((benef) => benef.RespB === parseInt(idResp));
+      const filteredBenef = allBenef.filter(benef => benef.RespB === parseInt(idResp));
       setRecompensas(filteredBenef);
     } catch (error) {
       console.error("Erro ao buscar benefícios:", error);
     }
   };
 
+  // Função para buscar as crianças
+  // Função para buscar as crianças
+const fetchCriancas = async () => {
+  try {
+    const response = await axios.get(urlChild);
+    const allChildren = response.data;
+
+    console.log('Todos os dados das crianças:', allChildren); // Verifique os dados das crianças aqui
+
+    const filteredChildren = allChildren.filter(child => child.responsavel === parseInt(idResp)); // Alterado aqui
+    
+    console.log('Crianças filtradas:', filteredChildren); // Verifique as crianças filtradas
+
+    setCriancas(filteredChildren);
+  } catch (error) {
+    console.error("Erro ao buscar crianças:", error);
+  }
+};
+
+
   useEffect(() => {
     fetchRecompensas();
+    fetchCriancas();
   }, []);
 
   const openModal = (task) => {
@@ -43,8 +67,8 @@ const ItensStore = () => {
       <div className={style.itensBlue}>
         {recompensas.map((recomp) => (
           <div
-            key={recomp.idBeneficio}
-            onClick={() => openModal(recomp)} // Abrindo o modal ao clicar
+            key={recomp.id}
+            onClick={() => openModal(recomp)} // Abre o modal ao clicar no benefício
             style={{
               color: '#000',
               width: '40%',
@@ -70,7 +94,7 @@ const ItensStore = () => {
 
       <div className={style.divButtonPoints}>
         <div>
-          <button onClick={() => { navigate('/cad-beneficio') }}>
+          <button onClick={() => { navigate('/cad-beneficio') }} >
             <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
               add
             </span>
@@ -81,19 +105,27 @@ const ItensStore = () => {
       {selectedTask && (
         <div className={style.modalOverlay} onClick={closeModal}>
           <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
-            <h1>Editar Benefício</h1>
-            <p>Nome: {selectedTask.Nome_ben}</p>
-            <p>Pontos: {selectedTask.pontos_ben}</p>
+            {criancas.map((usus) => (
+              <div key={usus.id} className={style.divPurpleModal}>
+                <div className={style.profileIcon}>
+                  <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>
+                </div>
+                <div className={style.divChildrenModal}>
+                  <h1>{usus.nomeCrianca}</h1>
+                </div>
+              </div>
+            ))}
 
             <div className={style.divIcon}>
               <button className={style.closeButton}>Resgatar</button>
               <span
                 className="material-symbols-outlined"
-                onClick={() => navigate(`/edit-recompensa/${selectedTask.idBeneficio}`)}
+                onClick={() => { navigate('/edit-recompensa') }}
               >
                 edit
               </span>
             </div>
+
             <button onClick={closeModal} className={style.closeButton}>Fechar</button>
           </div>
         </div>
