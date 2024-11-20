@@ -2,15 +2,14 @@ import HeaderMain from '../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../components/MainHeadFoot/Footer/FooterMain';
 import style from './EscolhaFilho.module.css';
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 const url = 'http://localhost:3000/children'
 
 const EscolhaFilho = () => {
-    const [children, setChildren] = useState([
-        
-    ]);
 
+    const [children, setChildren] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [activeTab, setActiveTab] = useState("benefit"); // Estado para alternar entre Benefício e Tasks
     const navigate = useNavigate();
@@ -18,59 +17,67 @@ const EscolhaFilho = () => {
     const handleNavigateBenef = () => {
         navigate('/historico-benef');
     };
+
     const handleNavigateTasks = () => {
         navigate('/historico-task');
     };
 
-    const openModal = (user) => {
-        setSelectedUser(user);
-        
+    const openModal = (child) => {
+        console.log("Objeto criança selecionada:", child); // Verifique se o objeto está correto
+        if (child.idCrianca) { // Verifique a propriedade correta 'idCrianca'
+            localStorage.setItem('selectedChildId', child.idCrianca); // Atualiza o ID no localStorage
+            setSelectedUser(child); // Define o filho selecionado
+            console.log("id da criança selecionada:", child.idCrianca); // Exibe o id da criança selecionada
+        } else {
+            console.error("ID da criança não encontrado!");
+        }
     };
+    
 
     const closeModal = () => {
         setSelectedUser(null);
     };
 
     // Obtém o objeto 'user' do localStorage e faz o parse para um objeto JavaScript
-  const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
 
-  // Acessa o idResp dentro do objeto 'user'
-  const idResp = user ? user.idResp : null;
+    // Acessa o idResp dentro do objeto 'user'
+    const idResp = user ? user.idResp : null;
 
-  // Função para buscar os dados das crianças
-  const fetchChildren = async () => {
-    try {
+    // Função para buscar os dados das crianças
+    const fetchChildren = async () => {
+        try {
+            // Faz a requisição para o servidor para buscar todas as crianças
+            const response = await axios.get(url); // Endpoint para buscar crianças
 
-      // Faz a requisição para o servidor para buscar todas as crianças
-      const response = await axios.get(url); // Endpoint para buscar crianças
+            // Acessa os dados retornados, que estão no response.data
+            const allChildren = response.data;
+            console.log("Dados das crianças recebidos:", allChildren); // Verifique os dados recebidos
 
-      // Acessa os dados retornados, que estão no response.data
-      const allChildren = response.data;
+            // Filtra as crianças que têm o mesmo responsavelId que o idResp
+            const filteredChildren = allChildren.filter(child => child.responsavel === parseInt(idResp));
+            setChildren(filteredChildren);
 
-      // Filtra as crianças que têm o mesmo responsavelId que o idResp
-      const filteredChildren = allChildren.filter(child => child.responsavel === parseInt(idResp));
-      setChildren(filteredChildren);
+        } catch (error) {
+            console.error("Erro ao buscar crianças:", error);
+        }
+    };
 
-    } catch (error) {
-      console.error("Erro ao buscar crianças:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchChildren();
-  }, []);
+    useEffect(() => {
+        fetchChildren();
+    }, []);
 
     return (
         <div className={style.pageContainer}>
             <HeaderMain />
             <div className={style.pageMain}>
-                {children.map((children, index) => (
-                    <div key={index} className={style.userCard} onClick={() => openModal(user)}>
+                {children.map((child, index) => (
+                    <div key={index} className={style.userCard} onClick={() => openModal(child)}>
                         <div className={style.profileIcon}>
                             <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>
                         </div>
                         <div className={style.printIcon}>
-                            <h1>{children.nomeCrianca}</h1>
+                            <h1>{child.nomeCrianca}</h1>
                         </div>
                     </div>
                 ))}
@@ -88,7 +95,6 @@ const EscolhaFilho = () => {
                                     <h1>Tasks</h1>
                                 </div>
                             </div>
-
 
                             <div className={style.divBlueModal} onClick={handleNavigateBenef}>
                                 <div className={style.divWhiteModal}>
