@@ -47,14 +47,59 @@ const createTasks = async (req, res) => {
 };
 
 
+// Pegar tarefa pelo ID
+const getTaskById = async (req, res) => {
+  const { idTask } = req.params;  // O ID da tarefa vem pela URL
+  const query = 'SELECT * FROM task WHERE idTask = ?';  // Consulta para buscar a tarefa pelo ID
+
+  try {
+    const [results] = await pool.query(query, [idTask]);
+
+    // Verifica se encontrou algum resultado
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'Tarefa não encontrada' });
+    }
+
+    // Retorna os dados da tarefa
+    const task = results[0];  // Pega o primeiro resultado, pois esperamos apenas um
+    res.json({
+      idTask: task.idTask,
+      Nome_task: task.Nome_task,
+      Pontos_task: task.Pontos_task,
+      RespT: task.RespT
+    });
+  } catch (err) {
+    return res.status(500).send({ message: "Erro ao acessar o banco de dados", error: err });
+  }
+};
+
+
+// Editar tarefa
 const editTasks = async (req, res) => {
+  const { idTask } = req.params; // ID da tarefa a ser atualizada
+  const { Nome_task, Pontos_task, RespT } = req.body; // Dados recebidos
 
-}
+  if (!Nome_task || !Pontos_task || !RespT) {
+    return res.status(400).json({ message: "Dados inválidos." });
+  }
 
-const deleteTasks = async (req, res) => {
+  try {
+    const query = `
+      UPDATE task
+      SET Nome_task = ?, Pontos_task = ?, RespT = ?
+      WHERE idTask = ?;
+    `;
+    const [result] = await pool.query(query, [Nome_task, Pontos_task, RespT, idTask]);
 
-}
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Tarefa não encontrada." });
+    }
 
+    res.json({ message: "Tarefa atualizada com sucesso." });
+  } catch (error) {
+    console.error("Erro ao atualizar tarefa:", error);
+    res.status(500).json({ message: "Erro ao atualizar tarefa." });
+  }
+};
 
-
-module.exports = { getTasks, createTasks, editTasks, deleteTasks };
+module.exports = { getTasks, createTasks, editTasks, getTaskById };

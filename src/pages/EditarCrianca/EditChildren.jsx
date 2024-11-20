@@ -13,8 +13,8 @@ const EditChildren = () => {
     const [tasks, setTasks] = useState([]);
     // Recupera o ID da criança do localStorage
     const idCrianca = localStorage.getItem('selectedChildId');
-    // Utiliza o ID da criança, por exemplo, para exibir informações
-    console.log("ID da criança recuperado:", idCrianca);
+    
+    
 
     useEffect(() => {
         // Buscar dados da criança ao carregar a página

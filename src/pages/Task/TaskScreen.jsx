@@ -16,10 +16,7 @@ const TaskScreen = () => {
 
   const [selectedTask, setSelectedTask] = useState(null);
 
-  const openModal = (task) => {
-    setSelectedTask(task);
-  };
-
+ 
   const closeModal = () => {
     setSelectedTask(null);
   };
@@ -59,7 +56,7 @@ const TaskScreen = () => {
       <div className={style.pageMain}>
         <div className={style.divTasksDad}>
           {tasks.map((task) => (
-            <div key={task.id} className={style.divInfoTask} onClick={() => openModal(task)}>
+            <div key={task.id} className={style.divInfoTask}>
               <h1>{task.Nome_task}</h1>
             </div>
           ))}
