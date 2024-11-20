@@ -90,6 +90,7 @@ const EditChildren = () => {
                             type="text"
                             name="name"
                             id="name"
+                            style={{ textAlign: "center",  fontSize: "30px"}}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
@@ -100,6 +101,7 @@ const EditChildren = () => {
                             type="date"
                             name="date"
                             id="date"
+                            style={{ textAlign: "center",  fontSize: "25px"}}
                             value={birthDate}
                             onChange={(e) => setBirthDate(e.target.value)}
                         />
