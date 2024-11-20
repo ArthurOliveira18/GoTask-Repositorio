@@ -60,8 +60,20 @@ const ItensStore = () => {
   
     // Verifica se a criança tem pontos suficientes
     const child = criancas.find(c => c.idCrianca === selectedChild);
-    if (child.pontos >= selectedTask.pontos_ben) {
+    console.log('Criança selecionada:', child); // Verifica os dados da criança selecionada
+    console.log('Pontos da criança:', child ? child.pontos : 'Criança não encontrada');
+    console.log('Pontos necessários para o benefício:', selectedTask.pontos_ben);
+  
+    if (child && child.pontos >= selectedTask.pontos_ben) {
       try {
+        console.log('Resgatando benefício para a criança...');
+        console.log('Dados para o histórico de benefício:', {
+          CriancaB: selectedChild,
+          Beneficio: selectedTask.idBeneficio,
+          dataBeneficio: new Date().toISOString(),
+          valor: selectedTask.pontos_ben,
+        });
+  
         // Resgata o benefício no backend
         await axios.post("http://localhost:3000/historicoBeneficio", {
           CriancaB: selectedChild,
@@ -70,22 +82,35 @@ const ItensStore = () => {
           valor: selectedTask.pontos_ben,
         });
   
+        console.log('Benefício registrado com sucesso!');
+  
         // Atualiza os pontos da criança após o resgate
-        await axios.put(`http://localhost:3000/children/${selectedChild}`, {
-          pontos: child.pontos - selectedTask.pontos_ben
-        });
+        console.log('Atualizando pontos da criança...');
+        try {
+          await axios.put(`http://localhost:3000/children/${selectedChild}`, {
+            pontos: child.pontos - selectedTask.pontos_ben
+          });
+          console.log('Benefício registrado com sucesso!');
+        } catch (error) {
+          console.error("Erro ao resgatar o benefício:", error.response ? error.response.data : error);
+        }
+        
+        
+        
+        
   
         // Exibe um alerta de sucesso
         alert('Benefício resgatado com sucesso!');
-  
         closeModal(); // Fecha o modal após resgatar
       } catch (error) {
-        console.error("Erro ao resgatar o benefício:", error);
+        console.error("Erro ao resgatar o benefício:", error.response || error);
       }
     } else {
+      console.log('Pontos insuficientes!');
       alert('Pontos insuficientes!');
     }
   };
+  
   
 
   return (
