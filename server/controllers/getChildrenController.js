@@ -68,4 +68,31 @@ const createInsert = async (req, res) => {
     }
 };
 
-module.exports = { getChildrenTask, createInsert };
+const updatePoints = async (req, res) => {
+    const { criancaId, totalPoints } = req.body;
+
+    if (!criancaId || totalPoints === undefined) {
+        return res.status(400).json({ message: "Dados inválidos." });
+    }
+
+    try {
+        // Atualizando os pontos da criança
+        const [result] = await pool.query(
+            'UPDATE crianca SET pontos = ? WHERE idCrianca = ?',
+            [totalPoints, criancaId]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Criança não encontrada." });
+        }
+
+        res.status(200).json({ message: "Pontuação atualizada com sucesso!", criancaId, totalPoints });
+    } catch (error) {
+        console.error("Erro ao atualizar pontos:", error);
+        res.status(500).json({ message: "Erro ao atualizar pontos", error });
+    }
+};
+
+
+
+module.exports = { getChildrenTask, createInsert, updatePoints };
