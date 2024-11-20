@@ -1,56 +1,34 @@
-import  { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import style from './ItensStore.module.css';
 import { useNavigate } from 'react-router-dom';
-const urlBenef = "http://localhost:3000/beneficios"
-const urlChild = "http://localhost:3000/children"
-import axios from "axios"
+import axios from 'axios';
+
+const urlBenef = "http://localhost:3000/beneficios";
 
 const ItensStore = () => {
   const navigate = useNavigate();
-
-  const [recompensas,setRecompensas] = useState([
-    
-  ]);
- 
+  const [recompensas, setRecompensas] = useState([]);
+  const [selectedTask, setSelectedTask] = useState(null);
 
   // Obtém o objeto 'user' do localStorage e faz o parse para um objeto JavaScript
   const user = JSON.parse(localStorage.getItem('user'));
-
-  // Acessa o idResp dentro do objeto 'user'
   const idResp = user ? user.idResp : null;
 
-  // Função para buscar os dados das crianças
+  // Função para buscar os benefícios
   const fetchRecompensas = async () => {
     try {
-
-      // Faz a requisição para o servidor para buscar todas as crianças
-      const response = await axios.get(urlBenef); // Endpoint para buscar crianças
-
-      // Acessa os dados retornados, que estão no response.data
+      const response = await axios.get(urlBenef);
       const allBenef = response.data;
-
-      // Filtra as crianças que têm o mesmo responsavelId que o idResp
-      const filteredBenef = allBenef.filter(benef => benef.RespB === parseInt(idResp));
+      const filteredBenef = allBenef.filter((benef) => benef.RespB === parseInt(idResp));
       setRecompensas(filteredBenef);
-      
-
     } catch (error) {
-      console.error("Erro ao buscar crianças:", error);
+      console.error("Erro ao buscar benefícios:", error);
     }
   };
 
   useEffect(() => {
-   fetchRecompensas();
+    fetchRecompensas();
   }, []);
-  
-  const [children] = useState([
-    { id: 1, name: 'Cristiano' },
-    { id: 2, name: 'Juliana' },
-    { id: 3, name: 'Enzo' },
-  ]);
-
-
-  const [selectedTask, setSelectedTask] = useState(null);
 
   const openModal = (task) => {
     setSelectedTask(task);
@@ -60,14 +38,12 @@ const ItensStore = () => {
     setSelectedTask(null);
   };
 
-   
- 
   return (
     <div className={style.divMainItensStore}>
       <div className={style.itensBlue}>
         {recompensas.map((recomp) => (
           <div
-            key={recomp.id}
+            key={recomp.idBeneficio}
             onClick={() => openModal(recomp)} // Abrindo o modal ao clicar
             style={{
               color: '#000',
@@ -105,24 +81,18 @@ const ItensStore = () => {
       {selectedTask && (
         <div className={style.modalOverlay} onClick={closeModal}>
           <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
-            
-
-          {children.map((usus) =>(
-            <div className={style.divPurpleModal}>
-                <div className={style.profileIcon}>
-                  <span className="material-symbols-outlined" style={{fontSize:"40px"}}>person</span>
-                </div>
-              <div className={style.divChildrenModal}>
-                <h1>{usus.name}</h1>
-              </div>
-            </div>
-// comente apenas para dar um git push
-          ))}
-           
+            <h1>Editar Benefício</h1>
+            <p>Nome: {selectedTask.Nome_ben}</p>
+            <p>Pontos: {selectedTask.pontos_ben}</p>
 
             <div className={style.divIcon}>
               <button className={style.closeButton}>Resgatar</button>
-              <span className="material-symbols-outlined" onClick={() => {navigate('/edit-recompensa')}}>edit</span>
+              <span
+                className="material-symbols-outlined"
+                onClick={() => navigate(`/edit-recompensa/${selectedTask.idBeneficio}`)}
+              >
+                edit
+              </span>
             </div>
             <button onClick={closeModal} className={style.closeButton}>Fechar</button>
           </div>

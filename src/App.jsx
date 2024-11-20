@@ -54,7 +54,8 @@ function App() {
           <Route path='/cad-beneficio' element={<CadBeneficio />} />
 
           {/*Rota para as edits das recompensas*/}
-          <Route path='/edit-recompensa' element={<EditRecompensa />} />
+          <Route path='/edit-recompensa/:id' element={<EditRecompensa />} />
+
 
           {/* config*/}
           <Route path='/Config' element={<Config />} />

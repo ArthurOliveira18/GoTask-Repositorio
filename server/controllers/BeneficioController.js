@@ -53,6 +53,27 @@ const createBeneficio = async (req, res) => {
     });
 };
 
-
-
-module.exports = { getBeneficio, createBeneficio };
+// Rota para buscar um benefício por ID
+const getBeneficioById = (req, res) => {
+    const { id } = req.params;
+    const query = 'SELECT * FROM beneficio WHERE idBeneficio = ?';
+    pool.query(query, [id], (err, results) => {
+      if (err) return res.status(500).send(err);
+      if (results.length === 0) return res.status(404).json({ message: 'Benefício não encontrado.' });
+      res.json(results[0]);
+    });
+  };
+  
+  // Rota para atualizar um benefício
+  const updateBeneficio = (req, res) => {
+    const { id } = req.params;
+    const { Nome_ben, pontos_ben } = req.body;
+    const query = 'UPDATE beneficio SET Nome_ben = ?, pontos_ben = ? WHERE idBeneficio = ?';
+    pool.query(query, [Nome_ben, pontos_ben, id], (err, result) => {
+      if (err) return res.status(500).send(err);
+      res.json({ message: 'Benefício atualizado com sucesso!' });
+    });
+  };
+  
+  module.exports = { getBeneficio, createBeneficio, getBeneficioById, updateBeneficio };
+  
