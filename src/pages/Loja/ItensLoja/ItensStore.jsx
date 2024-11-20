@@ -30,33 +30,27 @@ const ItensStore = () => {
   };
 
   // Função para buscar as crianças
-  // Função para buscar as crianças
-const fetchCriancas = async () => {
-  try {
-    const response = await axios.get(urlChild);
-    const allChildren = response.data;
-
-    console.log('Todos os dados das crianças:', allChildren); // Verifique os dados das crianças aqui
-
-    const filteredChildren = allChildren.filter(child => child.responsavel === parseInt(idResp)); // Alterado aqui
-    
-    console.log('Crianças filtradas:', filteredChildren); // Verifique as crianças filtradas
-
-    setCriancas(filteredChildren);
-  } catch (error) {
-    console.error("Erro ao buscar crianças:", error);
-  }
-};
-
+  const fetchCriancas = async () => {
+    try {
+      const response = await axios.get(urlChild);
+      const allChildren = response.data;
+      const filteredChildren = allChildren.filter(child => child.responsavel === parseInt(idResp));
+      setCriancas(filteredChildren);
+    } catch (error) {
+      console.error("Erro ao buscar crianças:", error);
+    }
+  };
 
   useEffect(() => {
     fetchRecompensas();
     fetchCriancas();
   }, []);
 
-  const openModal = (task) => {
-    setSelectedTask(task);
+  const openModal = (recompensa) => {
+    setSelectedTask(recompensa);
+    console.log("ID do benefício selecionado:", recompensa.idBeneficio); // Exibe o ID no console
   };
+  
 
   const closeModal = () => {
     setSelectedTask(null);
@@ -68,7 +62,7 @@ const fetchCriancas = async () => {
         {recompensas.map((recomp) => (
           <div
             key={recomp.id}
-            onClick={() => openModal(recomp)} // Abre o modal ao clicar no benefício
+            onClick={() => openModal(recomp)} // Passa o benefício correto para a função
             style={{
               color: '#000',
               width: '40%',
@@ -95,7 +89,7 @@ const fetchCriancas = async () => {
       <div className={style.divButtonPoints}>
         <div>
           <button onClick={() => { navigate('/cad-beneficio') }} >
-            <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
+            <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }} >
               add
             </span>
           </button>
@@ -105,6 +99,7 @@ const fetchCriancas = async () => {
       {selectedTask && (
         <div className={style.modalOverlay} onClick={closeModal}>
           <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
+            <p>ID da recompensa selecionada: {selectedTask.id}</p> {/* Exibe o ID da recompensa */}
             {criancas.map((usus) => (
               <div key={usus.id} className={style.divPurpleModal}>
                 <div className={style.profileIcon}>
@@ -115,17 +110,17 @@ const fetchCriancas = async () => {
                 </div>
               </div>
             ))}
-
             <div className={style.divIcon}>
               <button className={style.closeButton}>Resgatar</button>
               <span
                 className="material-symbols-outlined"
-                onClick={() => { navigate('/edit-recompensa') }}
+                onClick={() => {
+                  navigate(`/edit-recompensa/${selectedTask.id}`);
+                }}
               >
                 edit
               </span>
             </div>
-
             <button onClick={closeModal} className={style.closeButton}>Fechar</button>
           </div>
         </div>

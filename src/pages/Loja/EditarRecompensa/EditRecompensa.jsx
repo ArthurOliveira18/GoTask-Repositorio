@@ -1,22 +1,30 @@
 import style from './EditRecompensa.module.css';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const urlBenef = "http://localhost:3000/beneficios";
 
 const EditRecompensa = () => {
-  const { id } = useParams();
+  // Recuperando o ID do benefício armazenado no localStorage
+  const idBeneficio = localStorage.getItem('idBeneficio');
   const navigate = useNavigate();
   const [beneficio, setBeneficio] = useState({ Nome_ben: '', pontos_ben: 0 });
 
-  // Carregar dados do benefício
+  // Verificando o id recebido do localStorage
   useEffect(() => {
+    if (!idBeneficio) {
+      console.error('ID do benefício não encontrado. A requisição não será realizada.');
+      return; // Se o id não estiver disponível, não faça a requisição
+    }
+
     const fetchBeneficio = async () => {
       try {
-        const response = await axios.get(`${urlBenef}/${id}`);
+        console.log(`Buscando benefício com ID: ${idBeneficio}`); // Depuração para ver o ID usado na requisição
+        const response = await axios.get(`${urlBenef}/${idBeneficio}`);
+        console.log('Resposta da requisição:', response.data); // Depuração para mostrar o que vem do backend
         setBeneficio(response.data);
       } catch (error) {
         console.error("Erro ao carregar benefício:", error);
@@ -24,7 +32,7 @@ const EditRecompensa = () => {
     };
 
     fetchBeneficio();
-  }, [id]);
+  }, [idBeneficio]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +45,8 @@ const EditRecompensa = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`${urlBenef}/${id}`, beneficio);
+      console.log('Enviando dados para atualização:', beneficio); // Depuração antes de enviar a requisição PUT
+      await axios.put(`${urlBenef}/${idBeneficio}`, beneficio);  // Atualizando o benefício com o idBeneficio correto
       alert('Benefício atualizado com sucesso!');
       navigate('/store');
     } catch (error) {
