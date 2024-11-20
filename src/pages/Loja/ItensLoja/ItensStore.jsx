@@ -2,23 +2,19 @@ import { useState, useEffect } from 'react';
 import style from './ItensStore.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-
-
 const urlBenef = "http://localhost:3000/beneficios"; // URL para buscar os benefícios
 const urlChild = "http://localhost:3000/children"; // URL para buscar as crianças
 
 const ItensStore = () => {
   const navigate = useNavigate();
-
   const [recompensas, setRecompensas] = useState([]);
   const [criancas, setCriancas] = useState([]);
-  const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedTask, setSelectedTask] = useState(null); // Benefício selecionado
+  const [selectedChild, setSelectedChild] = useState(null); // Criança selecionada
 
-  // Obtém o objeto 'user' do localStorage e faz o parse para um objeto JavaScript
   const user = JSON.parse(localStorage.getItem('user'));
   const idResp = user ? user.idResp : null;
 
-  // Função para buscar os benefícios
   const fetchRecompensas = async () => {
     try {
       const response = await axios.get(urlBenef);
@@ -30,7 +26,6 @@ const ItensStore = () => {
     }
   };
 
-  // Função para buscar as crianças
   const fetchCriancas = async () => {
     try {
       const response = await axios.get(urlChild);
@@ -49,13 +44,49 @@ const ItensStore = () => {
 
   const openModal = (recompensa) => {
     setSelectedTask(recompensa);
-    console.log("ID do benefício selecionado:", recompensa.idBeneficio); // Exibe o ID no console
   };
-  
 
   const closeModal = () => {
     setSelectedTask(null);
+    setSelectedChild(null); // Limpa a seleção da criança
   };
+
+  const handleSelectChild = (child) => {
+    setSelectedChild(child.idCrianca); // Armazena o ID da criança selecionada
+  };
+
+  const handleResgatarBeneficio = async () => {
+    if (!selectedChild || !selectedTask) return;
+  
+    // Verifica se a criança tem pontos suficientes
+    const child = criancas.find(c => c.idCrianca === selectedChild);
+    if (child.pontos >= selectedTask.pontos_ben) {
+      try {
+        // Resgata o benefício no backend
+        await axios.post("http://localhost:3000/historicoBeneficio", {
+          CriancaB: selectedChild,
+          Beneficio: selectedTask.idBeneficio,
+          dataBeneficio: new Date().toISOString(),
+          valor: selectedTask.pontos_ben,
+        });
+  
+        // Atualiza os pontos da criança após o resgate
+        await axios.put(`http://localhost:3000/children/${selectedChild}`, {
+          pontos: child.pontos - selectedTask.pontos_ben
+        });
+  
+        // Exibe um alerta de sucesso
+        alert('Benefício resgatado com sucesso!');
+  
+        closeModal(); // Fecha o modal após resgatar
+      } catch (error) {
+        console.error("Erro ao resgatar o benefício:", error);
+      }
+    } else {
+      alert('Pontos insuficientes!');
+    }
+  };
+  
 
   return (
     <div className={style.divMainItensStore}>
@@ -101,7 +132,11 @@ const ItensStore = () => {
         <div className={style.modalOverlay} onClick={closeModal}>
           <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
             {criancas.map((usus) => (
-              <div key={usus.id} className={style.divPurpleModal}>
+              <div
+                key={usus.id}
+                className={`${style.divPurpleModal} ${selectedChild === usus.idCrianca ? style.selectedChild : ''}`} // Adiciona a classe se for o filho selecionado
+                onClick={() => handleSelectChild(usus)}
+              >
                 <div className={style.profileIcon}>
                   <span className="material-symbols-outlined" style={{ fontSize: "40px" }}>person</span>
                 </div>
@@ -111,7 +146,7 @@ const ItensStore = () => {
               </div>
             ))}
             <div className={style.divIcon}>
-              <button className={style.closeButton}>Resgatar</button>
+              <button className={style.closeButton} onClick={handleResgatarBeneficio}>Resgatar</button>
               <span
                 className="material-symbols-outlined"
                 onClick={() => {

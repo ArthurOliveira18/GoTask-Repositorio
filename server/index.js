@@ -8,6 +8,7 @@ const childrenRoutes = require('./routes/childrenRoutes')
 const historicoTask = require('./routes/historicoTaskRoutes')
 const childrenTask = require('./routes/childrenTask')
 const beneficios = require('./routes/BeneficioRoutes')
+const HistoricoBeneficio = require('./routes/HistoricoBeneficioRoute')
 const path = require("path");
 const basePath = path.join(__dirname, "pages");
 
@@ -27,6 +28,7 @@ app.use("/", childrenRoutes)
 app.use("/", historicoTask)
 app.use("/", childrenTask)
 app.use("/", beneficios)
+app.use("/", HistoricoBeneficio)
 
 
 
