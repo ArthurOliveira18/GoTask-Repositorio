@@ -89,29 +89,23 @@ const fetchChildrenAndTasks = async () => {
             }
             return task;
           });
-
-          return {
-            ...child,
-            task: updatedTasks,
-            totalPoints: updatedTasks.reduce((acc, t) => t.complete ? acc + t.points : acc, 0),
-          };
+  
+          return { ...child, task: updatedTasks }; // Não atualiza totalPoints aqui
         }
         return child;
       })
     );
   };
-
+  
   // Função handleAddTask que adiciona todas as tarefas de uma criança
   const handleAddTask = async (childId) => {
     const now = new Date();
-    const dataTask = now.toISOString().slice(0, 19).replace('T', ' '); // A data da tarefa formatada
-    
+    const dataTask = now.toISOString().slice(0, 19).replace('T', ' '); // Data da tarefa formatada
+  
     try {
       const child = children.find(filho => filho.id === childId);
       const tasksToAdd = child.task.filter(task => task.complete);
-
-      console.log('Tarefas para adicionar:', tasksToAdd); // Depuração
-
+  
       if (tasksToAdd.length > 0) {
         for (const task of tasksToAdd) {
           console.log('Enviando dados para o backend:', {
@@ -120,24 +114,39 @@ const fetchChildrenAndTasks = async () => {
             feita: 1,
             dataTask
           });
-
+  
           const response = await axios.post(`http://localhost:3000/childrenTask/${idResp}/add`, {
             criancaId: childId,
             taskId: task.taskId,
-            feita: 1,   // Considerando que a tarefa foi marcada como completada
+            feita: 1,
             dataTask
           });
-
-          if (response.status === 201) {
-            
-          } else {
+  
+          if (response.status !== 201) {
             alert('Erro ao adicionar a tarefa.');
-            break; // Caso algum erro ocorra, para o processo
+            return; // Interrompe o processo em caso de erro
           }
         }
-        alert('Tarefa adicionada com sucesso!');
-
-        fetchChildrenAndTasks();  // Atualiza as tarefas após a adição
+  
+        // Atualiza os pontos após adicionar as tarefas
+        const newTotalPoints = tasksToAdd.reduce((acc, task) => acc + task.points, child.totalPoints);
+  
+        console.log("Atualizando pontos no backend:", {
+          criancaId: childId,
+          totalPoints: newTotalPoints
+        });
+  
+        const updateResponse = await axios.put(`http://localhost:3000/childrenTask/updatePoints`, {
+          criancaId: childId,
+          totalPoints: newTotalPoints
+        });
+  
+        if (updateResponse.status === 200) {
+          alert('Tarefas adicionadas e pontos atualizados com sucesso!');
+          fetchChildrenAndTasks(); // Atualiza a lista para refletir os novos pontos
+        } else {
+          alert('Erro ao atualizar os pontos.');
+        }
       } else {
         alert('Nenhuma tarefa disponível para adicionar.');
       }
@@ -146,6 +155,7 @@ const fetchChildrenAndTasks = async () => {
       alert('Erro ao adicionar tarefa. Tente novamente.');
     }
   };
+  
 
   const calculateProgress = (tasks) => {
     if (!Array.isArray(tasks)) return 0;
