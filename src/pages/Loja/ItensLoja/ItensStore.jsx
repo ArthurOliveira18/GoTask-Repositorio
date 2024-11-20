@@ -3,6 +3,7 @@ import style from './ItensStore.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
+
 const urlBenef = "http://localhost:3000/beneficios"; // URL para buscar os benefícios
 const urlChild = "http://localhost:3000/children"; // URL para buscar as crianças
 
@@ -99,7 +100,6 @@ const ItensStore = () => {
       {selectedTask && (
         <div className={style.modalOverlay} onClick={closeModal}>
           <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
-            <p>ID da recompensa selecionada: {selectedTask.id}</p> {/* Exibe o ID da recompensa */}
             {criancas.map((usus) => (
               <div key={usus.id} className={style.divPurpleModal}>
                 <div className={style.profileIcon}>
@@ -115,7 +115,7 @@ const ItensStore = () => {
               <span
                 className="material-symbols-outlined"
                 onClick={() => {
-                  navigate(`/edit-recompensa/${selectedTask.id}`);
+                  navigate(`/edit-recompensa/${selectedTask.idBeneficio}`);
                 }}
               >
                 edit
