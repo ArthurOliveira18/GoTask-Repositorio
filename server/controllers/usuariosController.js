@@ -43,62 +43,69 @@ const createUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  const { idResponsavel } = req.params;
-  console.log(`Iniciando exclusão do responsável com ID: ${idResponsavel}`);
-
-  try {
-      // 1. Excluir todos os históricos de tarefas relacionados às crianças
-      console.log('Excluindo históricos de tarefas...');
-      const deleteChildrenTasksQuery = `
-          DELETE FROM historicotask WHERE CriancaT IN (SELECT idCrianca FROM crianca WHERE responsavel = ?)
-      `;
-      await pool.query(deleteChildrenTasksQuery, [idResponsavel]);
-
-      // 2. Excluir todos os históricos de benefícios
-      console.log('Excluindo históricos de benefícios...');
-      const deleteBenefitsQuery = `
-          DELETE FROM beneficio WHERE RespB = ?
-      `;
-      await pool.query(deleteBenefitsQuery, [idResponsavel]);
-
-      // 3. Excluir todas as tarefas associadas ao responsável
-      console.log('Excluindo tarefas associadas ao responsável...');
-      const deleteTasksQuery = `
-          DELETE FROM task WHERE RespT = ?
-      `;
-      await pool.query(deleteTasksQuery, [idResponsavel]);
-
-      // 4. Excluir todos os históricos de benefícios associados às crianças
-      console.log('Excluindo históricos de benefícios das crianças...');
-      const deleteChildrenBenefitsQuery = `
-          DELETE FROM historicobeneficio WHERE CriancaB IN (SELECT idCrianca FROM crianca WHERE responsavel = ?)
-      `;
-      await pool.query(deleteChildrenBenefitsQuery, [idResponsavel]);
-
-      // 5. Excluir todas as crianças associadas ao responsável
-      console.log('Excluindo crianças associadas ao responsável...');
-      const deleteChildrenQuery = `
-          DELETE FROM crianca WHERE responsavel = ?
-      `;
-      await pool.query(deleteChildrenQuery, [idResponsavel]);
-
-      // 6. Excluir o próprio responsável
-      console.log('Excluindo responsável...');
-      const deleteUserQuery = 'DELETE FROM responsavel WHERE idResp = ?';
-      const [result] = await pool.query(deleteUserQuery, [idResponsavel]);
-
-      if (result.affectedRows === 0) {
-          console.log('Responsável não encontrado.');
-          return res.status(404).json({ message: "Responsável não encontrado." });
-      }
-
-      console.log('Responsável excluído com sucesso.');
-      res.json({ message: "Responsável excluído com sucesso." });
-  } catch (error) {
-      console.error("Erro ao excluir responsável:", error);
-      res.status(500).json({ message: "Erro ao excluir responsável.", error });
-  }
-};
-
+    const { idResponsavel } = req.params;
+    console.log(`Iniciando exclusão do responsável com ID: ${idResponsavel}`);
+  
+    try {
+        // 1. Excluir todos os históricos de tarefas relacionados às crianças
+        console.log('Excluindo históricos de tarefas...');
+        const deleteChildrenTasksQuery = ` 
+            DELETE FROM historicotask WHERE CriancaT IN (SELECT idCrianca FROM crianca WHERE responsavel = ?)
+        `;
+        await pool.query(deleteChildrenTasksQuery, [idResponsavel]);
+  
+        // 2. Excluir todos os históricos de benefícios das crianças
+        console.log('Excluindo históricos de benefícios das crianças...');
+        const deleteChildrenBenefitsQuery = `
+            DELETE FROM historicobeneficio WHERE CriancaB IN (SELECT idCrianca FROM crianca WHERE responsavel = ?)
+        `;
+        await pool.query(deleteChildrenBenefitsQuery, [idResponsavel]);
+  
+        // 3. Excluir todos os históricos de benefícios
+        console.log('Excluindo históricos de benefícios...');
+        const deleteBenefitsQuery = `
+            DELETE FROM beneficio WHERE RespB = ?
+        `;
+        // Primeiro, excluímos os históricos relacionados
+        await pool.query(deleteBenefitsQuery, [idResponsavel]);
+  
+        // 4. Excluir todas as tarefas associadas ao responsável
+        console.log('Excluindo tarefas associadas ao responsável...');
+        const deleteTasksQuery = `
+            DELETE FROM task WHERE RespT = ?
+        `;
+        await pool.query(deleteTasksQuery, [idResponsavel]);
+  
+        // 5. Excluir todas as crianças associadas ao responsável
+        console.log('Excluindo crianças associadas ao responsável...');
+        const deleteChildrenQuery = `
+            DELETE FROM crianca WHERE responsavel = ?
+        `;
+        await pool.query(deleteChildrenQuery, [idResponsavel]);
+  
+        // 6. Excluir o próprio responsável
+        console.log('Excluindo responsável...');
+        const deleteUserQuery = 'DELETE FROM responsavel WHERE idResp = ?';
+        const [result] = await pool.query(deleteUserQuery, [idResponsavel]);
+  
+        if (result.affectedRows === 0) {
+            console.log('Responsável não encontrado.');
+            return res.status(404).json({ message: "Responsável não encontrado." });
+        }
+  
+        console.log('Responsável excluído com sucesso.');
+        res.json({ message: "Responsável excluído com sucesso." });
+    } catch (error) {
+        console.error("Erro ao excluir responsável:", error);
+        if (error.code === 'ER_ROW_IS_REFERENCED_2') {
+            return res.status(400).json({
+                message: "Erro ao excluir responsável: Existem registros dependentes (restrição de chave estrangeira).",
+                error
+            });
+        }
+        res.status(500).json({ message: "Erro ao excluir responsável.", error });
+    }
+  };
+  
 
 module.exports = { getUsers, createUser, deleteUser };

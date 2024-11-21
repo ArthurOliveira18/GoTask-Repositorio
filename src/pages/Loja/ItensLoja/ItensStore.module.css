@@ -220,6 +220,6 @@
   border: solid 4px #816ad4;
 }
 .selectedChild {
-  background-color: #f0e68c; /* cor de fundo diferente quando selecionado */
+  background-color: #fcc734; /* cor de fundo diferente quando selecionado */
   border: 2px solid #593ACA; /* uma borda para destacar */
 }
