@@ -8,4 +8,12 @@ router.get('/children/:idCrianca', childrenController.getChildById);
 router.post('/children', childrenController.createChildren);
 router.put('/children/:idCrianca', childrenController.updateChild);
 
+router.delete('/children/:idCrianca', childrenController.deleteChild);
+
+/**
+ * DELETE /children/:idCrianca
+ * - `:idCrianca`: ID da criança que será excluída.
+ * - Remove a criança do banco de dados.
+ */
+
 module.exports = router;

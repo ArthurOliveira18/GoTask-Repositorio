@@ -103,4 +103,35 @@ const getChildById = async (req, res) => {
     }
 };
 
-module.exports = { getChildren, createChildren, updateChild, getChildById };
+const deleteChild = async (req, res) => {
+    const { idCrianca } = req.params;
+
+    try {
+        // Excluir registros relacionados na tabela 'historicotask'
+        const deleteTaskHistoryQuery = 'DELETE FROM historicotask WHERE CriancaT = ?';
+        await pool.query(deleteTaskHistoryQuery, [idCrianca]);
+
+        // Excluir registros relacionados na tabela 'historicobeneficio'
+        const deleteBenefitHistoryQuery = 'DELETE FROM historicobeneficio WHERE CriancaB = ?';
+        await pool.query(deleteBenefitHistoryQuery, [idCrianca]);
+
+        // Excluir a criança
+        const deleteChildQuery = 'DELETE FROM crianca WHERE idCrianca = ?';
+        const [result] = await pool.query(deleteChildQuery, [idCrianca]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Criança não encontrada." });
+        }
+
+        res.json({ message: "Criança excluída com sucesso." });
+    } catch (error) {
+        console.error("Erro ao excluir criança:", error);
+        res.status(500).json({ message: "Erro ao excluir criança.", error });
+    }
+};
+
+
+
+module.exports = { getChildren, createChildren, updateChild,getChildById, deleteChild 
+};
+

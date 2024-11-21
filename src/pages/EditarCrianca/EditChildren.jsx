@@ -13,8 +13,8 @@ const EditChildren = () => {
     const [tasks, setTasks] = useState([]);
     // Recupera o ID da criança do localStorage
     const idCrianca = localStorage.getItem('selectedChildId');
-    
-    
+
+
 
     useEffect(() => {
         // Buscar dados da criança ao carregar a página
@@ -72,6 +72,22 @@ const EditChildren = () => {
         navigate('/passagem-tela');
     };
 
+    const handleDelete = async () => {
+        if (!window.confirm("Tem certeza que deseja excluir esta criança?")) {
+            return;
+        }
+
+        try {
+            const response = await axios.delete(`http://localhost:3000/children/${idCrianca}`);
+            alert(response.data.message);
+            navigate('/FamilyScreen'); // Redireciona após exclusão
+        } catch (error) {
+            console.error("Erro ao excluir criança:", error);
+            alert("Erro ao excluir criança. Tente novamente.");
+        }
+    };
+
+
     return (
         <div className={style.pageContainer}>
             <HeaderMain />
@@ -90,7 +106,7 @@ const EditChildren = () => {
                             type="text"
                             name="name"
                             id="name"
-                            style={{ textAlign: "center",  fontSize: "30px"}}
+                            style={{ textAlign: "center", fontSize: "30px" }}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
@@ -101,7 +117,7 @@ const EditChildren = () => {
                             type="date"
                             name="date"
                             id="date"
-                            style={{ textAlign: "center",  fontSize: "25px"}}
+                            style={{ textAlign: "center", fontSize: "25px" }}
                             value={birthDate}
                             onChange={(e) => setBirthDate(e.target.value)}
                         />
@@ -114,9 +130,13 @@ const EditChildren = () => {
                         >
                             Atualizar
                         </button>
-                        <button type="submit" className={style.buttonExcluir}>
+                        <button
+                            type="button"
+                            className={style.buttonExcluir}
+                            onClick={handleDelete}>
                             Excluir
                         </button>
+
                     </div>
                 </div>
                 <div className={style.divEditTasks}>
