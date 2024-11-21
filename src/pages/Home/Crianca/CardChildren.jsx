@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import style from './CardChildren.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+// NÃO MEXER NESTA TELA!!
 
 const CardChildren = () => {
   const navigate = useNavigate();
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const user = JSON.parse(localStorage.getItem('user'));
   const idResp = user ? user.idResp : null;
@@ -54,7 +54,7 @@ const CardChildren = () => {
       setChildren(groupedData);
     } catch (error) {
       console.error("Erro ao buscar os dados:", error);
-      setError("Erro ao carregar dados. Tente novamente mais tarde.");
+      // Não definimos a mensagem de erro aqui para não interromper a renderização
     } finally {
       setLoading(false);
     }
@@ -64,8 +64,7 @@ const CardChildren = () => {
     if (idResp) {
       fetchChildrenAndTasks();
     } else {
-      setError("Usuário não identificado.");
-      setLoading(false);
+      setLoading(false); // Apenas desabilita o carregamento, sem erro
     }
   }, [idResp]);
 
@@ -162,10 +161,6 @@ const CardChildren = () => {
     return <div>Carregando...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
     <div className={style.homeMain}>
       <div className={style.divSettings}>
@@ -174,61 +169,65 @@ const CardChildren = () => {
         </span>
       </div>
       <div className={style.homePurple}>
-        {children.map(filho => (
-          <div key={filho.id} style={{
-            backgroundColor: '#FFFFFF',
-            width: '85%',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-            alignItems: "center",
-            textAlign: "end",
-            borderRadius: '1rem',
-            padding: '1rem',
-            margin: '1rem 2rem 0.2rem',
-          }}>
-            <div className={style.nameChildren}>
-              <h1>{filho.nomeCrianca}</h1>
-              <p>Total de pontos: {filho.totalPoints}</p>
+        {children.length === 0 ? (
+          <p style={{color:'#fff', fontSize:'20px' }}>Nenhum filho encontrado para exibir.</p> // Você pode customizar essa mensagem
+        ) : (
+          children.map(filho => (
+            <div key={filho.id} style={{
+              backgroundColor: '#FFFFFF',
+              width: '85%',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
+              alignItems: "center",
+              textAlign: "end",
+              borderRadius: '1rem',
+              padding: '1rem',
+              margin: '1rem 2rem 0.2rem',
+            }}>
+              <div className={style.nameChildren}>
+                <h1>{filho.nomeCrianca}</h1>
+                <p>Total de pontos: {filho.totalPoints}</p>
+              </div>
+              <div className={style.taskChildren}>
+                {filho.task.length > 0 ? (
+                  filho.task.map((task, index) => (
+                    <form key={index}>
+                      <input
+                        type="checkbox"
+                        checked={task.complete}
+                        onChange={() => handleTaskChange(filho.id, index)}
+                      />
+                      <label> {task.taskName} + {task.points}</label>
+                    </form>
+                  ))
+                ) : (
+                  <p>Sem tarefas para exibir.</p>
+                )}
+              </div>
+              <div className={style.progressBarContainer}>
+                <div
+                  className={style.progressBar}
+                  style={{ width: `${calculateProgress(filho.task)}%` }}
+                ></div>
+                <p>{calculateProgress(filho.task).toFixed(0)}% concluído!</p>
+              </div>
+              <button
+                onClick={() => handleAddTask(filho.id)}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#6200EE',
+                  color: '#FFF',
+                  borderRadius: '5px',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+              >
+                Adicionar pts
+              </button>
             </div>
-            <div className={style.taskChildren}>
-              {filho.task.length > 0 ? (
-                filho.task.map((task, index) => (
-                  <form key={index}>
-                    <input
-                      type="checkbox"
-                      checked={task.complete}
-                      onChange={() => handleTaskChange(filho.id, index)}
-                    />
-                    <label> {task.taskName} + {task.points}</label>
-                  </form>
-                ))
-              ) : (
-                <p>Sem tarefas para exibir.</p>
-              )}
-            </div>
-            <div className={style.progressBarContainer}>
-              <div
-                className={style.progressBar}
-                style={{ width: `${calculateProgress(filho.task)}%` }}
-              ></div>
-              <p>{calculateProgress(filho.task).toFixed(0)}% concluído!</p>
-            </div>
-            <button
-              onClick={() => handleAddTask(filho.id)}
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#6200EE',
-                color: '#FFF',
-                borderRadius: '5px',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-            >
-              Adicionar pts
-            </button>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
