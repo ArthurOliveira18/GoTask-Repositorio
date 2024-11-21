@@ -123,7 +123,7 @@ const EditChildren = () => {
                     <div className={style.divIcon} onClick={handleNavigatePass}>
                         <span className="material-symbols-outlined">edit</span>
                     </div>
-                    <p>Tasks atribuídas</p>
+                    <p>Atribuir Tasks</p>
                     {tasks.map((tarefa) => (
                         <div key={tarefa.id} className={style.divPurpleWhite}>
                             <div className={style.divInfoTask}>

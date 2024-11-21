@@ -171,9 +171,13 @@ const ItensStore = () => {
               </div>
             ))}
             <div className={style.divIcon}>
+            <span class="material-symbols-outlined" style={{marginRight: "250px"}}>delete</span>
+
+            
               <button className={style.closeButton} onClick={handleResgatarBeneficio}>Resgatar</button>
               <span
                 className="material-symbols-outlined"
+                style={{marginRight: "5px"}}
                 onClick={() => {
                   navigate(`/edit-recompensa/${selectedTask.idBeneficio}`);
                 }}
