@@ -57,11 +57,7 @@ const EditListTask = () => {
           ))}
           <div className={style.divButtonTasks}>
             <div className={style.divIcon}>
-              <button onClick={(e) => { e.preventDefault(); navigate('/TaskScreen'); }}>
-                <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
-                  Check
-                </span>
-              </button>
+             
             </div>
           </div>
         </div>

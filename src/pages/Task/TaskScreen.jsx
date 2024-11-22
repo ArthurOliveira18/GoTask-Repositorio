@@ -63,17 +63,22 @@ const TaskScreen = () => {
 
 
           <div className={style.divButtonTasks}>
-
+          <button onClick={() => { navigate('/excluirTask') }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '40px', width: '60px', color: '#593ACA' }}>
+                delete
+              </span>
+            </button>
             <button onClick={() => { navigate('/edit-list-task') }}>
-              <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '40px', width: '60px', color: '#593ACA' }}>
                 edit
               </span>
             </button>
             <button onClick={() => { navigate('/create-task') }}>
-              <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '40px', width: '60px', color: '#593ACA' }}>
                 add
               </span>
             </button>
+            
 
           </div>
         </div>

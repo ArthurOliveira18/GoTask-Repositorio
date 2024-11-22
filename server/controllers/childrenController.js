@@ -134,4 +134,3 @@ const deleteChild = async (req, res) => {
 
 module.exports = { getChildren, createChildren, updateChild,getChildById, deleteChild 
 };
-

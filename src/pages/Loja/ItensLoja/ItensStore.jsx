@@ -95,10 +95,6 @@ const ItensStore = () => {
           console.error("Erro ao resgatar o benefício:", error.response ? error.response.data : error);
         }
         
-        
-        
-        
-  
         // Exibe um alerta de sucesso
         alert('Benefício resgatado com sucesso!');
         closeModal(); // Fecha o modal após resgatar
@@ -110,8 +106,27 @@ const ItensStore = () => {
       alert('Pontos insuficientes!');
     }
   };
-  
-  
+
+  const handleDeleteBeneficio = async (idBeneficio) => {
+    // Confirmar se o usuário realmente deseja excluir o benefício
+  const confirmed = window.confirm("Você tem certeza que deseja excluir este benefício?");
+
+  if (confirmed) {
+    try {
+      // Se confirmado, faz a requisição para o backend
+      await axios.delete(`http://localhost:3000/beneficios/${idBeneficio}`);
+      alert('Benefício excluído com sucesso!');
+      // Aqui você pode atualizar a lista de benefícios ou remover o benefício da lista no estado
+      setRecompensas((prevRecompensas) => prevRecompensas.filter(benef => benef.idBeneficio !== idBeneficio));
+    } catch (error) {
+      console.error("Erro ao excluir benefício:", error);
+      alert('Erro ao excluir o benefício. Tente novamente.');
+    }
+  } else {
+    // Se o usuário cancelar a exclusão
+    alert('Exclusão cancelada.');
+  }
+};
 
   return (
     <div className={style.divMainItensStore}>
@@ -171,9 +186,13 @@ const ItensStore = () => {
               </div>
             ))}
             <div className={style.divIcon}>
+            <span class="material-symbols-outlined" style={{marginRight: "250px"}} onClick={() => handleDeleteBeneficio(selectedTask.idBeneficio)}>delete</span>
+
+            
               <button className={style.closeButton} onClick={handleResgatarBeneficio}>Resgatar</button>
               <span
                 className="material-symbols-outlined"
+                style={{marginRight: "5px"}}
                 onClick={() => {
                   navigate(`/edit-recompensa/${selectedTask.idBeneficio}`);
                 }}

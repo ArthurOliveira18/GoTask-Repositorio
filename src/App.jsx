@@ -20,11 +20,13 @@ import HistoricoTask from './pages/HistoricoTask/HistoricoTask.jsx';
 import HistoricoBenef from './pages/HistoricoBenef/HistoricoBenef.jsx';
 import EscolhaFilho from './pages/EscolhaFIlhosHis/EscolhaFilho.jsx';
 import EditarTaskReal from './pages/Task/EditarTaskReal/EditarTaskReal.jsx';
+import ExcluirTask from './pages/Task/excluirTask/excluirTask.jsx';
 
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScreenPdf from './pages/ImprimirPdf/ScreenPdf.jsx';
+import ExcluirTaskReal from './pages/Task/ExcluirTaskReal/ExcluirTaskReal.jsx';
 
 
 function App() {
@@ -97,6 +99,13 @@ function App() {
 
           {/* rota para tela de editar task real  */}
           <Route path='/edit-task-real' element={<EditarTaskReal />}/>
+
+          {/* rota para tela de excluir task   */}
+          <Route path='/excluirTask' element={<ExcluirTask />}/>
+
+           {/* rota para tela de excluir task real  */}
+           <Route path='/ExcluirTaskReal' element={<ExcluirTaskReal />}/>
+        
         
 
 
