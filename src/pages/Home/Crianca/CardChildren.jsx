@@ -15,26 +15,22 @@ const CardChildren = () => {
 const fetchChildrenAndTasks = async () => {
   try {
     const response = await axios.get(`http://localhost:3000/childrenTask/${idResp}`);
-    console.log("Dados recebidos do servidor:", response.data);
-
     const groupedData = response.data.reduce((acc, current) => {
-      // Verifica se a criança já está no agrupamento
+      // Agrupamento de dados como no código original
       let existingChild = acc.find((crianca) => crianca.id === current.criancaId);
 
       if (existingChild) {
-        // Verifica se a tarefa já existe com base no idTask do histórico
         const taskExists = existingChild.task.some((task) => task.taskId === current.taskId);
 
         if (!taskExists && current.taskId) {
           existingChild.task.push({
-            taskId: current.taskId,          // ID da tarefa (historicoTask)
-            taskName: current.taskName,     // Nome da tarefa
-            points: current.taskPoints,     // Pontos da tarefa
-            complete: current.taskComplete === 1, // Status (feita ou não)
+            taskId: current.taskId,
+            taskName: current.taskName,
+            points: current.taskPoints,
+            complete: current.taskComplete === 1,
           });
         }
       } else {
-        // Adiciona nova criança e inicializa suas tarefas
         acc.push({
           id: current.criancaId,
           nomeCrianca: current.nomeCrianca,
@@ -42,20 +38,32 @@ const fetchChildrenAndTasks = async () => {
           task: current.taskId
             ? [
                 {
-                  taskId: current.taskId,          // ID da tarefa (historicoTask)
-                  taskName: current.taskName,     // Nome da tarefa
-                  points: current.taskPoints,     // Pontos da tarefa
-                  complete: current.taskComplete === 1, // Status (feita ou não)
+                  taskId: current.taskId,
+                  taskName: current.taskName,
+                  points: current.taskPoints,
+                  complete: current.taskComplete === 1,
                 },
               ]
             : [],
         });
       }
-
       return acc;
     }, []);
 
-    console.log("Dados agrupados:", groupedData);
+    // Mesclar progresso salvo localmente
+    const cachedProgress = JSON.parse(localStorage.getItem('childrenProgress'));
+    if (cachedProgress) {
+      groupedData.forEach(child => {
+        const cachedChild = cachedProgress.find(c => c.id === child.id);
+        if (cachedChild) {
+          child.task = child.task.map(task => {
+            const cachedTask = cachedChild.task.find(t => t.taskId === task.taskId);
+            return cachedTask || task;
+          });
+        }
+      });
+    }
+
     setChildren(groupedData);
   } catch (error) {
     console.error("Erro ao buscar os dados:", error);
@@ -80,8 +88,8 @@ const fetchChildrenAndTasks = async () => {
   };
 
   const handleTaskChange = (childId, taskIndex) => {
-    setChildren(prevChildren =>
-      prevChildren.map(child => {
+    setChildren(prevChildren => {
+      const updatedChildren = prevChildren.map(child => {
         if (child.id === childId) {
           const updatedTasks = child.task.map((task, index) => {
             if (index === taskIndex) {
@@ -90,24 +98,33 @@ const fetchChildrenAndTasks = async () => {
             return task;
           });
   
-          return { ...child, task: updatedTasks }; // Não atualiza totalPoints aqui
+          return { ...child, task: updatedTasks };
         }
         return child;
-      })
-    );
+      });
+  
+      // Salvar no localStorage após atualizar o estado
+      localStorage.setItem('childrenProgress', JSON.stringify(updatedChildren));
+      return updatedChildren;
+    });
   };
   
   // Função handleAddTask que adiciona todas as tarefas de uma criança
   const handleAddTask = async (childId) => {
     const now = new Date();
-    const dataTask = now.toISOString().slice(0, 19).replace('T', ' '); // Data da tarefa formatada
+    const dataTask = now.toISOString().slice(0, 19).replace('T', ' ');
   
     try {
       const child = children.find(filho => filho.id === childId);
       const tasksToAdd = child.task.filter(task => task.complete);
   
       if (tasksToAdd.length > 0) {
+        // Verifica se as tarefas já foram enviadas para evitar duplicação
+        const uniqueTaskIds = new Set();
         for (const task of tasksToAdd) {
+          if (uniqueTaskIds.has(task.taskId)) continue; // Ignorar duplicatas
+          uniqueTaskIds.add(task.taskId);
+  
           console.log('Enviando dados para o backend:', {
             criancaId: childId,
             taskId: task.taskId,
@@ -124,17 +141,12 @@ const fetchChildrenAndTasks = async () => {
   
           if (response.status !== 201) {
             alert('Erro ao adicionar a tarefa.');
-            return; // Interrompe o processo em caso de erro
+            return;
           }
         }
   
-        // Atualiza os pontos após adicionar as tarefas
+        // Atualiza os pontos
         const newTotalPoints = tasksToAdd.reduce((acc, task) => acc + task.points, child.totalPoints);
-  
-        console.log("Atualizando pontos no backend:", {
-          criancaId: childId,
-          totalPoints: newTotalPoints
-        });
   
         const updateResponse = await axios.put(`http://localhost:3000/childrenTask/updatePoints`, {
           criancaId: childId,
@@ -143,7 +155,7 @@ const fetchChildrenAndTasks = async () => {
   
         if (updateResponse.status === 200) {
           alert('Tarefas adicionadas e pontos atualizados com sucesso!');
-          fetchChildrenAndTasks(); // Atualiza a lista para refletir os novos pontos
+          fetchChildrenAndTasks();
         } else {
           alert('Erro ao atualizar os pontos.');
         }

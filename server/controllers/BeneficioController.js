@@ -74,6 +74,35 @@ const getBeneficioById = (req, res) => {
       res.json({ message: 'Benefício atualizado com sucesso!' });
     });
   };
+
+  const deleteBeneficio = (req, res) => {
+    const { id } = req.params;
+
+    // Primeiro, verificar se o benefício existe
+    const checkQuery = 'SELECT * FROM beneficio WHERE idBeneficio = ?';
+    pool.query(checkQuery, [id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: 'Erro ao verificar o benefício', error: err });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Benefício não encontrado.' });
+        }
+
+        // Tenta excluir o benefício
+        const deleteQuery = 'DELETE FROM beneficio WHERE idBeneficio = ?';
+        pool.query(deleteQuery, [id], (error, result) => {
+            if (error) {
+                // Se houver um erro de chave estrangeira (como dependência em outra tabela), retornamos um erro
+                if (error.code === 'ER_ROW_IS_REFERENCED_2') {
+                    return res.status(400).json({ message: 'Não é possível excluir o benefício, ele está em uso em outro lugar.' });
+                }
+                return res.status(500).json({ message: 'Erro ao excluir o benefício', error: error });
+            }
+            // Se a exclusão foi bem-sucedida
+            res.json({ message: 'Benefício excluído com sucesso!' });
+        });
+    });
+};
   
-  module.exports = { getBeneficio, createBeneficio, getBeneficioById, updateBeneficio };
+  module.exports = { getBeneficio, createBeneficio, getBeneficioById, updateBeneficio, deleteBeneficio };
   

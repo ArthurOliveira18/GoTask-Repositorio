@@ -102,4 +102,29 @@ const editTasks = async (req, res) => {
   }
 };
 
-module.exports = { getTasks, createTasks, editTasks, getTaskById };
+const deleteTask = async (req, res) => {
+  const { idTask } = req.params;
+
+  try {
+    // Excluir os registros na tabela 'historicotask' que referenciam a tarefa
+    await pool.query('DELETE FROM historicotask WHERE Task = ?', [idTask]);
+
+    // Agora excluir a tarefa da tabela 'task'
+    const [result] = await pool.query('DELETE FROM task WHERE idTask = ?', [idTask]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'Tarefa não encontrada' });
+    }
+
+    res.status(200).json({ message: 'Tarefa excluída com sucesso' });
+  } catch (error) {
+    console.error('Erro ao excluir a tarefa:', error);
+    res.status(500).json({
+      message: 'Erro ao excluir tarefa',
+      error: error.message,
+      stack: error.stack
+    });
+  }
+};
+
+module.exports = { getTasks, createTasks, editTasks, getTaskById, deleteTask };

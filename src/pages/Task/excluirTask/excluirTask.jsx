@@ -39,7 +39,7 @@ const excluirTask = () => {
     const handleTaskClick = (task) => {
       localStorage.setItem('selectedTaskId', task.idTask); // Armazena o ID da tarefa no localStorage
       console.log("ID da tarefa armazenado:", localStorage.getItem('selectedTaskId')); // Confirmação no console
-      navigate('/edit-task-real'); // Navega para a página de edição
+      navigate('/ExcluirTaskReal'); // Navega para a página de excluir
     };
   
     return (
@@ -56,15 +56,6 @@ const excluirTask = () => {
                 <h1>{tarefas.Nome_task}</h1>
               </div>
             ))}
-            <div className={style.divButtonTasks}>
-              <div className={style.divIcon}>
-                <button onClick={(e) => { e.preventDefault(); navigate('/TaskScreen'); }}>
-                  <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>
-                    Check
-                  </span>
-                </button>
-              </div>
-            </div>
           </div>
         </div>
         <FooterMain />

@@ -9,5 +9,5 @@ router.get('/task/:idTask', TasksController.getTaskById);
 router.post('/task', TasksController.createTasks);
 router.put('/task/:idTask', TasksController.editTasks);
 
-
+router.delete('/task/:idTask', TasksController.deleteTask); // Excluir tarefa pelo ID
 module.exports = router;
