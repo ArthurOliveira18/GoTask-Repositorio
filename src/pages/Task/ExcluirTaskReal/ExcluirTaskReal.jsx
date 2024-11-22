@@ -31,7 +31,7 @@ const ExcluirTaskReal = () => {
         try {
           await axios.delete(`http://localhost:3000/task/${idTask}`);
           alert('Tarefa excluída com sucesso!');
-          navigate('/edit-list-task'); // Redireciona para a lista de tarefas
+          navigate('/excluirTask'); // Redireciona para a lista de tarefas
         } catch (error) {
           console.error('Erro ao excluir a tarefa:', error.response?.data || error.message);
           alert('Erro ao excluir a tarefa: ' + (error.response?.data?.message || 'Verifique o console para mais detalhes.'));

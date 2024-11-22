@@ -23,10 +23,10 @@ const FooterMain = () => {
   <Link to="/Home">  <Home className="material-symbols-outlined" style={{ color: getIconColor(['/Home', '/Config']), fontSize: "40px" }} />  </Link>
 
 
-  <Link to="/Store">  <EmojiEvents className="material-symbols-outlined" style={{ color: getIconColor(['/Store', '/cad-beneficio']), fontSize: "40px"  }} />  </Link>
+  <Link to="/Store">  <EmojiEvents className="material-symbols-outlined" style={{ color: getIconColor(['/Store', '/cad-beneficio', '/edit-recompensa']), fontSize: "40px"  }} />  </Link>
 
 
-  <Link to="/FamilyScreen">  <FamilyRestroom className="material-symbols-outlined" style={{ color: getIconColor(['/FamilyScreen', '/editar-crianca', '/ScreenPdf', '/register-children']), fontSize: "40px"  }} />  </Link>
+  <Link to="/FamilyScreen">  <FamilyRestroom className="material-symbols-outlined" style={{ color: getIconColor(['/FamilyScreen', '/editar-crianca', '/ScreenPdf', '/register-children', '/passagem-tela', '/select-days']), fontSize: "40px"  }} />  </Link>
 {/* Coment para upar pro git */}
 
 </nav>
