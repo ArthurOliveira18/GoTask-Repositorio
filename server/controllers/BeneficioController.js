@@ -58,51 +58,49 @@ const getBeneficioById = (req, res) => {
     const { id } = req.params;
     const query = 'SELECT * FROM beneficio WHERE idBeneficio = ?';
     pool.query(query, [id], (err, results) => {
-      if (err) return res.status(500).send(err);
-      if (results.length === 0) return res.status(404).json({ message: 'Benefício não encontrado.' });
-      res.json(results[0]);
+        if (err) return res.status(500).send(err);
+        if (results.length === 0) return res.status(404).json({ message: 'Benefício não encontrado.' });
+        res.json(results[0]);
     });
-  };
-  
-  // Rota para atualizar um benefício
-  const updateBeneficio = (req, res) => {
+};
+
+// Rota para atualizar um benefício
+const updateBeneficio = (req, res) => {
     const { id } = req.params;
     const { Nome_ben, pontos_ben } = req.body;
     const query = 'UPDATE beneficio SET Nome_ben = ?, pontos_ben = ? WHERE idBeneficio = ?';
     pool.query(query, [Nome_ben, pontos_ben, id], (err, result) => {
-      if (err) return res.status(500).send(err);
-      res.json({ message: 'Benefício atualizado com sucesso!' });
+        if (err) return res.status(500).send(err);
+        res.json({ message: 'Benefício atualizado com sucesso!' });
     });
-  };
+};
 
-  const deleteBeneficio = (req, res) => {
+const deleteBeneficio = (req, res) => {
     const { id } = req.params;
 
-    // Primeiro, verificar se o benefício existe
-    const checkQuery = 'SELECT * FROM beneficio WHERE idBeneficio = ?';
-    pool.query(checkQuery, [id], (err, results) => {
+    // Primeiro, remover registros do histórico relacionados ao benefício
+    const deleteHistoricoQuery = 'DELETE FROM historicoBeneficio WHERE Beneficio = ?';
+    pool.query(deleteHistoricoQuery, [id], (err) => {
         if (err) {
-            return res.status(500).json({ message: 'Erro ao verificar o benefício', error: err });
-        }
-        if (results.length === 0) {
-            return res.status(404).json({ message: 'Benefício não encontrado.' });
+            console.log('Erro ao excluir registros do histórico relacionados ao benefício:', err);
+            return res.status(500).json({ message: 'Erro ao excluir registros do histórico', error: err });
         }
 
-        // Tenta excluir o benefício
+        // Depois, excluir o benefício
         const deleteQuery = 'DELETE FROM beneficio WHERE idBeneficio = ?';
         pool.query(deleteQuery, [id], (error, result) => {
             if (error) {
-                // Se houver um erro de chave estrangeira (como dependência em outra tabela), retornamos um erro
-                if (error.code === 'ER_ROW_IS_REFERENCED_2') {
-                    return res.status(400).json({ message: 'Não é possível excluir o benefício, ele está em uso em outro lugar.' });
-                }
+                console.log('Erro ao tentar excluir o benefício:', error);
                 return res.status(500).json({ message: 'Erro ao excluir o benefício', error: error });
             }
-            // Se a exclusão foi bem-sucedida
+
+            console.log('Benefício excluído com sucesso, ID:', id);
             res.json({ message: 'Benefício excluído com sucesso!' });
         });
     });
 };
-  
-  module.exports = { getBeneficio, createBeneficio, getBeneficioById, updateBeneficio, deleteBeneficio };
-  
+
+
+
+module.exports = { getBeneficio, createBeneficio, getBeneficioById, updateBeneficio, deleteBeneficio };
+
