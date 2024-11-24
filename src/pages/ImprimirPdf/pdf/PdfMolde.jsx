@@ -28,7 +28,7 @@ const Tabela = () => {
     }, []);
 
     return (
-        <div className={style.container}>
+        <div id='conteudoPdf' className={style.container}>
             <div className={style.header}>Tarefas semanais - Juliana</div>
 
             <div className={style.days}>

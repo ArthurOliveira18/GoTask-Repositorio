@@ -1,11 +1,31 @@
 import style from "./ScreenPdf.module.css";
 import FooterMain from "../../components/MainHeadFoot/Footer/FooterMain";
 import HeaderMain from "../../components/MainHeadFoot/Header/HeaderMain";
+import PdfMolde from "./pdf/PdfMolde"
+import html2pdf from "html2pdf.js"
 import { Link } from 'react-router-dom';
 
 
 
 const ScreenPdf = () => {
+
+    const baixarpdf = () => {
+
+      const content = document.querySelector("#conteudoPdf");
+
+
+    const options = {
+        margin: [0,0,0,0],
+        filename: "arquivo.pdf",
+        html2canvas: {scale: 1, y: 140 },
+        jsPDF: {unit: "mm", format: "a4", orientation: "landscape"}
+    }
+
+    html2pdf().set(options).from(content).save();
+
+    }; 
+
+
   return (
     <div className={style.pageContainer}>
       <HeaderMain />
@@ -25,7 +45,7 @@ const ScreenPdf = () => {
           </div>
           {/* buttons */}
           <div className={style.buttonContainer}>
-            <button className={style.printButton}>Baixar PDF</button>
+            <button onClick={baixarpdf} className={style.printButton}>Baixar PDF</button>
           </div>
         </div>
       </div>

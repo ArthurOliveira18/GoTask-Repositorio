@@ -3,19 +3,39 @@ body {
     background-color: #d3d9f1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;;
     flex-direction: column;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
+#some{
+    display: none;
+}
+        #conteudo {
+            width: 1122px; /* Largura do A4 em landscape */
+height: auto;  /* Altura ajustável */
+margin: 0 auto;
+box-sizing: border-box;
+padding: 10px;
+}
 .container {
     background-color: #ffffff;
     width: 90%;
     max-width: 1200px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    padding: 10px;
+}
+
+@media print {
+
+.container {
+    margin: 0;
+    padding: 10px;
+    box-shadow: none;
+    border-radius: 0;
+}
 }
 
 .header {
@@ -35,7 +55,7 @@ body {
     gap: 10px;
 }
 
-.day, .weekendtask, .store-item {
+.day, .weekend-task, .store-item {
     background-color: #f3f4fc;
     padding: 10px;
     border-radius: 10px;
