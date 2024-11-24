@@ -21,6 +21,7 @@ import HistoricoBenef from './pages/HistoricoBenef/HistoricoBenef.jsx';
 import EscolhaFilho from './pages/EscolhaFIlhosHis/EscolhaFilho.jsx';
 import EditarTaskReal from './pages/Task/EditarTaskReal/EditarTaskReal.jsx';
 import ExcluirTask from './pages/Task/excluirTask/excluirTask.jsx';
+import Pdf from './pages/ImprimirPdf/pdf/PdfMolde.jsx'
 
 
 
@@ -106,6 +107,8 @@ function App() {
            {/* rota para tela de excluir task real  */}
            <Route path='/ExcluirTaskReal' element={<ExcluirTaskReal />}/>
         
+          {/* rota para tela de excluir task real  */}
+          <Route path='/Pdf' element={<Pdf />}/>
         
 
 
