@@ -3,7 +3,7 @@ import style from './EditListTask.module.css';
 import { useNavigate } from 'react-router-dom';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain';
-import axios from 'axios';  
+import axios from 'axios';
 const url = "http://localhost:3000/task";
 
 const EditListTask = () => {
@@ -57,7 +57,9 @@ const EditListTask = () => {
           ))}
           <div className={style.divButtonTasks}>
             <div className={style.divIcon}>
-             
+              <button onClick={(e) => { e.preventDefault(); navigate('/TaskScreen'); }}>
+                <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#593ACA' }}>Check</span>
+              </button>
             </div>
           </div>
         </div>

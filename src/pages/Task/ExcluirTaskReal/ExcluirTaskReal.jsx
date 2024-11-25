@@ -54,6 +54,8 @@ const ExcluirTaskReal = () => {
                 arrow_back
               </span>
             </Link>
+            <div></div>
+            <div></div>
           </div>
   
           <form className={style.formCreateTask} onSubmit={handleEditTask}>

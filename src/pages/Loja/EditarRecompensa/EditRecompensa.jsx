@@ -1,7 +1,7 @@
 import style from './EditRecompensa.module.css';
 import HeaderMain from '../../../components/MainHeadFoot/Header/HeaderMain';
 import FooterMain from '../../../components/MainHeadFoot/Footer/FooterMain';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 const urlBenef = "http://localhost:3000/beneficios";
@@ -60,9 +60,13 @@ const EditRecompensa = () => {
       <HeaderMain />
       <div className={style.pageMainEditRecomp}>
         <div className={style.arrowMain1}>
-          <span className="material-symbols-outlined" onClick={() => navigate('/store')}>
-            arrow_back
-          </span>
+          <Link to={'/Store'}>
+            <span className="material-symbols-outlined">
+              arrow_back
+            </span>
+          </Link>
+          <div></div>
+          <div></div>
         </div>
 
         <form className={style.formRecompensa} onSubmit={handleSubmit}>

@@ -53,6 +53,8 @@ const EditarTaskReal = () => {
               arrow_back
             </span>
           </Link>
+          <div></div>
+          <div></div>
         </div>
 
         <form className={style.formCreateTask} onSubmit={handleEditTask}>
@@ -60,8 +62,8 @@ const EditarTaskReal = () => {
           <div className={style.divCardCreateTask}>
             <div className={style.divInputsCreateTask}>
               <h2>Descrição da task</h2>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={task.Nome_task}
                 onChange={(e) => setTask({ ...task, Nome_task: e.target.value })}
               />
@@ -69,7 +71,7 @@ const EditarTaskReal = () => {
 
             <div className={style.divInputsCreateTask}>
               <h2>Pontos para task</h2>
-              <input 
+              <input
                 type="number"
                 value={task.Pontos_task}
                 onChange={(e) => setTask({ ...task, Pontos_task: e.target.value })}

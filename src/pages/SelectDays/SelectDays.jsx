@@ -10,9 +10,9 @@ const SelectDays = () => {
   const navigate = useNavigate();
   const { taskName, taskPoints, taskId } = location.state || { taskName: "", taskPoints: 0, taskId: null };
   const selectedTaskId = localStorage.getItem('selectedTaskId');
-  
+
   const selectChild = localStorage.getItem('selectedChildId');
-  
+
 
 
 
@@ -36,15 +36,15 @@ const SelectDays = () => {
       alert('Por favor, selecione pelo menos um dia.');
       return;
     }
-  
+
     if (!selectChild || !selectedTaskId) {
       alert('Informações insuficientes para adicionar a tarefa.');
       return;
     }
-  
+
     // Montar string de dias no formato `SET` (separados por vírgulas)
     const diasSet = selectedDays.join(','); // Exemplo: "seg,ter,qua"
-  
+
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -57,7 +57,7 @@ const SelectDays = () => {
           dias: diasSet, // Envia no formato correto para o MySQL `SET`
         }),
       });
-  
+
       if (response.ok) {
         alert('Tarefa adicionada com sucesso!');
         navigate('/passagem-tela'); // Redireciona para a página desejada
@@ -70,7 +70,7 @@ const SelectDays = () => {
       alert('Erro ao enviar os dados. Por favor, tente novamente mais tarde.');
     }
   };
-  
+
   return (
     <div className={style.pageContainer}>
       <HeaderMain />
@@ -79,6 +79,8 @@ const SelectDays = () => {
           <Link to={'/passagem-tela'}>
             <span className="material-symbols-outlined">arrow_back</span>
           </Link>
+          <div></div>
+          <div></div>
         </div>
 
         <div className={style.divPurpleInfo}>
