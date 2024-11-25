@@ -36,6 +36,7 @@ const EditChildren = () => {
                 alert("Erro ao carregar os dados da criança.");
             }
         };
+        // comment para jogar na main
 
         fetchChildData();
     }, [idCrianca]);
