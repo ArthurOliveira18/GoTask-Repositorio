@@ -73,7 +73,7 @@ const EditChildren = () => {
     };
 
     const handleDelete = async () => {
-        if (!window.confirm("Tem certeza que deseja excluir esta criança?")) {
+        if (!window.confirm("Tem certeza que deseja remover esta criança?")) {
             return;
         }
 
@@ -82,8 +82,8 @@ const EditChildren = () => {
             alert(response.data.message);
             navigate('/FamilyScreen'); // Redireciona após exclusão
         } catch (error) {
-            console.error("Erro ao excluir criança:", error);
-            alert("Erro ao excluir criança. Tente novamente.");
+            console.error("Erro ao remover criança:", error);
+            alert("Erro ao remover criança. Tente novamente.");
         }
     };
 
@@ -134,7 +134,7 @@ const EditChildren = () => {
                             type="button"
                             className={style.buttonExcluir}
                             onClick={handleDelete}>
-                            Excluir
+                            Remover
                         </button>
 
                     </div>
