@@ -116,6 +116,7 @@ const ItensStore = () => {
       // Se confirmado, faz a requisição para o backend
       await axios.delete(`http://localhost:3000/beneficios/${idBeneficio}`);
       alert('Benefício excluído com sucesso!');
+      closeModal()
       // Aqui você pode atualizar a lista de benefícios ou remover o benefício da lista no estado
       setRecompensas((prevRecompensas) => prevRecompensas.filter(benef => benef.idBeneficio !== idBeneficio));
     } catch (error) {
